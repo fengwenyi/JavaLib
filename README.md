@@ -1,29 +1,50 @@
+[![](https://jitpack.io/v/fengwenyi/JavaLib.svg)](https://jitpack.io/#fengwenyi/JavaLib)
+
 # 开发者工具类库——JavaLib
-
-正如名字所说，他——JavaLib是一个Java开发工具类库，目的是帮助开发者更快速、更快捷的开发。
-
-无侵入性，轻量级，常用功能，无数次测试，不断完善
 
 ### 功能
 
+JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工具进行封装，如：加密、http请求、API接口。
 
-* 回调接口
+目的是帮助开发者更快速、更快捷的开发。
 
-* Https 请求
+无侵入性，轻量级，常用功能，无数次测试，不断完善
 
-* API 返回结果统一化
+* SSLClient          SSL Client
 
-* Base 64 加密
+* ICallback          回调接口
 
-* 文件操作工具
+* IReturnCode        返回码接口
 
-* 进制转换工具
+* Result             API返回封装
 
-* 请求数据处理
+* Base64             Base64
 
-* 常用加密工具
+* Constant           常量接口（值）
 
-* 时间处理工具
+* FileUtil           文件操作工具类
+
+* HexUtil            进制转换工具类
+
+* HttpsClientUtil    Https 请求工具类
+
+* HttpUtil           Http 请求工具类
+
+* MathUtil           Math 工具类
+
+* RequestUtil        Request 工具类
+
+* RSAUtil            RSA 加密解密签名与验证工具类
+
+* SafeUtil           加密工具类
+
+* StringUtil         字符串工具类
+
+* TimeUtil           时间工具类
+
+* ToastUtil          打印工具类
+
+* Utils              常用工具类
 
 
 ### 目录结构
@@ -56,6 +77,7 @@ JavaLib
 │   │                      ├── SafeUtil                          // Safe 工具类
 │   │                      ├── StringUtil                        // String 工具类
 │   │                      ├── TimeUtil                          // Time 工具类
+│   │                      ├── ToastUtil                         // Time 工具类
 │   │                      └── Utils                             // 常用工具类
 │   └── test
 │       └── java
@@ -82,22 +104,32 @@ JavaLib
 |   ---     | ---|
 | ArtifactId| JavaLib|
 
-**`版本信息`**
-
-| Version | 说明 |
-|  ---    | --- |
-|  0.0.9  | 发布版 |
-|  1.0.0.beta.1  | 1.0.0 测试版 |
-
-**`依赖`**
+**`发布版`**
 
 ```xml
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>1.0.0.beta.1</version>
+    <version>0.0.9</version>
 </dependency>
 ```
+
+**`测试版本`**
+
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+	
+	<dependencies>
+		<dependency>
+    	    <groupId>com.github.fengwenyi</groupId>
+    	    <artifactId>JavaLib</artifactId>
+    	    <version>（标签后的数字）</version>
+    	</dependency>
+    </dependencies>
 
 
 ### API
@@ -123,13 +155,13 @@ JavaLib
 ### About Me
 
 ```
-©author Wenyi Feng
+    ©author Wenyi Feng
 ```
 
 ### Licensed
 
 ```
-   Copyright 2017-2018 Wenyi Feng
+   Copyright 2017-2018 Wenyi Feng(xfsy_2015@163.com)
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
