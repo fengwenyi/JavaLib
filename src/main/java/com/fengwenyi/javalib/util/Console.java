@@ -2,91 +2,87 @@ package com.fengwenyi.javalib.util;
 
 /**
  * 打印工具类
- * <p>
- *     取名来源于Android
- *     可以参见AppLib
- * </p>
  * @author Wenyi Feng
  */
-public class ToastUtil {
+public class Console {
 
     /**
-     * 换行
+     * 控制台：换行
      */
-    public static void show() {
+    public static void log() {
         System.out.println();
     }
 
     /**
-     * 打印
+     * 控制台：打印
      * @param x Object
      */
-    public static void show(Object x) {
+    public static void log(Object x) {
         System.out.println(x);
     }
 
     /**
-     * 打印
+     * 控制台：打印
      * @param x 布尔
      */
-    public static void show(boolean x) {
+    public static void log(boolean x) {
         System.out.println(x);
     }
 
     /**
-     * 打印
+     * 控制台：打印
      * @param x 字符
      */
-    public static void show(char x) {
+    public static void log(char x) {
         System.out.println(x);
     }
 
     /**
-     * 打印
+     * 控制台：打印
      * @param x 整型
      */
-    public static void show(int x) {
+    public static void log(int x) {
         System.out.println(x);
     }
 
     /**
-     * 打印
+     * 控制台：打印
      * @param x 长整型
      */
-    public static void show(long x) {
+    public static void log(long x) {
         System.out.println(x);
     }
 
     /**
-     * 打印
+     * 控制台：打印
      * @param x 浮点数
      */
-    public static void show(float x) {
+    public static void log(float x) {
         System.out.println(x);
     }
 
 
     /**
-     * 打印
+     * 控制台：打印
      * @param x 双精度浮点数
      */
-    public static void show(double x) {
+    public static void log(double x) {
         System.out.println(x);
     }
 
     /**
-     * 打印
+     * 控制台：打印
      * @param x 字符数组
      */
-    public static void show(char [] x) {
+    public static void log(char [] x) {
         System.out.println(x);
     }
 
     /**
-     * 打印
+     * 控制台：打印
      * @param x 字符数组
      */
-    public static void show(String x) {
+    public static void log(String x) {
         System.out.println(x);
     }
 }
