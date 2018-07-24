@@ -9,7 +9,7 @@ import java.net.URLDecoder;
 import java.net.UnknownHostException;
 
 /**
- * 你可能想从{HttpServletRequest}获取一些信息
+ * 你可能想从{@link HttpServletRequest}获取一些信息
  * @author Wenyi Feng
  */
 public class RequestUtil {

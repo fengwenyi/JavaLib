@@ -9,7 +9,7 @@ public class Console {
     /**
      * 控制台：换行
      */
-    public static void log() {
+    public static void info() {
         System.out.println();
     }
 
@@ -17,7 +17,7 @@ public class Console {
      * 控制台：打印
      * @param x Object
      */
-    public static void log(Object x) {
+    public static void info(Object x) {
         System.out.println(x);
     }
 
@@ -25,7 +25,7 @@ public class Console {
      * 控制台：打印
      * @param x 布尔
      */
-    public static void log(boolean x) {
+    public static void info(boolean x) {
         System.out.println(x);
     }
 
@@ -33,7 +33,7 @@ public class Console {
      * 控制台：打印
      * @param x 字符
      */
-    public static void log(char x) {
+    public static void info(char x) {
         System.out.println(x);
     }
 
@@ -41,7 +41,7 @@ public class Console {
      * 控制台：打印
      * @param x 整型
      */
-    public static void log(int x) {
+    public static void info(int x) {
         System.out.println(x);
     }
 
@@ -49,7 +49,7 @@ public class Console {
      * 控制台：打印
      * @param x 长整型
      */
-    public static void log(long x) {
+    public static void info(long x) {
         System.out.println(x);
     }
 
@@ -57,7 +57,7 @@ public class Console {
      * 控制台：打印
      * @param x 浮点数
      */
-    public static void log(float x) {
+    public static void info(float x) {
         System.out.println(x);
     }
 
@@ -66,7 +66,7 @@ public class Console {
      * 控制台：打印
      * @param x 双精度浮点数
      */
-    public static void log(double x) {
+    public static void info(double x) {
         System.out.println(x);
     }
 
@@ -74,7 +74,7 @@ public class Console {
      * 控制台：打印
      * @param x 字符数组
      */
-    public static void log(char [] x) {
+    public static void info(char [] x) {
         System.out.println(x);
     }
 
@@ -82,7 +82,7 @@ public class Console {
      * 控制台：打印
      * @param x 字符数组
      */
-    public static void log(String x) {
+    public static void info(String x) {
         System.out.println(x);
     }
 }
