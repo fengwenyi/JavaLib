@@ -66,7 +66,8 @@ public class RequestUtil {
                 ip = ip.substring(0,ip.indexOf(","));
             }
         }
-        return ip;
+        //return ip;
+        return "0:0:0:0:0:0:0:1".equals(ip) ? "127.0.0.1" : ip;
     }
 
     /**
