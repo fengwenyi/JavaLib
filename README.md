@@ -1,5 +1,6 @@
 [![](https://jitpack.io/v/fengwenyi/JavaLib.svg)](https://jitpack.io/#fengwenyi/JavaLib)
 
+
 # 开发者工具类库——JavaLib
 
 ### 功能
@@ -123,13 +124,11 @@ JavaLib
 		</repository>
 	</repositories>
 	
-	<dependencies>
-		<dependency>
-    	    <groupId>com.github.fengwenyi</groupId>
-    	    <artifactId>JavaLib</artifactId>
-    	    <version>（标签后的数字）</version>
-    	</dependency>
-    </dependencies>
+	<dependency>
+	    <groupId>com.github.fengwenyi</groupId>
+	    <artifactId>JavaLib</artifactId>
+	    <version>1.0.0-RELEASE</version>
+	</dependency>
 
 
 ### API
