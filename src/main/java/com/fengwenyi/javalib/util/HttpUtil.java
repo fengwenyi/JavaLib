@@ -17,7 +17,7 @@ public class HttpUtil {
 
     /**
      * 通过 get 方式请求数据
-     * @param url     {URL} / {URL+Param}
+     * @param url     {URL}
      * @param headers 请求的属性，也叫请求头
      * @param params  在参数过多的时候，可能你更喜欢用 Map 来进行保存你的参数
      * @return        {URL}返回的数据，类型是 String
@@ -29,8 +29,38 @@ public class HttpUtil {
                              Map<String, String> params) throws IOException {
 
         // 参数
-        if (params != null) {
+        if (params != null && !params.isEmpty())
             url += "?" + Utils.getUrlParamsByMap(params);
+
+        HttpURLConnection httpUrlConn = httpUrlConn(url);
+        httpUrlConn.setDoInput(true);
+        httpUrlConn.setRequestMethod(Constant.RequestMethodGet);
+
+        // header
+        if (headers != null && !headers.isEmpty())
+            header(headers, httpUrlConn);
+
+        httpUrlConn.connect();
+
+        return readIO(httpUrlConn);
+    }
+
+    /**
+     * 通过 get 方式请求数据
+     * @param url     {URL}
+     * @param headers 请求的属性，也叫请求头
+     * @param params  在参数过多的时候，可能你更喜欢用 Map 来进行保存你的参数
+     * @return        {URL}返回的数据，类型是 String
+     * @throws IOException IO异常：给定的 URL 不正确，或者其他原因，导致服务法法找到
+     *         或是在向服务器上传数据时，当然还有可能在读取服务返回的数据时
+     */
+    public static String get(String url,
+                             Map<String, String> headers,
+                             String params) throws IOException {
+
+        // 参数
+        if (StringUtil.isNotEmpty(params)) {
+            url += "?" + params;
         }
 
         HttpURLConnection httpUrlConn = httpUrlConn(url);
@@ -45,6 +75,41 @@ public class HttpUtil {
         httpUrlConn.connect();
 
         return readIO(httpUrlConn);
+    }
+
+    /**
+     * 通过 get 方式请求数据
+     * @param url     {URL} / {URL+Param}
+     * @return        {URL}返回的数据，类型是 String
+     * @throws IOException IO异常：给定的 URL 不正确，或者其他原因，导致服务法法找到
+     *         或是在向服务器上传数据时，当然还有可能在读取服务返回的数据时
+     */
+    public static String get(String url) throws IOException {
+        return HttpUtil.get(url, null, "");
+    }
+
+    /**
+     * 通过 get 方式请求数据
+     * @param url     {URL} / {URL+Param}
+     * @param headers 请求的属性，也叫请求头
+     * @return        {URL}返回的数据，类型是 String
+     * @throws IOException IO异常：给定的 URL 不正确，或者其他原因，导致服务法法找到
+     *         或是在向服务器上传数据时，当然还有可能在读取服务返回的数据时
+     */
+    public static String get(String url, Map<String, String> headers) throws IOException {
+        return HttpUtil.get(url, headers, "");
+    }
+
+    /**
+     * 通过 get 方式请求数据
+     * @param url     {URL}
+     * @param params  在参数过多的时候，可能你更喜欢用 Map 来进行保存你的参数
+     * @return        {URL}返回的数据，类型是 String
+     * @throws IOException IO异常：给定的 URL 不正确，或者其他原因，导致服务法法找到
+     *         或是在向服务器上传数据时，当然还有可能在读取服务返回的数据时
+     */
+    public static String get(String url, String params) throws IOException {
+        return HttpUtil.get(url, null, params);
     }
 
     /**
@@ -155,8 +220,12 @@ public class HttpUtil {
         return readIO(httpUrlConn);
     }
 
+    //-----------------------------------------------------------------------------------------------------private start
+
     // header代码段
     private static void header(Map<String, String> header, HttpURLConnection httpUrlConn) {
+        if (header == null)
+            return;
         if (!header.isEmpty()) {
             for (Map.Entry<String, String> map : header.entrySet()) {
                 String headerKey = map.getKey();
@@ -194,10 +263,8 @@ public class HttpUtil {
         return stringBuilder.toString();
     }
 
-    /**
-     * DataOutputStream
-     */
-    private String doPostByUrl(String uri, String param) throws IOException {
+    // DataOutputStream
+    /*private String doPostByUrl(String uri, String param) throws IOException {
         HttpURLConnection connection;
         URL url = new URL(uri);
 
@@ -230,5 +297,8 @@ public class HttpUtil {
         connection.disconnect();
 
         return buffer.toString();
-    }
+    }*/
+
+    //-----------------------------------------------------------------------------------------------------private end
+
 }
