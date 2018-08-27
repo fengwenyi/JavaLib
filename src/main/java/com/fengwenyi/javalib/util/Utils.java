@@ -74,7 +74,7 @@ public class Utils {
      */
     public static JsonObject getIpInfo(String ip) throws IOException {
         String param = "?ip=" + ip;
-        String ipInfoStr = HttpUtil.get(IP_INFO_URI + param, null, null);
+        String ipInfoStr = HttpUtil.get(IP_INFO_URI + param, null, "");
         JsonObject ipInfoJsonObject = new JsonParser().parse(ipInfoStr).getAsJsonObject();
         return ipInfoJsonObject.get("data").getAsJsonObject();
     }

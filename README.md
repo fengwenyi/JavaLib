@@ -47,6 +47,8 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 
 * Utils              常用工具类
 
+* 消息引擎
+
 
 ### 目录结构
 
@@ -58,10 +60,15 @@ JavaLib
 │   │       └──com
 │   │          └── fengwenyi
 │   │              └── javalib
+│   │                  ├── handler
+│   │                  │   ├── Handler                           // handler
+│   │                  │   └── HandlerRegister                   // handler注册
 │   │                  ├── https
 │   │                  │   └── SSLClient                         // SSL Client
 │   │                  ├── jk
 │   │                  │   └── ICallback                         // 回调接口
+│   │                  ├── messageengine
+│   │                  │   └── CommonMessage                     // 通用消息组件
 │   │                  ├── result
 │   │                  │   ├── IReturnCode                       // 返回码接口
 │   │                  │   └── Result                            // Result
@@ -135,17 +142,7 @@ JavaLib
 
 * API.md 只适用于 20 版本，从 21 版本（版本号为 0.0.8）开始，请使用JavaLib-doc
 
-* [JavaLib-doc](https://javalib-doc.fengwenyi.com)
-
-* JavaLib中用到以下依赖：
-
-|groupId                   |artifactId           |version  |
-|:----                     |:---:                 |:---:     |
-|org.apache.tomcat         |servlet-api          |6.0.53   |
-|com.google.code.gson      |gson                 |2.8.1    |
-|org.apache.httpcomponents |httpclient           |4.2      |
-|junit                     |junit                |4.10     |
-
+新版暂无API文档，作者正在加紧学习弄个文档处理。
 
 ### Blog
 

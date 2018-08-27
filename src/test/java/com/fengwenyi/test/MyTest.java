@@ -110,7 +110,7 @@ public class MyTest {
 
         String rs = null;
         try {
-            rs = HttpUtil.get(url, null, null);
+            rs = HttpUtil.get(url, null, "");
         } catch (IOException e) {
             e.printStackTrace();
         }
