@@ -2,6 +2,7 @@ package com.fengwenyi.test;
 
 import com.fengwenyi.javalib.result.IReturnCode;
 import com.fengwenyi.javalib.result.Result;
+import com.fengwenyi.javalib.result.ResultResponse;
 import com.google.gson.Gson;
 import org.junit.Test;
 
@@ -10,17 +11,16 @@ import org.junit.Test;
  */
 public class ResultTest {
 
-@Test
-public void test() {
-    Result result = new Result();
-    // result.setResult(ReturnCode.SUCCESS);
-    // result.setResult(ReturnCode.SUCCESS, "DATA");
-    result.setResult(ReturnCode.ERROR_500);
-    System.out.print(new Gson().toJson(result));
-}
+    @Test
+    public void test() {
+        Result result = new Result();
+        // result.setResult(DefaultReturnCode.SUCCESS);
+        // result.setResult(DefaultReturnCode.SUCCESS, "DATA");
+        result.setResult(ReturnCode.ERROR_500);
+        System.out.print(new Gson().toJson(result));
+    }
 
     enum ReturnCode implements IReturnCode {
-
         // 500
         ERROR_500(500, "(Error)程序出错"),
 
@@ -44,5 +44,10 @@ public void test() {
         public String getMsg() {
             return msg;
         }
+    }
+
+    @Test
+    public void test2() {
+        //ResultResponse.ok().
     }
 }
