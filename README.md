@@ -112,7 +112,7 @@ JavaLib
 |   ---     | ---|
 | ArtifactId| JavaLib|
 
-**`发布版`**
+**`中央仓库`**
 
 ```xml
 <dependency>
@@ -122,8 +122,9 @@ JavaLib
 </dependency>
 ```
 
-**`测试版本`**
+**`jitpack`**
 
+```xml
 	<repositories>
 		<repository>
 		    <id>jitpack.io</id>
@@ -134,9 +135,9 @@ JavaLib
 	<dependency>
 	    <groupId>com.github.fengwenyi</groupId>
 	    <artifactId>JavaLib</artifactId>
-	    <version>1.0.0-RELEASE</version>
+	    <version>1.0.1-RELEASE</version>
 	</dependency>
-
+```
 
 ### API
 
