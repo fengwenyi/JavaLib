@@ -37,7 +37,6 @@ public class Result<T> {
      */
     public void setResult(IReturnCode iReturnCode, T data) {
         common(iReturnCode);
-
         this.data = data;
     }
 

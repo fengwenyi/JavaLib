@@ -3,9 +3,9 @@ package com.fengwenyi.javalib.handler;
 import java.util.Map;
 
 /**
- * <类说明>
- * <p>
- * <功能详细描述>
+ * handler注册器
+ *
+ * 你可以使用此类向handler注册message，并获取一个message，来返回一个message进行处理
  *
  * @author Wenyi Feng
  * @since 2018-08-27

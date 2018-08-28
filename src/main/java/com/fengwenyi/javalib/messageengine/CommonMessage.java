@@ -1,7 +1,6 @@
 package com.fengwenyi.javalib.messageengine;
 
 import com.fengwenyi.javalib.util.StringUtil;
-import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +13,6 @@ import java.util.Map;
  * @author Wenyi Feng
  * @since 2018-08-27
  */
-@Data
 public class CommonMessage {
 
     /** 消息头 */
@@ -28,9 +26,23 @@ public class CommonMessage {
      * @param key map-key
      * @param value map-value
      */
-    public void setProperty(String key, Object value) {
+    public void setHeader(String key, Object value) {
         if (StringUtil.isNotEmpty(key))
             header.put(key, value);
+    }
+
+    /**
+     * 通过key获取消息头对应的值Object
+     * @param key map-key
+     * @return 消息头key对应的值
+     *          如果key为空或是header为空，都将返回null
+     */
+    public Object getHeader(String key) {
+        if (StringUtil.isEmpty(key)
+                || header == null
+                || header.isEmpty())
+            return null;
+        return header.get(key);
     }
 
     /**
@@ -40,6 +52,17 @@ public class CommonMessage {
     public void setBody(Object body) {
         if (body != null)
             this.body = body;
+    }
+
+    /**
+     * 获取消息体
+     * @return Object data
+     *         如果object没有被实例化为对象，那么将返回null
+     */
+    public Object getBody() {
+        if (body != null)
+            return body;
+        return null;
     }
 
 }

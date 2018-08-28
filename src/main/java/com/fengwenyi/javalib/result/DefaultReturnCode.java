@@ -13,8 +13,11 @@ import lombok.Getter;
 @Getter
 public enum DefaultReturnCode implements IReturnCode {
 
+    //-1
+    ERROR_INIT(-1, "init..."),
+
     // 500
-    ERROR_500(500, "(Error)程序出错"),
+    //ERROR_500(500, "(Error)程序出错"),
 
     SUCCESS(0, "Success")
     ;
@@ -24,14 +27,6 @@ public enum DefaultReturnCode implements IReturnCode {
 
     DefaultReturnCode(Integer code, String msg) {
         this.code = code;
-        this.msg = msg;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public void setMsg(String msg) {
         this.msg = msg;
     }
 

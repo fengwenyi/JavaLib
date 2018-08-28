@@ -30,6 +30,13 @@ public class ExceptionUtil {
     public static void notNull(Object object, String message) {
         if (object == null)
             throw new IllegalArgumentException(message);
+        /*
+        * 如果是字符串，我不希望你的字符串是一个空字符串，那样没有任何意义，
+        * 但是你仍然坚持要为空，那你可以添加一个空格(" ")试试
+        * */
+        if (object instanceof String)
+            if (StringUtil.isEmpty((String) object))
+                throw new IllegalArgumentException(message);
     }
 
 }
