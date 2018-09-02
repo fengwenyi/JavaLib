@@ -49,6 +49,8 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 
 * 消息引擎
 
+* aop模块
+
 
 ### 目录结构
 
@@ -60,6 +62,8 @@ JavaLib
 │   │       └──com
 │   │          └── fengwenyi
 │   │              └── javalib
+│   │                  ├── aop
+│   │                  │   └── LBaseWebLogAspect
 │   │                  ├── handler
 │   │                  │   ├── Handler                           // handler
 │   │                  │   └── HandlerRegister                   // handler注册
@@ -70,6 +74,9 @@ JavaLib
 │   │                  ├── messageengine
 │   │                  │   └── CommonMessage                     // 通用消息组件
 │   │                  ├── result
+│   │                  │   ├── DefaultResult
+│   │                  │   ├── DefaultReturnCode
+│   │                  │   ├── ResultResponseUtil
 │   │                  │   ├── IReturnCode                       // 返回码接口
 │   │                  │   └── Result                            // Result
 │   │                  └── util
@@ -112,32 +119,11 @@ JavaLib
 |   ---     | ---|
 | ArtifactId| JavaLib|
 
-**`中央仓库`**
+**`仓库`**
 
-```xml
-<dependency>
-    <groupId>com.fengwenyi</groupId>
-    <artifactId>JavaLib</artifactId>
-    <version>0.0.9</version>
-</dependency>
-```
-
-**`jitpack`**
-
-```xml
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
-	
-	<dependency>
-	    <groupId>com.github.fengwenyi</groupId>
-	    <artifactId>JavaLib</artifactId>
-	    <version>1.0.1-RELEASE</version>
-	</dependency>
-```
+[中央仓库](https://search.maven.org/search?q=g:com.fengwenyi%20AND%20a:JavaLib&core=gav) 
+| 
+[JitPack](https://jitpack.io/#fengwenyi/JavaLib)
 
 ### API
 
@@ -158,7 +144,7 @@ JavaLib
 ### Licensed
 
 ```
-   Copyright 2017-2018 Wenyi Feng(xfsy_2015@163.com)
+   Copyright 2017-2018 Wenyi Feng(xfsy2014@gmail.com)
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

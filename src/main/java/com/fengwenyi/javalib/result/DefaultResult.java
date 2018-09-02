@@ -16,8 +16,23 @@ import lombok.Data;
  * @since 2018-08-28
  */
 @Data
-public class DefaultResult<T> extends Result<T> {
+public class DefaultResult extends Result {
 
+    /** 返回结果属性（成功[true]/失败[false]）标志 */
     private Boolean success;
 
+    /**
+     * DefaultResult toString
+     * @return DefaultResult extends Result
+     *          如果没有这个方法，你可能打印不出想要的数据
+     */
+    @Override
+    public String toString() {
+        return "DefaultResult{" +
+                "code=" + this.getCode() +
+                " success=" + this.getSuccess() +
+                " msg=" + this.getMsg() +
+                " data=" + this.getData() +
+                "}";
+    }
 }

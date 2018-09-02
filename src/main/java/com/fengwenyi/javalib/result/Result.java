@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 // 无参数构造方法
 @NoArgsConstructor
-public class Result<T> {
+public class Result {
 
     /** 返回码 */
     private Integer code;
@@ -19,8 +19,8 @@ public class Result<T> {
     private String msg;
 
     /** 数据 */
-//    private Object data;
-    private T data;
+    private Object data;
+    //private T data;
 
     /**
      * 设置返回码
@@ -35,7 +35,7 @@ public class Result<T> {
      * @param iReturnCode 自定义枚举类，需要实现或继承IReturnCode
      * @param data 自定义数据对象
      */
-    public void setResult(IReturnCode iReturnCode, T data) {
+    public void setResult(IReturnCode iReturnCode, Object data) {
         common(iReturnCode);
         this.data = data;
     }

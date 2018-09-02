@@ -12,9 +12,13 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * web请求aop切面
+ * <p>
+ *     web请求aop切面
+ * </p>
  *
- * 通过日志记录web请求以及方法请求处理的一些细节
+ * <p>
+ *     通过日志记录web请求以及方法请求处理的一些细节
+ * </p>
  *
  * @author Wenyi Feng
  * @since 2018-08-30
@@ -24,25 +28,33 @@ public abstract class LBaseWebLogAspect {
 
     /**
      * 继承类可以直接使用
-     *
+     * 关于log变量的定义问题及更多细节，可以参考doc中的数码
      */
     //protected final Logger log = LoggerFactory.getLogger(this.getClass());
     protected static final Logger log = LoggerFactory.getLogger(LBaseWebLogAspect.class);
 
-    // 记录方法处理消耗的时间（纳秒）
-    private long startTime = 0L, endTime = 0L, time = 0L;
+    /** 记录方法处理消耗的时间(纳秒) */
+    private long startTime = 0L;
 
-    // 需要去实现（进入方法前）
+    /**
+     * 需要去实现（进入方法前）
+     * @param joinPoint 切点
+     * @throws Exception 异常
+     */
     public abstract void doBefor(JoinPoint joinPoint) throws Exception;
 
-    // 需要实现（返回后）
+    /**
+     * 需要实现（返回后）
+     * @param ret 返回的数据
+     * @throws Exception 异常
+     */
     public abstract void doAfterReturn(Object ret) throws Exception;
 
     /**
-     *
-     * @param joinPoint
-     * @param request 为了完全不侵入你的代码，所以我能帮你拿到request，但是，你很容易，所以，我选择交给你获取
-     * @throws Exception
+     * 进入方法之前
+     * @param joinPoint 切点
+     * @param request 为了完全不侵入你的代码，所以我很难帮你拿到request，但是，你很容易，所以，我选择交给你获取
+     * @throws Exception 异常
      */
     public void doBefore(JoinPoint joinPoint, HttpServletRequest request) throws Exception {
 
@@ -72,7 +84,7 @@ public abstract class LBaseWebLogAspect {
 
         //------------------------------------------------------------
 
-        log.info("∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧∧");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
         log.info("request ip:{}", ip);
         log.info("request url:{}", url);
@@ -84,21 +96,23 @@ public abstract class LBaseWebLogAspect {
     }
 
     /**
-     *
-     * @param ret
-     * @param request
-     * @throws Exception
+     * 结束方法访问
+     * @param ret 返回数据
+     * @param request 切点
+     * @throws Exception 异常
      */
     public void doAfterReturning(Object ret, HttpServletRequest request) throws Exception {
 
         //
 
         log.info("return data:{}", ret);
-        endTime = System.nanoTime();
-        time = endTime - startTime;
+        long endTime = System.nanoTime();
+
+        /** 单位：纳秒 */
+        long time = endTime - startTime;
         log.info("time spead:{} (ns)", time);
 
-        log.info("∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
     }
 }
