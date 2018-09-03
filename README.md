@@ -133,7 +133,14 @@ JavaLib
 
 ### Blog
 
-* **[JavaLib | result 模块](https://www.jianshu.com/p/03c8c95bd661)**
+* [JavaLib | Result让你的API接口统一化（2）](https://www.jianshu.com/p/2e466db0907c)
+
+* [JavaLib | RSAUtil非对称加密工具类](https://www.jianshu.com/p/bdf59b6a01ab)
+
+
+### 测试代码
+
+* [Result模块测试代码](https://github.com/fengwenyi/JavaLibExample/tree/master/JavaLibExampleResult)
 
 ### About Me
 
