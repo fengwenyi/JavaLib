@@ -2,14 +2,17 @@ package com.fengwenyi.javalib.aop;
 
 import com.fengwenyi.javalib.util.RequestUtil;
 import com.google.gson.Gson;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
-import java.util.Set;
+import java.util.Objects;
 
 /**
  * <p>
@@ -36,29 +39,25 @@ public abstract class LBaseWebLogAspect {
     /** 记录方法处理消耗的时间(纳秒) */
     private long startTime = 0L;
 
-    /**
-     * 需要去实现（进入方法前）
-     * @param joinPoint 切点
-     * @throws Exception 异常
-     */
-    public abstract void doBefor(JoinPoint joinPoint) throws Exception;
+    //---------------------------------------------------------------------- abstract start
 
-    /**
-     * 需要实现（返回后）
-     * @param ret 返回的数据
-     * @throws Exception 异常
-     */
-    public abstract void doAfterReturn(Object ret) throws Exception;
+    protected abstract void pointCut();
+
+    //---------------------------------------------------------------------- abstract end
 
     /**
      * 进入方法之前
      * @param joinPoint 切点
-     * @param request 为了完全不侵入你的代码，所以我很难帮你拿到request，但是，你很容易，所以，我选择交给你获取
+     * //@param request 为了完全不侵入你的代码，所以我很难帮你拿到request，但是，你很容易，所以，我选择交给你获取
      * @throws Exception 异常
      */
-    public void doBefore(JoinPoint joinPoint, HttpServletRequest request) throws Exception {
+    @Before("pointCut()")
+    protected void doBefore(JoinPoint joinPoint) throws Exception {
 
         startTime = System.nanoTime();
+
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(
+                RequestContextHolder.getRequestAttributes())).getRequest();
 
         // header
         //String headerStr = request.getHeader(str);
@@ -86,11 +85,11 @@ public abstract class LBaseWebLogAspect {
 
         log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
-        log.info("request ip:{}", ip);
-        log.info("request url:{}", url);
-        log.info("request mode:{}", mode);
-        log.info("request classPath:{}", className + "#" + methodName);
-        log.info("request paramData:{}", new Gson().toJson(paramMap));
+        log.info("request ip        => {}", ip);
+        log.info("request url       => {}", url);
+        log.info("request mode      => {}", mode);
+        log.info("request classPath => {}", className + "#" + methodName);
+        log.info("request paramData => {}", new Gson().toJson(paramMap));
 
         //------------------------------------------------------------
     }
@@ -98,19 +97,23 @@ public abstract class LBaseWebLogAspect {
     /**
      * 结束方法访问
      * @param ret 返回数据
-     * @param request 切点
      * @throws Exception 异常
      */
-    public void doAfterReturning(Object ret, HttpServletRequest request) throws Exception {
+    @AfterReturning(value = "pointCut()", returning = "ret")
+    protected void doAfterReturning(Object ret) throws Exception {
+
+        HttpServletRequest request
+                = ((ServletRequestAttributes) Objects.requireNonNull(
+                        RequestContextHolder.getRequestAttributes())).getRequest();
 
         //
 
-        log.info("return data:{}", ret);
+        log.info("return data       => {}", ret);
         long endTime = System.nanoTime();
 
         /** 单位：纳秒 */
         long time = endTime - startTime;
-        log.info("time spead:{} (ns)", time);
+        log.info("time spead        => {} (ns)", time);
 
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
