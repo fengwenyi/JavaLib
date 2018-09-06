@@ -1,5 +1,9 @@
 package com.fengwenyi.javalib.handler;
 
+import com.fengwenyi.javalib.util.StringUtil;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -10,6 +14,7 @@ import java.util.Map;
  * @author Wenyi Feng
  * @since 2018-08-27
  */
+@Slf4j
 public class HandlerRegister {
 
     /** handler的集合 */
@@ -17,11 +22,38 @@ public class HandlerRegister {
 
     /**
      * 获取handler
-     * @param key 通过map-key获取handler
-     * @return handler，map-value
+     * @param key handler对应的key
+     * @return handler
      */
     public Handler getHandler(String key) {
+        if (StringUtil.isEmpty(key) // key为空
+                || handlers == null // handlers没有被实例化
+                || handlers.isEmpty()) // handlers没有值
+            return null;
         return handlers.get(key);
+    }
+
+    /**
+     * 设置handler
+     * @param key handler对应的key
+     * @param handler handler
+     */
+    public void setHandler(String key, Handler handler) {
+
+        // 参数判断
+        if (StringUtil.isEmpty(key) // key 为空
+                || handler == null) // handler 没有被实例化
+            return;
+
+        if (handlers == null)
+            handlers = new HashMap<>();
+
+        // 判断之前已指定key对应的handler，如果有，给出警告提示
+        Handler handlerObj = getHandler(key);
+        if (handlerObj != null)
+            log.warn("{} 之前对应 {}", key, handlerObj);
+
+        handlers.put(key, handler);
     }
 
 }
