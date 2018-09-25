@@ -13,7 +13,7 @@ public interface Constant {
     /**
      * 编码
      */
-    String DEFAULT_CHATSET = "UTF-8";
+    String DEFAULT_CHARTSET = "UTF-8";
 
     /**
      * 连接超时时间（1分钟）
