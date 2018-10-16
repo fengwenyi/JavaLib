@@ -1,12 +1,18 @@
 package com.fengwenyi.javalib.util;
 
+import com.fengwenyi.javalib.constant.EncryptionMethod;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
  * Safe 加密
+ * <p>
+ *     进一步优化，请看{@link com.fengwenyi.javalib.safe}包
+ * </p>
  * @author Wenyi Feng.
  */
+@Deprecated
 public class SafeUtil {
 
     /**
@@ -51,7 +57,7 @@ public class SafeUtil {
      */
     public static String MD5(String plainText) throws NoSuchAlgorithmException {
         // 创建一个md5算法对象
-        MessageDigest md = MessageDigest.getInstance("MD5");
+        MessageDigest md = MessageDigest.getInstance(EncryptionMethod.MD5);
         byte[] messageByte = plainText.getBytes();
         // 获得MD5字节数组,16*8=128位
         byte[] md5Byte = md.digest(messageByte);
