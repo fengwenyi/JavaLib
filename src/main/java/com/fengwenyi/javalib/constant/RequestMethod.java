@@ -5,26 +5,26 @@ package com.fengwenyi.javalib.constant;
  * @author Wenyi Feng
  * @since 2018-09-25
  */
-public interface RequestMethod {
+public class RequestMethod {
 
     /**
      * get
      */
-    String GET = "GET";
+    public static final String GET = "GET";
 
     /**
      * post
      */
-    String POST = "POST";
+    public static final String POST = "POST";
 
     /**
      * put
      */
-    String PUT = "PUT";
+    public static final String PUT = "PUT";
 
     /**
      * delete
      */
-    String DELETE = "DELETE";
+    public static final String DELETE = "DELETE";
 
 }
