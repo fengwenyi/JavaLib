@@ -12,19 +12,23 @@ public class HexUtil {
      * @return [ellipsis]
      */
     public static String _2_16(byte[] bytes) {
+
+        if (bytes == null || bytes.length == 0)
+            return null;
+
         StringBuilder hexStr = new StringBuilder();
-        int num;
-        for (int i = 0; i < bytes.length; i++) {
-            num = bytes[i];
-            if(num < 0) {
-                num += 256;
+
+        for (byte b : bytes) {
+            if (b < 0) {
+                b += 256;
             }
-            if(num < 16){
+            if (b < 16) {
                 hexStr.append("0");
             }
-            hexStr.append(Integer.toHexString(num));
+            hexStr.append(Integer.toHexString(b));
         }
-        return hexStr.toString().toUpperCase();
+
+        return hexStr.toString();
     }
 
 }

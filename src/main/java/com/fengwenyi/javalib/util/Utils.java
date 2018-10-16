@@ -37,7 +37,7 @@ public class Utils {
             sb
                     .append(i.getKey())
                     .append("=")
-                    .append(URLEncoder.encode(i.getValue().toString(), Constant.DEFAULT_CHATSET))
+                    .append(URLEncoder.encode(i.getValue().toString(), "UTF-8"))
                     .append("&");
 
         }

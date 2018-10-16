@@ -178,7 +178,7 @@ public class NetDataUtil {
     private static String readIO(HttpURLConnection httpUrlConn) throws IOException {
         BufferedReader bufferedReader
                 = new BufferedReader(new InputStreamReader(httpUrlConn.getInputStream(),
-                                                           Constant.DEFAULT_CHATSET));
+                                                           Constant.DEFAULT_CHARSET));
         String line;
         StringBuilder stringBuilder = new StringBuilder();
         while ((line = bufferedReader.readLine()) != null) {
@@ -215,7 +215,7 @@ public class NetDataUtil {
         BufferedReader reader
                 = new BufferedReader(
                         new InputStreamReader(connection.getInputStream(),
-                                                Constant.DEFAULT_CHATSET));
+                                                Constant.DEFAULT_CHARSET));
         StringBuilder buffer = new StringBuilder();
         String line;
         while ((line = reader.readLine())!= null) {

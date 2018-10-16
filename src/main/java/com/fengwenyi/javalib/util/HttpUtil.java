@@ -250,7 +250,7 @@ public class HttpUtil {
     private static String readIO(HttpURLConnection httpUrlConn) throws IOException {
         BufferedReader bufferedReader
                 = new BufferedReader(new InputStreamReader(httpUrlConn.getInputStream(),
-                                                           Constant.DEFAULT_CHARTSET));
+                                                           Constant.DEFAULT_CHARSET));
         String line;
         StringBuilder stringBuilder = new StringBuilder();
         while ((line = bufferedReader.readLine()) != null) {

@@ -39,7 +39,7 @@ public class DataUtil {
         out.writeBytes(param);
         out.flush();
         out.close();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), Constant.DEFAULT_CHATSET));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), Constant.DEFAULT_CHARSET));
         StringBuffer buffer = new StringBuffer();
         String line;
         while ((line = reader.readLine())!= null) {

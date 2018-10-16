@@ -62,14 +62,14 @@ public class HttpsClientUtil {
             list.add(new BasicNameValuePair(elem.getKey(), elem.getValue()));
         }
         if (list.size() > 0) {
-            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(list, Constant.DEFAULT_CHATSET);
+            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(list, Constant.DEFAULT_CHARSET);
             httpPost.setEntity(entity);
         }
         HttpResponse response = httpClient.execute(httpPost);
         if (response != null) {
             HttpEntity resEntity = response.getEntity();
             if (resEntity != null) {
-                result = EntityUtils.toString(resEntity, Constant.DEFAULT_CHATSET);
+                result = EntityUtils.toString(resEntity, Constant.DEFAULT_CHARSET);
             }
         }
         return result;
@@ -107,14 +107,14 @@ public class HttpsClientUtil {
             }
         }
 
-        httpPost.setEntity(new StringEntity(param, Constant.DEFAULT_CHATSET));
+        httpPost.setEntity(new StringEntity(param, Constant.DEFAULT_CHARSET));
 
         HttpResponse response = httpClient.execute(httpPost);
 
         if (response != null) {
             HttpEntity resEntity = response.getEntity();
             if (resEntity != null) {
-                result = EntityUtils.toString(resEntity, Constant.DEFAULT_CHATSET);
+                result = EntityUtils.toString(resEntity, Constant.DEFAULT_CHARSET);
             }
         }
 

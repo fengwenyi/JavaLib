@@ -74,7 +74,7 @@ public class RSAUtil {
         PrivateKey privateKey = commonGetPrivatekeyByText(key);
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
-        byte [] result = cipher.doFinal(plainText.getBytes(Constant.DEFAULT_CHATSET));
+        byte [] result = cipher.doFinal(plainText.getBytes(Constant.DEFAULT_CHARSET));
 
         return Base64.byteArrayToBase64(result);
     }
@@ -122,7 +122,7 @@ public class RSAUtil {
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
-        byte [] result = cipher.doFinal(plainText.getBytes(Constant.DEFAULT_CHATSET));
+        byte [] result = cipher.doFinal(plainText.getBytes(Constant.DEFAULT_CHARSET));
 
         return Base64.byteArrayToBase64(result);
     }
