@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.netbeans.api:org-openide-explorer:RELEASE80">
+    <CLASSES>
+      <root url="jar://D:/Maven/repository/org/netbeans/api/org-openide-explorer/RELEASE80/org-openide-explorer-RELEASE80.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/Maven/repository/org/netbeans/api/org-openide-explorer/RELEASE80/org-openide-explorer-RELEASE80-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/Maven/repository/org/netbeans/api/org-openide-explorer/RELEASE80/org-openide-explorer-RELEASE80-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
