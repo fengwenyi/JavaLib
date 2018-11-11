@@ -72,9 +72,6 @@
 
         <!--
         https://mvnrepository.com/artifact/com.google.code.gson/gson
-         json
-         我知道在国内已经不怎么使用这个了，但是我还是比较喜欢Google的东西，
-         目前就aop记录访问日志用到了
          -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -96,7 +93,7 @@
 
         <!--
         https://mvnrepository.com/artifact/junit/junit
-         service test / controllertest / method test / interface test / or other test
+         service test / controller test / method test / interface test / or other test
          -->
         <dependency>
             <groupId>junit</groupId>
@@ -107,10 +104,6 @@
 
         <!--
         https://mvnrepository.com/artifact/org.projectlombok/lombok
-         lombok
-         getter / setter
-         ...
-         我觉得很方便而已
          -->
         <dependency>
             <groupId>org.projectlombok</groupId>
