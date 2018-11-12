@@ -47,18 +47,29 @@ public class DateTimeUtil {
     }
 
     /**
-     * 时间({@link java.util.Date})转时间字符串
+     * 获取毫秒数
      * @param date 时间类型({@link java.util.Date})
+     * @return 毫秒数({@link java.lang.Long})
+     */
+    public static Long toLong(Date date) {
+        if (date == null)
+            return null;
+        return date.getTime();
+    }
+
+    /**
+     * 时间({@link java.util.Date})转时间字符串
+     * @param source 时间类型({@link java.util.Date}) or 秒数/毫秒数({@link java.lang.Long})
      * @param format 指定格式
      * @return 满足指定格式的时间字符串
      */
-    public static String dateToString(Date date, String format) {
+    public static String toString(Object source, String format) {
 
-        if (date == null)
+        if (source == null)
             return null;
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-        return simpleDateFormat.format(date);
+        return simpleDateFormat.format(source);
     }
 
     /**
@@ -450,11 +461,43 @@ public class DateTimeUtil {
      */
 
     /**
-     * 时间测试类
-     */
+     * 自然语言描述时间过去多久
+     * */
+    public static String getTimePassedLong(Date source) {
 
-    /**
-     * 自然语言描述时间过去多久
-     */
+        if (source == null)
+            return null;
+
+        long nowTime = System.currentTimeMillis(); // 获取当前时间的毫秒数
+
+        String msg = "";
+
+        long dateDiff = nowTime - source.getTime();
+
+        if (dateDiff >= 0) {
+            long dateTemp1 = dateDiff  / 1000; // 秒
+            long dateTemp2 = dateTemp1 / 60;   // 分钟
+            long dateTemp3 = dateTemp2 / 60;   // 小时
+            long dateTemp4 = dateTemp3 / 24;   // 天数
+            long dateTemp5 = dateTemp4 / 30;   // 月数
+            long dateTemp6 = dateTemp5 / 12;   // 年数
+            if (dateTemp6 > 0)
+                msg = dateTemp6 + "年前";
+            else if (dateTemp5 > 0)
+                msg = dateTemp5 + "个月前";
+            else if (dateTemp4 > 0)
+                msg = dateTemp4 + "天前";
+            else if (dateTemp3 > 0)
+                msg = dateTemp3 + "小时前";
+            else if (dateTemp2 > 0)
+                msg = dateTemp2 + "分钟前";
+            else if (dateTemp1 > 0)
+                msg = dateTemp1 + "秒前";
+            else
+                msg = "刚刚";
+        }
+        return msg;
+
+    }
 
 }
