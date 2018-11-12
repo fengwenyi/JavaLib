@@ -461,8 +461,10 @@ public class DateTimeUtil {
      */
 
     /**
-     * 自然语言描述时间过去多久
-     * */
+     * 自然语言描述时间过去多久了
+     * @param source 时间({@link java.util.Date})
+     * @return 自然语言描述过去的时间
+     */
     public static String getTimePassedLong(Date source) {
 
         if (source == null)
