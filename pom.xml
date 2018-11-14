@@ -84,12 +84,12 @@
         https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
          http / https
          -->
-        <!--<dependency>
+        <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>${http_client.version}</version>
             <scope>provided</scope>
-        </dependency>-->
+        </dependency>
 
         <!--
         https://mvnrepository.com/artifact/junit/junit

@@ -1,5 +1,7 @@
 package com.fengwenyi.javalib.util;
 
+import com.fengwenyi.javalib.constant.Charset;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -25,12 +27,11 @@ public class ParamUtil {
         if (data == null || data.isEmpty()) return null;
 
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry i : data.entrySet()) {
+        for (Map.Entry<String, String> i : data.entrySet()) {
 
-            sb
-                    .append(i.getKey())
+            sb.append(i.getKey())
                     .append("=")
-                    .append(URLEncoder.encode(i.getValue().toString(), "UTF-8"))
+                    .append(URLEncoder.encode(i.getValue(), Charset.UTF_8))
                     .append("&");
 
         }
