@@ -166,6 +166,14 @@
             <version>0.8</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>

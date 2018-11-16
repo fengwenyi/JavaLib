@@ -75,7 +75,7 @@ public class FileUtil {
     public static FileBean getFileInfo(String file) throws IOException {
 
         if (StringUtil.isEmpty(file)) {
-            ExceptionUtil.notNull(file, "file must not null");
+            ExceptionUtil.notNull(file);
             return null;
         }
 
