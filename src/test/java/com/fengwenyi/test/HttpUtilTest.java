@@ -16,7 +16,7 @@ import java.io.IOException;
 public class HttpUtilTest {
 
     @Test
-    public void test1() {
+    public void get1() {
         try {
             String response = HttpUtil.get("https://www.baidu.com");
 
@@ -28,7 +28,7 @@ public class HttpUtilTest {
     }
 
     @Test
-    public void test2() {
+    public void get2() {
         String response = null;
         try {
             response = HttpUtil.get("https://www.cnblogs.com", "/codechange/p/8808922.html", "");
@@ -39,7 +39,7 @@ public class HttpUtilTest {
     }
 
     @Test
-    public void test3() {
+    public void get3() {
         try {
             String response = HttpUtil.get("https://3w.huanqiu.com",
                     "/a/a4d1ef/7HP9ziM5n7q",
@@ -49,4 +49,31 @@ public class HttpUtilTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void post() {
+        try {
+            String rs = HttpUtil.post("https://www.panda.tv/all?pdt=1.25.psbar-menu.0.5rt56m9pmkn");
+            System.out.println(rs);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

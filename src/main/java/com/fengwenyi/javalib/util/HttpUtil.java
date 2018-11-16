@@ -5,6 +5,8 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import com.fengwenyi.javalib.constant.Charset;
+import com.fengwenyi.javalib.constant.ContentType;
+import com.fengwenyi.javalib.constant.UserAgent;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -31,6 +33,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -40,11 +43,6 @@ import java.util.Map;
  * @since 2018-11-14
  */
 public class HttpUtil {
-
-    //设置编码格式
-    String Content_Type= "application/x-www-form-urlencoded; charset=UTF-8";
-
-
 
 
     //------------------------------------------------------------------
@@ -56,6 +54,7 @@ public class HttpUtil {
      * @throws IOException IO读写异常
      */
     public static String get(String url) throws IOException {
+        ExceptionUtil.notNull(url);
         return get(url, "", "");
     }
 
@@ -68,14 +67,54 @@ public class HttpUtil {
      * @throws IOException IO读写异常
      */
     public static String get(String host, String path, String param) throws IOException {
+        ExceptionUtil.notNull(host);
+        return get(host, path, null, param);
+    }
 
+    /**
+     * 通过GET方式请求数据
+     * @param host 服务器主机[http(s)://ip:port]
+     * @param path 服务器虚拟目录
+     * @param params 参数(Map<String, String>)
+     * @return 响应数据（String）
+     * @throws IOException IO读写异常
+     */
+    public static String get(String host, String path, Map<String, String> params) throws IOException {
+        ExceptionUtil.notNull(host);
+        return get(host, path, ParamUtil.getUrlParamsByMap(params));
+    }
+
+    /**
+     * 通过GET方式请求数据
+     * @param host 服务器主机[http(s)://ip:port]
+     * @param path 服务器虚拟目录
+     * @param headers 请求header设置(Map<String, String>)
+     * @param param 参数（URL编码）
+     * @return 响应数据（String）
+     * @throws IOException IO读写异常
+     */
+    public static String get(String host, String path, Map<String, String> headers, String param) throws IOException {
+
+        // host校验，一定不能为空，否则无法进行请求
+        ExceptionUtil.notNull(host);
+
+        // 创建HttpClient
         HttpClient httpClient = wrapClient(host);
 
+        // 创建HttpGet
         HttpGet request = new HttpGet(buildUrl(host, path, param));
 
+        // header处理
+        if (MapUtil.isNotEmpty(headers)) {
+            for (Map.Entry<String, String> e : headers.entrySet()) {
+                request.addHeader(e.getKey(), e.getValue());
+            }
+        }
+
+        // 响应结果
         HttpResponse httpResponse = httpClient.execute(request);
 
-
+        // 响应结果处理响应内容
         String result = null;
 
         if (httpResponse != null) {
@@ -89,57 +128,262 @@ public class HttpUtil {
     }
 
     /**
-     * 通过GET方式请求数据
+     * 通过POST方式请求数据
      * @param host 服务器主机[http(s)://ip:port]
      * @param path 服务器虚拟目录
-     * @param paramMap 参数（Map<String, String>）
+     * @param headers 请求header设置(Map<String, String>)
+     * @param param 参数（URL编码）
+     * @param bodies 数据(Map<String, String>)
+     * @param isJson 是否采用JSON方式封装数据
      * @return 响应数据（String）
      * @throws IOException IO读写异常
      */
-    public static String get(String host, String path, Map<String, String> paramMap) throws IOException {
-        return get(host, path, ParamUtil.getUrlParamsByMap(paramMap));
+    public static String post(String host, String path, Map<String, String> headers, String param,
+                              Map<String, String> bodies, Boolean isJson) throws IOException {
+
+        // host校验，一定不能为空，否则无法进行请求
+        ExceptionUtil.notNull(host);
+
+        // 创建HttpClient
+        HttpClient httpClient = wrapClient(host);
+
+        // 创建HttpGet
+        HttpPost request = new HttpPost(buildUrl(host, path, param));
+
+        // header处理
+        if (MapUtil.isNotEmpty(headers)) {
+            for (Map.Entry<String, String> e : headers.entrySet()) {
+                request.addHeader(e.getKey(), e.getValue());
+            }
+        }
+
+        // 数据
+        if (MapUtil.isNotEmpty(bodies)) {
+            List<NameValuePair> list = new ArrayList<>();
+            for (Map.Entry<String, String> elem : bodies.entrySet()) {
+                list.add(new BasicNameValuePair(elem.getKey(), elem.getValue()));
+            }
+            if (list.size() > 0) {
+                UrlEncodedFormEntity entity = new UrlEncodedFormEntity(list, Charset.UTF_8);
+                if (isJson) {
+                    entity.setContentType(ContentType.JSON);
+                    request.setHeader("User-Agent", UserAgent.CHROME_WIN_7);
+                } else {
+                    entity.setContentType(ContentType.FROM);
+                }
+                request.setEntity(entity);
+            }
+        }
+
+        // 响应结果
+        HttpResponse httpResponse = httpClient.execute(request);
+
+        // 响应结果处理响应内容
+        String result = null;
+
+        if (httpResponse != null) {
+            HttpEntity resEntity = httpResponse.getEntity();
+            if (resEntity != null) {
+                result = EntityUtils.toString(resEntity, Charset.UTF_8);
+            }
+        }
+
+        return result;
     }
 
 
+    /**
+     * 通过POST方式请求数据。
+     * <p>
+     *     特别说明：如果采用JSON方式，则会佯装成Win7+Chrome请求，防止被攻击
+     * </p>
+     * @param host 服务器主机[http(s)://ip:port]
+     * @param path 服务器虚拟目录
+     * @param headers 请求header设置(Map<String, String>)
+     * @param param 参数（URL编码）
+     * @param body 数据
+     * @param isJson 是否采用JSON方式封装数据
+     * @return 响应数据（String）
+     * @throws IOException IO读写异常
+     */
+    public static String post(String host, String path, Map<String, String> headers, String param,
+                              String body, Boolean isJson) throws IOException {
 
+        // host校验，一定不能为空，否则无法进行请求
+        ExceptionUtil.notNull(host);
 
+        // 创建HttpClient
+        HttpClient httpClient = wrapClient(host);
 
+        // 创建HttpGet
+        HttpPost request = new HttpPost(buildUrl(host, path, param));
 
+        // header处理
+        if (MapUtil.isNotEmpty(headers)) {
+            for (Map.Entry<String, String> e : headers.entrySet()) {
+                request.addHeader(e.getKey(), e.getValue());
+            }
+        }
 
+        // 数据
+        if (StringUtil.isNotEmpty(body)) {
+            StringEntity entity = new StringEntity(body, Charset.UTF_8);
+            if (isJson) {
+                entity.setContentType(ContentType.JSON);
+                request.setHeader("User-Agent", UserAgent.CHROME_WIN_7);
+            } else {
+                entity.setContentType(ContentType.FROM);
+            }
+            request.setEntity(entity);
+        }
 
+        // 响应结果
+        HttpResponse httpResponse = httpClient.execute(request);
 
+        // 响应结果处理响应内容
+        String result = null;
 
+        if (httpResponse != null) {
+            HttpEntity resEntity = httpResponse.getEntity();
+            if (resEntity != null) {
+                result = EntityUtils.toString(resEntity, Charset.UTF_8);
+            }
+        }
 
+        return result;
+    }
 
+    /**
+     * 通过POST方式请求数据。
+     * <p>
+     *     特别说明：如果采用JSON方式，则会佯装成Win7+Chrome请求，防止被攻击
+     * </p>
+     * @param host 服务器主机[http(s)://ip:port]
+     * @param path 服务器虚拟目录
+     * @param headers 请求header设置(Map<String, String>)
+     * @param param 参数（URL编码）
+     * @param bodies 数据
+     * @param isJson 是否采用JSON方式封装数据
+     * @return 响应数据（String）
+     * @throws IOException IO读写异常
+     */
+    public static String post(String host, String path, Map<String, String> headers, String param,
+                              byte [] bodies, Boolean isJson) throws IOException {
 
+        // host校验，一定不能为空，否则无法进行请求
+        ExceptionUtil.notNull(host);
+
+        // 创建HttpClient
+        HttpClient httpClient = wrapClient(host);
+
+        // 创建HttpGet
+        HttpPost request = new HttpPost(buildUrl(host, path, param));
+
+        // header处理
+        if (MapUtil.isNotEmpty(headers)) {
+            for (Map.Entry<String, String> e : headers.entrySet()) {
+                request.addHeader(e.getKey(), e.getValue());
+            }
+        }
+
+        // 数据
+        if (bodies == null) {
+            ByteArrayEntity entity = new ByteArrayEntity(bodies);
+            if (isJson) {
+                entity.setContentType(ContentType.JSON);
+                request.setHeader("User-Agent", UserAgent.CHROME_WIN_7);
+            } else {
+                entity.setContentType(ContentType.FROM);
+            }
+            request.setEntity(entity);
+        }
+
+        // 响应结果
+        HttpResponse httpResponse = httpClient.execute(request);
+
+        // 响应结果处理响应内容
+        String result = null;
+
+        if (httpResponse != null) {
+            HttpEntity resEntity = httpResponse.getEntity();
+            if (resEntity != null) {
+                result = EntityUtils.toString(resEntity, Charset.UTF_8);
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * 通过POST方式请求数据
+     * @param url URL
+     * @param body 数据
+     * @return 响应数据（String）
+     * @throws IOException IO读写异常
+     */
+    public static String post(String url, String body) throws IOException {
+        ExceptionUtil.notNull(url);
+        return post(url, null, null, null, body, false);
+    }
+
+    /**
+     * 通过POST方式请求数据
+     * @param url URL
+     * @return 响应数据（String）
+     * @throws IOException IO读写异常
+     */
+    public static String post(String url) throws IOException {
+        ExceptionUtil.notNull(url);
+        return post(url, null, null, null, "", false);
+    }
+
+    /**
+     * 通过POST方式请求数据
+     * <p>
+     *     特别说明：如果采用JSON方式，则会佯装成Win7+Chrome请求，防止被攻击
+     * </p>
+     * @param url URL
+     * @param body 数据
+     * @param isJson 是否采用JSON方式封装数据
+     * @return 响应数据（String）
+     * @throws IOException IO读写异常
+     */
+    public static String post(String url, String body, Boolean isJson) throws IOException {
+        ExceptionUtil.notNull(url);
+        return post(url, null, null, null, body, isJson);
+    }
+
+    /**
+     * 通过POST方式请求数据
+     * @param url URL
+     * @param bodies 数据(Map<String, String>)
+     * @return 响应数据（String）
+     * @throws IOException IO读写异常
+     */
+    public static String post(String url, Map<String, String> bodies) throws IOException {
+        ExceptionUtil.notNull(url);
+        return post(url, null, null, null, bodies, false);
+    }
+
+    /**
+     * 通过POST方式请求数据
+     * <p>
+     *     特别说明：如果采用JSON方式，则会佯装成Win7+Chrome请求，防止被攻击
+     * </p>
+     * @param url URL
+     * @param bodies 数据(Map<String, String>)
+     * @param isJson 是否采用JSON方式封装数据
+     * @return 响应数据（String）
+     * @throws IOException IO读写异常
+     */
+    public static String post(String url, Map<String, String> bodies, Boolean isJson) throws IOException {
+        ExceptionUtil.notNull(url);
+        return post(url, null, null, null, bodies, isJson);
+    }
 
 
     //------------------------------------------------------------------
 
-    /**
-     * get
-     *
-     * @param host
-     * @param path
-     * @param method
-     * @param headers
-     * @param querys
-     * @return
-     * @throws Exception
-     */
-    public static HttpResponse doGet(String host, String path, String method,
-                                     Map<String, String> headers,
-                                     Map<String, String> querys)
-            throws Exception {
-        HttpClient httpClient = wrapClient(host);
-
-        HttpGet request = new HttpGet(buildUrl(host, path, querys));
-        /*for (Map.Entry<String, String> e : headers.entrySet()) {
-            request.addHeader(e.getKey(), e.getValue());
-        }*/
-
-        return httpClient.execute(request);
-    }
 
     /**
      * post form
