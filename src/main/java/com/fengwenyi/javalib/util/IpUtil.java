@@ -1,5 +1,6 @@
 package com.fengwenyi.javalib.util;
 
+import com.fengwenyi.javalib.constant.URL;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -17,7 +18,7 @@ public class IpUtil {
      * @return （国家）（地区）（省份）（城市）（县级）（运营商）
      * @throws IOException io异常
      */
-    /*public static String getPosition(String ip) throws IOException {
+    public static String getPosition(String ip) throws IOException {
         JsonObject dataObject = getIpInfo(ip);
         String country = dataObject.get("country").getAsString();
         String area = dataObject.get("area").getAsString();
@@ -26,7 +27,7 @@ public class IpUtil {
         String county = dataObject.get("county").getAsString();
         String isp = dataObject.get("isp").getAsString();
         return country + area + region + city + county + isp;
-    }*/
+    }
 
     /**
      * 获取ip位置信息
@@ -34,11 +35,12 @@ public class IpUtil {
      * @return json数据
      * @throws IOException io异常
      */
-    /*public static JsonObject getIpInfo(String ip) throws IOException {
+    public static JsonObject getIpInfo(String ip) throws IOException {
         String param = "?ip=" + ip;
-        String ipInfoStr = HttpUtil.get(IP_INFO_URI + param, null, "");
+        String ipInfoStr = HttpUtil.get(URL.IP_INFO_URI + param);
+        System.out.println(ipInfoStr);
         JsonObject ipInfoJsonObject = new JsonParser().parse(ipInfoStr).getAsJsonObject();
         return ipInfoJsonObject.get("data").getAsJsonObject();
-    }*/
+    }
 
 }

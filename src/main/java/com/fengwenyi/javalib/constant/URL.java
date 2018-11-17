@@ -9,6 +9,6 @@ public class URL {
     /**
      * 获取ip地址的信息的uri
      */
-    String IP_INFO_URI = "http://ip.taobao.com/service/getIpInfo.php";
+    public static final String IP_INFO_URI = "http://ip.taobao.com/service/getIpInfo.php";
 
 }
