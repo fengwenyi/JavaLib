@@ -36,13 +36,13 @@ public class IpTest {
 
     @Test
     public void test3() {
-        String result2= null;
-        try {
-            result2 = HttpUtil.get("http://ip.taobao.com/service/getIpInfo.php?ip=1");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        long startTime = System.nanoTime();
+        String url = "http://ip.taobao.com/service/getIpInfo.php?ip=10.10.10.10";
+        String result2= HttpUtil.get(url);
         System.out.println(result2);
+        long endTime = System.nanoTime();
+        double time = (endTime - startTime) / 1000000000D;
+        System.out.println("请求花费时间：" + time + "秒");
     }
 
 

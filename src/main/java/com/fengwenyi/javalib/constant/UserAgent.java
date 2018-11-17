@@ -6,15 +6,17 @@ package com.fengwenyi.javalib.constant;
  */
 public class UserAgent {
 
+    private static final String MAC_ = "Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1";
+
     /**
      * Chrome Win7
      */
-    public static final String CHROME_WIN_7 = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1";
+    public static final String CHROME_WIN7 = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1";
 
     /**
      * Firefox Win7
      */
-    public static final String FIREFOX_WIN_7 = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0";
+    public static final String FIREFOX_WIN7 = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0";
 
     /**
      * SAFARI_WIN7
