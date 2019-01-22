@@ -127,7 +127,19 @@ JavaLib
 
 * [JavaLib | RSAUtil非对称加密工具类](https://www.jianshu.com/p/bdf59b6a01ab)
 
+### 更新日志
 
+* 2019年01月22日（V1.0.5.2.SNAPSHOT）
+
+```$xslt
+    去掉Http请求工具类，作者以后都用OkHttp了。
+    
+    重写Result，更简洁、更方便、更优雅。
+    
+    重新规划CodeMsg，采用class的方式。
+    
+    JSON由Gson变为fastjson。
+```  
 
 ### About Me
 
