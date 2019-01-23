@@ -6,7 +6,7 @@
 
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>1.0.5.2.SNAPSHOT</version>
+    <version>1.0.5.2.1.SNAPSHOT</version>
     <!--<version>1.0.5.RELEASE</version>-->
 
     <name>JavaLib</name>
@@ -50,6 +50,7 @@
         <spring.version>5.1.4.RELEASE</spring.version>
         <fastjson.version>1.2.55</fastjson.version>
         <jackson.annotations.version>2.9.8</jackson.annotations.version>
+        <okhttp.version>3.12.1</okhttp.version>
     </properties>
 
     <build>
@@ -168,6 +169,14 @@
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.annotations.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

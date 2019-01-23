@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib.aop;
 
+import com.alibaba.fastjson.JSON;
 import com.fengwenyi.javalib.util.RequestUtil;
-import com.google.gson.Gson;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Before;
@@ -89,7 +89,7 @@ public abstract class LBaseWebLogAspect {
         log.info("request url       => {}", url);
         log.info("request mode      => {}", mode);
         log.info("request classPath => {}", className + "#" + methodName);
-        log.info("request paramData => {}", new Gson().toJson(paramMap));
+        log.info("request paramData => {}", JSON.toJSONString(paramMap));
 
         //------------------------------------------------------------
     }

@@ -1,8 +1,9 @@
 package com.fengwenyi.test;
 
-import com.fengwenyi.javalib.util.HttpUtil;
+import com.alibaba.fastjson.JSONObject;
+import com.fengwenyi.javalib.constant.URL;
 import com.fengwenyi.javalib.util.IpUtil;
-import com.google.gson.JsonObject;
+import okhttp3.*;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -14,8 +15,27 @@ import java.io.IOException;
 public class IpTest {
 
     @Test
+    public void getNetData() {
+        String url = URL.IP_INFO_URI + "?ip=180.76.76.76";
+        //MediaType mediaType = MediaType.parse("application/json; charset=UTF-8");
+        //String param = JSON.toJSONString(obj);
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .url(url).removeHeader("User-Agent").addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.84 Safari/537.36 JavaLib").build();
+        Call call = okHttpClient.newCall(request);
+        try {
+            Response response = call.execute();
+            System.out.println("返回参数：" + (response.body() == null ? "":response.body().string()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void test1() {
-        JsonObject jsonObject = null;
+        JSONObject jsonObject = null;
         try {
             jsonObject = IpUtil.getIpInfo("1");
         } catch (IOException e) {
@@ -32,17 +52,6 @@ public class IpTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Test
-    public void test3() {
-        long startTime = System.nanoTime();
-        String url = "http://ip.taobao.com/service/getIpInfo.php?ip=10.10.10.10";
-        String result2= HttpUtil.get(url);
-        System.out.println(result2);
-        long endTime = System.nanoTime();
-        double time = (endTime - startTime) / 1000000000D;
-        System.out.println("请求花费时间：" + time + "秒");
     }
 
 
