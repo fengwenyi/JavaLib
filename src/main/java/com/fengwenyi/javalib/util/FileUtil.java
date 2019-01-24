@@ -10,7 +10,6 @@ import it.sauronsoftware.jave.MultimediaInfo;
 import org.springframework.beans.BeanUtils;
 
 import java.io.*;
-import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,8 +17,6 @@ import java.nio.file.attribute.BasicFileAttributeView;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileOwnerAttributeView;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * 文件工具类
@@ -74,7 +71,7 @@ public class FileUtil {
      */
     public static FileBean getFileInfo(String file) throws IOException {
 
-        if (StringUtil.isEmpty(file)) {
+        if (StringUtils.isEmpty(file)) {
             ExceptionUtil.notNull(file);
             return null;
         }
@@ -120,7 +117,7 @@ public class FileUtil {
      */
     public static VideoBean getVideoInfo(String file) throws IOException, EncoderException {
 
-        if (StringUtil.isEmpty(file)) {
+        if (StringUtils.isEmpty(file)) {
             ExceptionUtil.notNull(file, "file must not null");
             return null;
         }
@@ -159,7 +156,7 @@ public class FileUtil {
      */
     public static AudioBean getAudioInfo(String file) throws IOException, EncoderException {
 
-        if (StringUtil.isEmpty(file)) {
+        if (StringUtils.isEmpty(file)) {
             ExceptionUtil.notNull(file, "file must not null");
             return null;
         }
@@ -194,7 +191,7 @@ public class FileUtil {
      */
     public static ImageBean getImageInfo(String file) throws IOException, EncoderException {
 
-        if (StringUtil.isEmpty(file)) {
+        if (StringUtils.isEmpty(file)) {
             ExceptionUtil.notNull(file, "file must not null");
             return null;
         }

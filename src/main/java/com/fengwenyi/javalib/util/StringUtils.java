@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * </ul>
  * @author Wenyi Feng
  */
-public class StringUtil {
+public class StringUtils {
 
     /**
      * 判断字符串是否为空

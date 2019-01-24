@@ -36,7 +36,7 @@ public class ExceptionUtil {
         * 但是你仍然坚持要为空，那你可以添加一个空格(" ")试试
         * */
         if (object instanceof String)
-            if (StringUtil.isEmpty((String) object))
+            if (StringUtils.isEmpty((String) object))
                 throw new IllegalArgumentException(message);
     }
 

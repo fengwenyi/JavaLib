@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.handler;
 
-import com.fengwenyi.javalib.util.StringUtil;
+import com.fengwenyi.javalib.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
@@ -26,7 +26,7 @@ public class HandlerRegister {
      * @return handler
      */
     public Handler getHandler(String key) {
-        if (StringUtil.isEmpty(key) // key为空
+        if (StringUtils.isEmpty(key) // key为空
                 || handlers == null // handlers没有被实例化
                 || handlers.isEmpty()) // handlers没有值
             return null;
@@ -41,7 +41,7 @@ public class HandlerRegister {
     public void setHandler(String key, Handler handler) {
 
         // 参数判断
-        if (StringUtil.isEmpty(key) // key 为空
+        if (StringUtils.isEmpty(key) // key 为空
                 || handler == null) // handler 没有被实例化
             return;
 

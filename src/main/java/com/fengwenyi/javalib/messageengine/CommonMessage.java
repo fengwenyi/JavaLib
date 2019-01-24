@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.messageengine;
 
-import com.fengwenyi.javalib.util.StringUtil;
+import com.fengwenyi.javalib.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class CommonMessage {
      * @param value map-value
      */
     public void setHeader(String key, Object value) {
-        if (StringUtil.isNotEmpty(key))
+        if (StringUtils.isNotEmpty(key))
             header.put(key, value);
     }
 
@@ -38,7 +38,7 @@ public class CommonMessage {
      *          如果key为空或是header为空，都将返回null
      */
     public Object getHeader(String key) {
-        if (StringUtil.isEmpty(key)
+        if (StringUtils.isEmpty(key)
                 || header == null
                 || header.isEmpty())
             return null;

@@ -2,7 +2,6 @@ package com.fengwenyi.javalib.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.*;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -39,7 +38,7 @@ public class DateTimeUtil {
      */
     public static Date stringToDate(String source, String format) throws ParseException {
 
-        if (StringUtil.isEmpty(source))
+        if (StringUtils.isEmpty(source))
             return null;
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
