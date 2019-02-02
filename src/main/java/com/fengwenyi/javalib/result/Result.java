@@ -43,12 +43,12 @@ public class Result<T> {
 
     /**
      * 返回码构造方法
-     * @param codeMsg 返回码
+     * @param baseCodeMsg 返回码
      */
-    public Result(CodeMsg codeMsg) {
-        if (codeMsg != null) {
-            this.code = codeMsg.getCode();
-            this.msg = codeMsg.getMsg();
+    public Result(BaseCodeMsg baseCodeMsg) {
+        if (baseCodeMsg != null) {
+            this.code = baseCodeMsg.getCode();
+            this.msg = baseCodeMsg.getMsg();
         }
     }
 
@@ -66,7 +66,7 @@ public class Result<T> {
      * @return Result
      */
     public static <T> Result<T> success() {
-        return new Result<>(CodeMsg.SUCCESS);
+        return new Result<>(BaseCodeMsg.SUCCESS);
     }
 
     /**
@@ -83,12 +83,12 @@ public class Result<T> {
 
     /**
      * 错误时调用
-     * @param codeMsg 返回码
+     * @param baseCodeMsg 返回码
      * @param <T> 数据类型
      * @return Result
      */
-    public static <T> Result<T> error(CodeMsg codeMsg) {
-        return new Result<>(codeMsg);
+    public static <T> Result<T> error(BaseCodeMsg baseCodeMsg) {
+        return new Result<>(baseCodeMsg);
     }
 
     /**
