@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib.result;
 
 /**
- * 返回码及描述信息
+ * （基类）返回码及描述信息
  * @author Wenyi Feng
  * @since 2019-01-22
  */
@@ -38,17 +38,25 @@ public class BaseCodeMsg {
      * @param args 填充内容
      * @return CodeMsgEnum
      */
-    public BaseCodeMsg fillArgs(Object... args) {
+    public BaseCodeMsg fillArgs(Object ... args) {
 
         this.msg = String.format(this.msg, args);
 
         return this;
     }
 
+    /**
+     * 获取返回码
+     * @return 返回码
+     */
     public Integer getCode() {
         return code;
     }
 
+    /**
+     * 获取描述信息
+     * @return 描述信息
+     */
     public String getMsg() {
         return msg;
     }
@@ -57,5 +65,5 @@ public class BaseCodeMsg {
     public static final BaseCodeMsg SUCCESS = BaseCodeMsg.app(0, "Success");
 
     /** 失败 */
-    public static final BaseCodeMsg ERROR_INIT = BaseCodeMsg.app(-1, "(Error)初始化失败");
+    public static final BaseCodeMsg ERROR_INIT = BaseCodeMsg.app(-1, "Error");
 }
