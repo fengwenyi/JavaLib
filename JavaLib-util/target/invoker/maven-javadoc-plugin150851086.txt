@@ -1,0 +1,34 @@
+Invoking Maven for the goals: [org.apache.maven.plugins:maven-javadoc-plugin:2.7:javadoc] with no properties
+
+M2_HOME=/Users/wenyifeng/Maven/apache-maven-3.6.0
+MAVEN_OPTS=null
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/jre
+JAVA_OPTS=null
+
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.fengwenyi:JavaLib-result >--------------------
+[INFO] Building JavaLib-result 1.1.1.BUILD-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> maven-javadoc-plugin:2.7:javadoc (default-cli) > generate-sources @ JavaLib-result >>>
+[INFO] 
+[INFO] --- maven-enforcer-plugin:1.0:enforce (enforce-maven) @ JavaLib-result ---
+[INFO] 
+[INFO] <<< maven-javadoc-plugin:2.7:javadoc (default-cli) < generate-sources @ JavaLib-result <<<
+[INFO] 
+[INFO] 
+[INFO] --- maven-javadoc-plugin:2.7:javadoc (default-cli) @ JavaLib-result ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.909 s
+[INFO] Finished at: 2019-05-06T12:33:06+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-javadoc-plugin:2.7:javadoc (default-cli) on project JavaLib-result: An error has occurred in JavaDocs report generation:Unable to find javadoc command: The javadoc executable '/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/jre/bin/javadoc' doesn't exist or is not a file. Verify the JAVA_HOME environment variable. -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>JavaLib</artifactId>
+        <groupId>com.fengwenyi</groupId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>JavaLib-result</artifactId>
+    <version>${revision}</version>
+    <packaging>jar</packaging>
+    <name>JavaLib-result</name>
+    <description>【JavaLib】对接口结果(result)进行规范封装</description>
+
+    <dependencies>
+        <!--
+         service test
+         controller test
+         method test
+         interface test
+         other test
+
+         不打包：用 spring boot构建项目，默认已支持test
+         -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--
+         过滤json数据中，字段为null的
+         不打包：如果使用 spring boot构建的项目，默认支持
+         -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.annotations.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--
+        添加 lombok 支持
+        不打包
+         -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+            <optional>true</optional>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--
+         添加 fastjson 支持
+         不打包
+         -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.56</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>

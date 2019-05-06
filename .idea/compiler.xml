@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="JavaLib" />
+        <module name="JavaLib-util" />
+        <module name="JavaLib-result" />
+        <module name="JavaLib-quartz" />
       </profile>
     </annotationProcessing>
   </component>
