@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib;
 
-import net.iutil.javalib.util.PrintUtils;
+import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 
 import java.util.HashMap;

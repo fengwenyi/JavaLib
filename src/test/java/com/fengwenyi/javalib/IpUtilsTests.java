@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib;
 
-import net.iutil.javalib.util.IpUtils;
-import net.iutil.javalib.util.PrintUtils;
+import com.fengwenyi.javalib.util.IpUtils;
+import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 //import org.lionsoul.ip2region.DbMakerConfigException;
 

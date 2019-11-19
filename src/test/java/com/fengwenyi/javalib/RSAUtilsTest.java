@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib;
 
-import net.iutil.javalib.util.PrintUtils;
-import net.iutil.javalib.util.RSAUtils;
+import com.fengwenyi.javalib.util.PrintUtils;
+import com.fengwenyi.javalib.util.RSAUtils;
 import org.junit.Test;
 
 /**

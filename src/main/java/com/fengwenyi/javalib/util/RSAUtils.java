@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib.util;
 
-import net.iutil.javalib.constant.Charset;
-import net.iutil.javalib.third.Base64;
+import com.fengwenyi.javalib.constant.Charset;
+import com.fengwenyi.javalib.third.Base64;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

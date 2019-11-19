@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.util;
 
-import net.iutil.javalib.constant.Charset;
+import com.fengwenyi.javalib.constant.Charset;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.util;
 
-import net.iutil.javalib.constant.ContentType;
+import com.fengwenyi.javalib.constant.ContentType;
 import okhttp3.*;
 
 import java.io.IOException;

@@ -1,8 +1,8 @@
 package com.fengwenyi.javalib;
 
-import net.iutil.javalib.constant.DateTimeFormat;
-import net.iutil.javalib.util.DateTimeUtils;
-import net.iutil.javalib.util.PrintUtils;
+import com.fengwenyi.javalib.constant.DateTimeFormat;
+import com.fengwenyi.javalib.util.DateTimeUtils;
+import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 
 import java.time.Instant;
