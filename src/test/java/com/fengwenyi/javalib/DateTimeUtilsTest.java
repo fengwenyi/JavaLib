@@ -6,6 +6,8 @@ import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Month;
 
 /**
  * @author Erwin Feng
@@ -31,6 +33,21 @@ public class DateTimeUtilsTest {
         String dateTime = "2019-07-09 18:00:00";
         Instant instant = DateTimeUtils.parseDateTime(dateTime, "yyyy-MM-dd HH:mm:ss");
         PrintUtils.info(instant);
+    }
+
+    // 当前月
+    @Test
+    public void getMonth() {
+        // curr: 2019-11-20
+        Month month = LocalDate.now().getMonth();
+        PrintUtils.info(month); //NOVEMBER
+        PrintUtils.info(month.getValue()); // 11
+
+        int monthValue = LocalDate.now().getMonthValue();
+        PrintUtils.info(monthValue); // 11
+
+        Integer currentMonth = DateTimeUtils.getMonth();
+        PrintUtils.info(currentMonth); // 11
     }
 
 }

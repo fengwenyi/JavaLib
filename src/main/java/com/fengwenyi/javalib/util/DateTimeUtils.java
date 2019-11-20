@@ -106,6 +106,19 @@ public class DateTimeUtils {
     }
 
     /**
+     * 获取当前月份
+     *
+     * <p>
+     *     如 2019-11-20，则返回 {@code 11}
+     * </p>
+     *
+     * @return 返回一个整数的月份，如：一月返回1，二月返回2，以此类推
+     */
+    public static Integer getMonth() {
+        return LocalDate.now().getMonthValue();
+    }
+
+    /**
      * 给定时间，获取日期。
      * @param date 时间({@link Date})
      * @return 日期（Integer）,如果date is null，将返回null
