@@ -8,6 +8,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -87,6 +94,8 @@
       <workItem from="1574156677284" duration="1383000" />
       <workItem from="1574220973610" duration="1229000" />
       <workItem from="1574232958867" duration="1324000" />
+      <workItem from="1574298808460" duration="742000" />
+      <workItem from="1574328561021" duration="577000" />
     </task>
     <servers />
   </component>
