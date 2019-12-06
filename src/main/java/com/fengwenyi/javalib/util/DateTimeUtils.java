@@ -517,6 +517,60 @@ public class DateTimeUtils {
     }
 
     /**
+     * 自然语言描述时间过去多久了 (en)
+     * <p>
+     *     基于Java 8 LocalDateTime
+     * </p>
+     * @param source 时间({@link LocalDateTime})
+     * @return 自然语言描述过去的时间
+     */
+    public static String descPastTimeEn(LocalDateTime source) {
+
+        // 自然语言描述信息
+        String msg = "";
+
+        if (source == null)
+            return msg;
+
+        // 时间毫秒数
+        long sourceTimeSecond = DateTimeUtils.toEpochMilli(source);
+
+        // 当前时间毫秒数
+        long nowTimeSecond = Instant.now().toEpochMilli();
+
+        // 时间秒数差
+        long dateDiff = nowTimeSecond - sourceTimeSecond;
+
+        if (dateDiff >= 0) {
+            long dateTemp1 = dateDiff  / 1000; // 秒
+            long dateTemp2 = dateTemp1 / 60;   // 分钟
+            long dateTemp3 = dateTemp2 / 60;   // 小时
+            long dateTemp4 = dateTemp3 / 24;   // 天数
+            long dateTemp5 = dateTemp4 / 30;   // 月数
+            long dateTemp6 = dateTemp5 / 12;   // 年数
+            if (dateTemp6 > 0)
+                msg = dateTemp6 + " years ago";
+            else if (dateTemp5 > 0)
+                msg = dateTemp5 + " months ago";
+            else if (dateTemp4 > 0) {
+                if (dateTemp4 == 1) {
+                    msg = "yesterday";
+                } else {
+                    msg = dateTemp4 + " days ago";
+                }
+            } else if (dateTemp3 > 0)
+                msg = dateTemp3 + " hours ago";
+            else if (dateTemp2 > 0)
+                msg = dateTemp2 + " minutes ago";
+            else if (dateTemp1 > 0)
+                msg = dateTemp1 + " seconds ago";
+            else
+                msg = "just";
+        }
+        return msg;
+    }
+
+    /**
      * 计算两个时间点相差多少毫秒
      * @param start 开始时间点（Instant）
      * @param end   结束时间点（Instant）
@@ -602,6 +656,15 @@ public class DateTimeUtils {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
         LocalDateTime dateTime = LocalDateTime.parse(source, dateTimeFormatter);
         return dateTime.atZone(ZoneOffset.systemDefault()).toInstant();
+    }
+
+    /**
+     * 获取 LocalDateTime的毫秒数
+     * @param localDateTime 时间 {@link LocalDateTime}
+     * @return 毫秒数
+     */
+    public static Long toEpochMilli(LocalDateTime localDateTime) {
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 
 }

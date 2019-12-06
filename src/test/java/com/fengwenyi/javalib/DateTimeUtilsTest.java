@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 
 /**
@@ -48,6 +49,14 @@ public class DateTimeUtilsTest {
 
         Integer currentMonth = DateTimeUtils.getMonth();
         PrintUtils.info(currentMonth); // 11
+    }
+
+    @Test
+    public void des() {
+        LocalDateTime dateTime = LocalDateTime.of(2019, 12, 6, 23, 0);
+        PrintUtils.info(dateTime);
+        String message = DateTimeUtils.descPastTimeEn(dateTime);
+        PrintUtils.info(message);
     }
 
 }
