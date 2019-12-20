@@ -28,4 +28,19 @@ public class FileUtils {
         out.close();
     }
 
+    /**
+     * 获取后缀名，例如文件名为xxx.jpg，则返回jpg.
+     * 当然，也可以通过文件路径调用此方法获取后缀名，
+     * 例如文件路径为xxx/xxx.jpg，则返回jpg
+     * @param filename 文件名
+     * @return 后缀名
+     */
+    public static String getSuffix(String filename) {
+        int index = filename.lastIndexOf(".");
+        if (index > 0) {
+            return filename.substring(index + 1);
+        }
+        return "";
+    }
+
 }

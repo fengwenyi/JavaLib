@@ -1,5 +1,8 @@
 package com.fengwenyi.javalib.util;
 
+import com.alibaba.fastjson.JSON;
+import com.fengwenyi.javalib.bean.PastTimeDescBean;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
@@ -21,7 +24,34 @@ import java.util.Date;
  *     <li>将 {@link Date} 转换成时间戳（毫秒数）</li>
  *     <li>将 {@link LocalDateTime} 转换成时间戳（毫秒数）</li>
  *     <li>将 {@link LocalDateTime} 转换成时间戳（秒数）</li>
+ *     <li>自然语言描述过去的时间（中/英文）</li>
  * </ul>
+ *
+ * <p>
+ *     关于为什么没有推出预定义时间格式呢?
+ *     因为每个人的需求不一样，不是很好定义，
+ *     推荐名称为：DateTimePattern
+ *     yyyyMMddHHmmss   => 2019-12-17 10:37:21
+ *     yyyyMMdd         => 2019-12-17
+ *     yyMMddHHmm       => 19-12-17 10:37
+ *     HHmmss           => 10:37:21
+ *                      => 19.12.17 10:37
+ *                      => 12.17 10:37
+ *                      => 201/1217 10:37:21
+ *                      => 201/1217 10:37
+ *                      => 201/1217
+ * </p>
+ *
+ * <p>
+ *     关于时间，我们一般会用来做什么呢？
+ *     <ul>
+ *         <li>格式化</li>
+ *         <li>类型转换</li>
+ *         <li>计算</li>
+ *         <li>比较大小</li>
+ *         <li>时间范围</li>
+ *     </ul>
+ * </p>
  *
  * @author Erwin Feng[xfsy_2015@163.com]
  * @since 2019-12-11
@@ -55,24 +85,20 @@ public class DateTimeUtils {
      * @return 满足指定格式的时间字符串
      */
     public static String format(Date date, String pattern) {
-
-        if (date == null)
-            return null;
-
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(date);
     }
 
     /**
      * 将时间格式化成字符串
-     * @param timestamp 时间戳（毫秒、秒）
+     * <p>
+     *     提示：不能转换秒
+     * </p>
+     * @param timestamp 时间戳（毫秒）
      * @param pattern 描述日期和时间格式的模式
      * @return 满足指定格式的时间字符串
      */
     public static String format(Long timestamp, String pattern) {
-        if (timestamp == null) {
-            return "";
-        }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(timestamp);
     }
@@ -129,9 +155,6 @@ public class DateTimeUtils {
      * @return 时间类型({@link java.util.Date})
      */
     public static Date parseDate(String source, String pattern) {
-        if (StringUtils.isEmpty(source)) {
-            return null;
-        }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         try {
             return simpleDateFormat.parse(source);
@@ -167,6 +190,174 @@ public class DateTimeUtils {
      */
     public static Long toSecond(LocalDateTime localDateTime) {
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().getEpochSecond();
+    }
+
+    /**
+     * 自然语言描述时间过去多久
+     * <p>
+     *     基于Java 8 LocalDateTime
+     * </p>
+     * @param localDateTime 时间({@link LocalDateTime})
+     * @return {@link PastTimeDescBean}
+     */
+    public static PastTimeDescBean descPastTime(LocalDateTime localDateTime) {
+
+        PastTimeDescBean pastTimeDescBean = new PastTimeDescBean();
+
+        if (localDateTime == null)
+            return pastTimeDescBean;
+
+        // 时间毫秒数
+        long sourceTimeSecond = DateTimeUtils.toMillisecond(localDateTime);
+
+        // 当前时间毫秒数
+        long nowTimeSecond = Instant.now().toEpochMilli();
+
+        // 时间秒数差
+        long dateDiff = nowTimeSecond - sourceTimeSecond;
+
+        if (dateDiff >= 0) {
+            long dateTemp1 = dateDiff / 1000; // 秒
+            long dateTemp2 = dateTemp1 / 60;   // 分钟
+            long dateTemp3 = dateTemp2 / 60;   // 小时
+            long dateTemp4 = dateTemp3 / 24;   // 天数
+            long dateTemp5 = dateTemp4 / 30;   // 月数
+            long dateTemp6 = dateTemp5 / 12;   // 年数
+            if (dateTemp6 > 0) {
+                pastTimeDescBean.setNumber(dateTemp6);
+                pastTimeDescBean.setUnit("year");
+            } else if (dateTemp5 > 0) {
+                pastTimeDescBean.setNumber(dateTemp5);
+                pastTimeDescBean.setUnit("month");
+            } else if (dateTemp4 > 0) {
+                pastTimeDescBean.setNumber(dateTemp4);
+                pastTimeDescBean.setUnit("day");
+            } else if (dateTemp3 > 0) {
+                pastTimeDescBean.setNumber(dateTemp3);
+                pastTimeDescBean.setUnit("hour");
+            } else if (dateTemp2 > 0) {
+                pastTimeDescBean.setNumber(dateTemp2);
+                pastTimeDescBean.setUnit("minute");
+            } else if (dateTemp1 > 0) {
+                pastTimeDescBean.setNumber(dateTemp1);
+                pastTimeDescBean.setUnit("second");
+            } else {
+                pastTimeDescBean.setNumber(dateDiff);
+                pastTimeDescBean.setUnit("just");
+            }
+        }
+        return pastTimeDescBean;
+    }
+
+    /**
+     * 中文描述时间过去多久了
+     * @param localDateTime {@link LocalDateTime}
+     * @return 中文语言描述时间过去多久了
+     */
+    public static String descPastTimeChn(LocalDateTime localDateTime) {
+        PastTimeDescBean pastTimeDescBean = descPastTime(localDateTime);
+        Long number = pastTimeDescBean.getNumber();
+        String unit = pastTimeDescBean.getUnit();
+        System.out.println(JSON.toJSONString(pastTimeDescBean));
+        String desc = "";
+        switch (unit) {
+            case "year":
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + "年前";
+                break;
+            case "month":
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + "个前";
+                break;
+            case "day":
+                if (number == 1) {
+                    desc = "昨天";
+                } else {
+                    desc = NumberToChnUtils.NumberToChn(number.intValue()) + "天前";
+                }
+                break;
+            case "hour":
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + "小时前";
+                break;
+            case "minute":
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + "分钟前";
+                break;
+            case "second":
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + "秒前";
+                break;
+            case "just":
+                desc = "刚刚";
+                break;
+        }
+        return desc;
+
+    }
+
+    /**
+     * 英文描述时间过去多久了
+     * @param localDateTime {@link LocalDateTime}
+     * @return 英文语言描述时间过去多久了
+     */
+    public static String descPastTimeEn(LocalDateTime localDateTime) {
+        PastTimeDescBean pastTimeDescBean = descPastTime(localDateTime);
+        Long number = pastTimeDescBean.getNumber();
+        String unit = pastTimeDescBean.getUnit();
+        System.out.println(JSON.toJSONString(pastTimeDescBean));
+        String desc = "";
+        switch (unit) {
+            case "year":
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + " years ago";
+                break;
+            case "month":
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + " months ago";
+                break;
+            case "day":
+                if (number == 1) {
+                    desc = "yesterday";
+                } else {
+                    desc = NumberToChnUtils.NumberToChn(number.intValue()) + " days ago";
+                }
+                break;
+            case "hour":
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + " hours ago";
+                break;
+            case "minute":
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + " minutes ago";
+                break;
+            case "second":
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + " seconds ago";
+                break;
+            case "just":
+                desc = "just";
+                break;
+        }
+        return desc;
+
+    }
+
+    /**
+     * 将 Instant 转换成 LocalDateTime
+     * @param instant {@link Instant}
+     * @return {@link LocalDateTime}
+     */
+    public static LocalDateTime toLocalDateTime(Instant instant) {
+        return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
+
+    /**
+     * 将 Date 转换成 Instant
+     * @param date {@link Date}
+     * @return {@link Instant}
+     */
+    public static Instant toInstant(Date date) {
+        return date.toInstant();
+    }
+
+    /**
+     * 将 Date 转换成 LocalDateTime
+     * @param date {@link Date}
+     * @return {@link LocalDateTime}
+     */
+    public static LocalDateTime toLocalDateTime(Date date) {
+        return toLocalDateTime(toInstant(date));
     }
 
 }

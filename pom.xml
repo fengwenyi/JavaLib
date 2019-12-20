@@ -30,6 +30,8 @@
         <jackson.annotations.version>2.9.8</jackson.annotations.version>
         <!-- okhttp3版本 -->
         <okhttp.version>3.12.1</okhttp.version>
+        <!-- google thumbnailator -->
+        <google-thumbnailator.version>0.4.8</google-thumbnailator.version>
     </properties>
 
     <dependencies>
@@ -86,6 +88,14 @@
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
             <!-- <scope>provided</scope> -->
+        </dependency>
+
+        <!-- 图片压缩 Google -->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>${google-thumbnailator.version}</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
