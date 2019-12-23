@@ -17,7 +17,7 @@ import java.util.Date;
  *     <li>{@link Date} 格式化成字符串</li>
  *     <li>{@link LocalDateTime} 格式化成字符串</li>
  *     <li>{@link Instant} 格式化成字符串</li>
- *     <li>{@link Long} 时间戳（毫秒、秒）格式化成字符串</li>
+ *     <li>{@link Long} 时间戳（毫秒）格式化成字符串</li>
  *     <li>时间字符串解析为 {@link Date}</li>
  *     <li>时间字符串解析为 {@link Instant}</li>
  *     <li>时间字符串解析为 {@link LocalDateTime}</li>
@@ -37,9 +37,9 @@ import java.util.Date;
  *     HHmmss           => 10:37:21
  *                      => 19.12.17 10:37
  *                      => 12.17 10:37
- *                      => 201/1217 10:37:21
- *                      => 201/1217 10:37
- *                      => 201/1217
+ *                      => 2019/12/17 10:37:21
+ *                      => 2019/12/17 10:37
+ *                      => 2019/12/17
  * </p>
  *
  * <p>
@@ -265,7 +265,7 @@ public class DateTimeUtils {
                 desc = NumberToChnUtils.NumberToChn(number.intValue()) + "年前";
                 break;
             case "month":
-                desc = NumberToChnUtils.NumberToChn(number.intValue()) + "个前";
+                desc = NumberToChnUtils.NumberToChn(number.intValue()) + "个月前";
                 break;
             case "day":
                 if (number == 1) {
