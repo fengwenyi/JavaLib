@@ -4,6 +4,7 @@ import com.fengwenyi.javalib.util.DateTimeUtils;
 import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -32,6 +33,20 @@ public class DateTimeUtilsTests {
         Long millisecond = date.getTime();
         String format = DateTimeUtils.format(millisecond, "yyyy-MM-dd HH:mm:ss");
         PrintUtils.info(format);
+    }
+
+    // 比较两个是大小
+    @Test
+    public void testBefore() {
+        LocalDateTime before = LocalDateTime.of(2019, 12, 1, 12, 12);
+        LocalDateTime after = LocalDateTime.of(2019, 11, 1, 12, 12);
+        Boolean isBefore = DateTimeUtils.isBefore(before, after);
+        System.out.println(isBefore); // false
+
+        before = LocalDateTime.of(2019, 11, 1, 12, 12);
+        after = LocalDateTime.of(2019, 12, 1, 12, 12);
+        isBefore = DateTimeUtils.isBefore(before, after);
+        System.out.println(isBefore); // true
     }
 
 }

@@ -70,8 +70,8 @@ public class NumberToChnUtils {
 
     /**
      * 阿拉伯数字转换为中文数字的核心算法实现。
-     * @param num为需要转换为中文数字的阿拉伯数字，是无符号的整形数
-     * @return
+     * @param num 为需要转换为中文数字的阿拉伯数字，是无符号的整形数
+     * @return [忽略]
      */
     public static String NumberToChn(int num) {
         StringBuffer returnStr = new StringBuffer();
@@ -99,8 +99,8 @@ public class NumberToChnUtils {
 
     /**
      * 将四位的section转换为中文数字
-     * @param section
-     * @return
+     * @param section [忽略]
+     * @return [忽略]
      */
     public static String SectionNumToChn(int section) {
         StringBuffer returnStr = new StringBuffer();
@@ -245,18 +245,5 @@ public class NumberToChnUtils {
             System.out.println(testData[i].chnNum+"\t"+number+"\t"+testData[i].number+"\t"+(number==testData[i].number));
 
         }
-    }
-
-    public static void main(String[] args) {
-//        TestNumToChn();
-        System.out.println("--------------------------------------------------------");
-//        TestChnStringToNumber();
-
-        String s = NumberToChnUtils.SectionNumToChn(1234);
-        System.out.println(s);
-        s = NumberToChnUtils.SectionNumToChn(12);
-        System.out.println(s);
-        s = NumberToChnUtils.SectionNumToChn(1);
-        System.out.println(s);
     }
 }

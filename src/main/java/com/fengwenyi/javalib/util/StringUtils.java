@@ -139,4 +139,21 @@ public class StringUtils {
         return result.toString();
     }
 
+    /**
+     * 删除字符串开始的字符串
+     * <p>
+     *     如字符串：abcdefg，删除abc，得到的字符串为defg
+     * </p>
+     * @param str 原始字符串
+     * @param remove 需要移除的字符串
+     * @return 移除后的字符串
+     */
+    public static String removeStart(String str, String remove) {
+        if (isNotEmpty(str) && isNotEmpty(remove)) {
+            return str.startsWith(remove) ? str.substring(remove.length()) : str;
+        } else {
+            return str;
+        }
+    }
+
 }

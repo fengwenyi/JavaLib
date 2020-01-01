@@ -24,11 +24,9 @@ import java.net.URL;
  *
  * <p>
  *     Thumbnails，还提供了根据比例压缩，比如缩小原图的1半
- *     <pre><core>
  *         Thumbnails.of(source)
  *                     .scale(0.5)
  *                     .toFile(thumbnail);
- *     </core></pre>
  * </p>
  *
  * <ul>
@@ -37,14 +35,9 @@ import java.net.URL;
  *
  * <br>
  *     图片压缩，是用的Google，如果需要用到图片压缩，请引入jar，如下：
- * <pre><code>
- *     <!-- 图片压缩 Google -->
- * 		<dependency>
- * 			<groupId>net.coobird</groupId>
- * 			<artifactId>thumbnailator</artifactId>
- * 			<version>0.4.8</version>
- * 		</dependency>
- * </code></pre>
+ *     groupId: net.coobird
+ *     artifactId: thumbnailator
+ *     version: 0.4.8
  *
  * @author Erwin Feng[xfsy_2015@163.com]
  * @since 2019/12/12 09:49

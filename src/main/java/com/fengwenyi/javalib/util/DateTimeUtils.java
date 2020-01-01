@@ -31,18 +31,18 @@ import java.util.Date;
  *     关于为什么没有推出预定义时间格式呢?
  *     因为每个人的需求不一样，不是很好定义，
  *     推荐名称为：DateTimePattern
- *     yyyyMMddHHmmss   => 2019-12-17 10:37:21
- *     yyyyMMdd         => 2019-12-17
- *     yyMMddHHmm       => 19-12-17 10:37
- *     HHmmss           => 10:37:21
- *                      => 19.12.17 10:37
- *                      => 12.17 10:37
- *                      => 2019/12/17 10:37:21
- *                      => 2019/12/17 10:37
- *                      => 2019/12/17
+ *     yyyyMMddHHmmss   → 2019-12-17 10:37:21
+ *     yyyyMMdd         → 2019-12-17
+ *     yyMMddHHmm       → 19-12-17 10:37
+ *     HHmmss           → 10:37:21
+ *                      → 19.12.17 10:37
+ *                      → 12.17 10:37
+ *                      → 2019/12/17 10:37:21
+ *                      → 2019/12/17 10:37
+ *                      → 2019/12/17
  * </p>
  *
- * <p>
+ * <br>
  *     关于时间，我们一般会用来做什么呢？
  *     <ul>
  *         <li>格式化</li>
@@ -51,7 +51,6 @@ import java.util.Date;
  *         <li>比较大小</li>
  *         <li>时间范围</li>
  *     </ul>
- * </p>
  *
  * @author Erwin Feng[xfsy_2015@163.com]
  * @since 2019-12-11
@@ -358,6 +357,20 @@ public class DateTimeUtils {
      */
     public static LocalDateTime toLocalDateTime(Date date) {
         return toLocalDateTime(toInstant(date));
+    }
+
+    /**
+     * 比较两个时间大小，简言之，{@code before < after} 是否成立
+     * <p>
+     *     假定有两个时间，before和after，如果before小于after，返回 {@code true }，
+     *     反之，返回 {@code false}
+     * </p>
+     * @param before 小的是
+     * @param after 大的时间
+     * @return {@code before < after} 是否成立
+     */
+    public static Boolean isBefore(LocalDateTime before, LocalDateTime after) {
+        return before.isBefore(after);
     }
 
 }
