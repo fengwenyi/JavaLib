@@ -49,4 +49,8 @@ public class DateTimeUtilsTests {
         System.out.println(isBefore); // true
     }
 
+    @Test
+    public void testLongToLocalDateTime() {
+    }
+
 }

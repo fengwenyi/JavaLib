@@ -183,9 +183,9 @@ public class DateTimeUtils {
     }
 
     /**
-     * 获取 LocalDateTime的毫秒数
+     * 获取 LocalDateTime的秒数
      * @param localDateTime 时间 {@link LocalDateTime}
-     * @return 毫秒数
+     * @return 时间戳（秒数）
      */
     public static Long toSecond(LocalDateTime localDateTime) {
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().getEpochSecond();
@@ -373,4 +373,12 @@ public class DateTimeUtils {
         return before.isBefore(after);
     }
 
+    /**
+     * 时间戳（毫秒）转为 LocalDateTime
+     * @param timestamp 时间戳（毫秒）
+     * @return LocalDateTime
+     */
+    public static LocalDateTime toLocalDateTime(Long timestamp) {
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
+    }
 }
