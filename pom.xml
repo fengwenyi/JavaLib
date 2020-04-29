@@ -22,10 +22,8 @@
         <junit.version>4.12</junit.version>
         <!-- servlet版本 -->
         <servlet.api.version>4.0.1</servlet.api.version>
-        <!-- lombok版本 -->
-        <lombok.version>1.18.2</lombok.version>
         <!-- fastjson版本 -->
-        <fastjson.version>1.2.56</fastjson.version>
+        <fastjson.version>1.2.68</fastjson.version>
         <!-- jackson版本 -->
         <jackson.annotations.version>2.9.8</jackson.annotations.version>
         <!-- okhttp3版本 -->
@@ -54,16 +52,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!--
-        https://mvnrepository.com/artifact/org.projectlombok/lombok
-         -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
 
