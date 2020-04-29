@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fengwenyi</groupId>
+    <artifactId>JavaLib</artifactId>
+    <version>2.0.3</version>
+    <packaging>jar</packaging>
+    <name>JavaLib</name>
+    <description>JAVA开发，常用工具类</description>
+
+    <properties>
+        <!-- 工程源码编码 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 工程导出编码 -->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- 工程JDK版本 -->
+        <java.version>1.8</java.version>
+        <!-- junit版本 -->
+        <junit.version>4.12</junit.version>
+        <!-- servlet版本 -->
+        <servlet.api.version>4.0.1</servlet.api.version>
+        <!-- fastjson版本 -->
+        <fastjson.version>1.2.68</fastjson.version>
+        <!-- jackson版本 -->
+        <jackson.annotations.version>2.9.8</jackson.annotations.version>
+        <!-- okhttp3版本 -->
+        <okhttp.version>3.12.1</okhttp.version>
+        <!-- google thumbnailator -->
+        <google-thumbnailator.version>0.4.8</google-thumbnailator.version>
+    </properties>
+
+    <dependencies>
+        <!--
+        https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+         web request
+         -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--
+        https://mvnrepository.com/artifact/junit/junit
+         service test / controller test / method test / interface test / or other test
+         -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 用于JSON的封装和解析 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <!-- 默认的jackson支持 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.annotations.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 网络请求支持 -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
+            <!-- <scope>provided</scope> -->
+        </dependency>
+
+        <!-- 图片压缩 Google -->
+        <dependency>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>${google-thumbnailator.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <licenses>
+        <license>
+            <name>The MIT License</name>
+            <url>https://mit-license.org/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>Github Issue</system>
+        <url>https://github.com/fengwenyi/JavaLib/issues</url>
+    </issueManagement>
+
+    <scm>
+        <url>https://github.com/fengwenyi/JavaLib</url>
+        <connection>git@github.com:fengwenyi/JavaLib.git</connection>
+        <developerConnection>https://github.com/fengwenyi/JavaLib</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Erwin Feng</name>
+            <email>xfsy_2015@163.com</email>
+            <url>https://fengwenyi.com</url>
+        </developer>
+    </developers>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
