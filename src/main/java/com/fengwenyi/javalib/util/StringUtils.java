@@ -127,6 +127,7 @@ public class StringUtils {
 
     /**
      * 获取随机字符串
+     * @param length 生成字符串的长度
      * @return 随机字符串
      */
     public static String getRandomString(int length) {
