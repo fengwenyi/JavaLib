@@ -8,9 +8,6 @@
 </p>
 
 <p align="center">
-    <a target="_blank" href="https://jitpack.io/#fengwenyi/JavaLib">
-		<img src="https://jitpack.io/v/fengwenyi/JavaLib.svg" ></img>
-	</a>
 	<a target="_blank" href="https://www.apache.org/licenses/LICENSE-2.0.html">
 		<img src="https://img.shields.io/:license-apache-blue.svg" ></img>
 	</a>
@@ -40,7 +37,7 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>2.0.2</version>
+    <version>2.0.3.RELEASE</version>
 </dependency>
 ```
 
