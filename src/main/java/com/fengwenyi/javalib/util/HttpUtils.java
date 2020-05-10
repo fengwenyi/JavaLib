@@ -1,6 +1,8 @@
 package com.fengwenyi.javalib.util;
 
 import com.fengwenyi.javalib.constant.ContentType;
+import com.fengwenyi.javalib.constant.HttpHeaderKeyConstant;
+import com.fengwenyi.javalib.constant.MediaTypeConstant;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -67,12 +69,25 @@ public class HttpUtils {
     /**
      * get请求
      * @param url URL
-     * @param paramMap 参数，用Map进行封装
+     * @param map 参数，用Map进行封装
      * @return 服务器响应字符串
      * @throws IOException IO异常
      */
-    public static String get(String url, Map<String, String> paramMap) throws IOException {
-        String param = ParamUtils.getUrlParamsByMap(paramMap);
+    public static String get(String url, Map<String, String> map) throws IOException {
+        String param = ParamUtils.getUrlParamsByMap(map);
+        if (StringUtils.isNotEmpty(param))
+            url = url + "?" + param;
+        return get(url);
+    }
+
+    /**
+     * get请求
+     * @param url URL
+     * @param param 参数
+     * @return 服务器响应字符串
+     * @throws IOException IO异常
+     */
+    public static String get(String url, String param) throws IOException {
         if (StringUtils.isNotEmpty(param))
             url = url + "?" + param;
         return get(url);
@@ -88,6 +103,55 @@ public class HttpUtils {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
         Request request = new Request.Builder()
                 .url(url)
+                .get()
+                .build();
+        Response response = okHttpClient.newCall(request).execute();
+        assert response.body() != null;
+        return response.body().string();
+    }
+
+    /**
+     * get请求
+     * @param url URL
+     * @return 服务器响应字符串
+     * @throws IOException IO异常
+     */
+    public static String getJson(String url) throws IOException {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader(HttpHeaderKeyConstant.CONTENT_TYPE, MediaTypeConstant.APPLICATION_JSON_VALUE)
+                .get()
+                .build();
+        Response response = okHttpClient.newCall(request).execute();
+        assert response.body() != null;
+        return response.body().string();
+    }
+
+    /**
+     * get请求
+     * @param url URL
+     * @param param 参数
+     * @return 服务器响应字符串
+     * @throws IOException IO异常
+     */
+    public static String getJson(String url, String param) throws IOException {
+        if (StringUtils.isNotEmpty(param))
+            url = url + "?" + param;
+        return getJson(url);
+    }
+
+    /**
+     * get请求
+     * @param url URL
+     * @return 服务器响应字符串
+     * @throws IOException IO异常
+     */
+    public static String getJson(String url, Map<String, String> headers, String param) throws IOException {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader(HttpHeaderKeyConstant.CONTENT_TYPE, MediaTypeConstant.APPLICATION_JSON_VALUE)
                 .get()
                 .build();
         Response response = okHttpClient.newCall(request).execute();
