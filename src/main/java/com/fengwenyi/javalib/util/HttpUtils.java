@@ -142,18 +142,51 @@ public class HttpUtils {
     }
 
     /**
-     * get请求
-     * @param url URL
-     * @return 服务器响应字符串
-     * @throws IOException IO异常
+     * 自定义get请求
+     * @param url           URL
+     * @param headers       自定义请求头
+     * @param param         参数
+     * @return              服务器响应字符串
+     * @throws IOException  IO异常
      */
-    public static String getJson(String url, Map<String, String> headers, String param) throws IOException {
+    public static String get(String url, Map<String, String> headers, String param) throws IOException {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
-        Request request = new Request.Builder()
-                .url(url)
-                .addHeader(HttpHeaderKeyConstant.CONTENT_TYPE, MediaTypeConstant.APPLICATION_JSON_VALUE)
-                .get()
-                .build();
+        Request.Builder requestBuilder = new Request.Builder();
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            String headerKey = entry.getKey();
+            String headerValue = entry.getValue();
+            requestBuilder.addHeader(headerKey, headerValue);
+        }
+        if (StringUtils.isNotEmpty(param))
+            url = url + "?" + param;
+        requestBuilder.url(url).get();
+        Request request = requestBuilder.build();
+        Response response = okHttpClient.newCall(request).execute();
+        assert response.body() != null;
+        return response.body().string();
+    }
+
+    /**
+     * 自定义post请求
+     * @param url           URL
+     * @param headers       自定义请求头
+     * @param param         参数
+     * @return              服务器响应字符串
+     * @throws IOException  IO异常
+     */
+    public static String post(String url, Map<String, String> headers, String param) throws IOException {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+        Request.Builder requestBuilder = new Request.Builder();
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            String headerKey = entry.getKey();
+            String headerValue = entry.getValue();
+            requestBuilder.addHeader(headerKey, headerValue);
+        }
+        if (StringUtils.isNotEmpty(param))
+            url = url + "?" + param;
+        requestBuilder.url(url)
+                .post(s);
+        Request request = requestBuilder.build();
         Response response = okHttpClient.newCall(request).execute();
         assert response.body() != null;
         return response.body().string();
