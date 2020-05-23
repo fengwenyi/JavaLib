@@ -17,8 +17,9 @@ import java.util.Map;
  *     <li>json提交</li>
  *     <li>header设置</li>
  * </ul>
+ * <p>经过深思之后，决定这个工具类移除，我会以博文的形式记录使用OKHttp请求</p>
  * @author Erwin Feng
- * @since 2019-06-27 00:09
+ * @since 2019-06-27
  */
 public class HttpUtils {
 
@@ -111,37 +112,6 @@ public class HttpUtils {
     }
 
     /**
-     * get请求
-     * @param url URL
-     * @return 服务器响应字符串
-     * @throws IOException IO异常
-     */
-    public static String getJson(String url) throws IOException {
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
-        Request request = new Request.Builder()
-                .url(url)
-                .addHeader(HttpHeaderKeyConstant.CONTENT_TYPE, MediaTypeConstant.APPLICATION_JSON_VALUE)
-                .get()
-                .build();
-        Response response = okHttpClient.newCall(request).execute();
-        assert response.body() != null;
-        return response.body().string();
-    }
-
-    /**
-     * get请求
-     * @param url URL
-     * @param param 参数
-     * @return 服务器响应字符串
-     * @throws IOException IO异常
-     */
-    public static String getJson(String url, String param) throws IOException {
-        if (StringUtils.isNotEmpty(param))
-            url = url + "?" + param;
-        return getJson(url);
-    }
-
-    /**
      * 自定义get请求
      * @param url           URL
      * @param headers       自定义请求头
@@ -160,32 +130,6 @@ public class HttpUtils {
         if (StringUtils.isNotEmpty(param))
             url = url + "?" + param;
         requestBuilder.url(url).get();
-        Request request = requestBuilder.build();
-        Response response = okHttpClient.newCall(request).execute();
-        assert response.body() != null;
-        return response.body().string();
-    }
-
-    /**
-     * 自定义post请求
-     * @param url           URL
-     * @param headers       自定义请求头
-     * @param param         参数
-     * @return              服务器响应字符串
-     * @throws IOException  IO异常
-     */
-    public static String post(String url, Map<String, String> headers, String param) throws IOException {
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
-        Request.Builder requestBuilder = new Request.Builder();
-        for (Map.Entry<String, String> entry : headers.entrySet()) {
-            String headerKey = entry.getKey();
-            String headerValue = entry.getValue();
-            requestBuilder.addHeader(headerKey, headerValue);
-        }
-        if (StringUtils.isNotEmpty(param))
-            url = url + "?" + param;
-        requestBuilder.url(url)
-                .post(s);
         Request request = requestBuilder.build();
         Response response = okHttpClient.newCall(request).execute();
         assert response.body() != null;
