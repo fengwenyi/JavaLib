@@ -55,27 +55,12 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- 用于JSON的封装和解析 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
-
         <!-- 默认的jackson支持 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.annotations.version}</version>
             <scope>provided</scope>
-        </dependency>
-
-        <!-- 网络请求支持 -->
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>${okhttp.version}</version>
-            <!-- <scope>provided</scope> -->
         </dependency>
 
         <!-- 图片压缩 Google -->

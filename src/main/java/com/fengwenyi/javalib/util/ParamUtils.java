@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.util;
 
-import com.fengwenyi.javalib.constant.Charset;
+import com.fengwenyi.javalib.constant.CharsetConstant;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -31,7 +31,7 @@ public class ParamUtils {
 
             sb.append(i.getKey())
                     .append("=")
-                    .append(URLEncoder.encode(i.getValue(), Charset.UTF_8))
+                    .append(URLEncoder.encode(i.getValue(), CharsetConstant.UTF_8))
                     .append("&");
 
         }

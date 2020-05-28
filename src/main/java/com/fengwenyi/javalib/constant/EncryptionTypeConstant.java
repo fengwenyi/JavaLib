@@ -5,7 +5,7 @@ package com.fengwenyi.javalib.constant;
  * @author Wenyi Feng
  * @since 2018-10-16
  */
-public class EncryptionType {
+public class EncryptionTypeConstant {
 
     /**
      * md5

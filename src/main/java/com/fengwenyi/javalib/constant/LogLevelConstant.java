@@ -18,7 +18,7 @@ package com.fengwenyi.javalib.constant;
  * @author Erwin Feng
  * @since 2019-03-14 10:58
  */
-public class LogLevel {
+public class LogLevelConstant {
 
     /** 各级包括自定义级别 */
     public static final String ALL = "ALL";

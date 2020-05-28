@@ -8,6 +8,6 @@ package com.fengwenyi.javalib.constant;
 public class HttpHeaderKeyConstant {
 
     /** Content-Type */
-    public static final String CONTENT_TYPE = "Content-Type";
+    public static final String KEY_CONTENT_TYPE = "Content-Type";
 
 }

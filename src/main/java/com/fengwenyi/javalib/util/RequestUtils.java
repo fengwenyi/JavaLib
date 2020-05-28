@@ -73,6 +73,11 @@ public class RequestUtils {
     /**
      * 如果客户端通过 request 传递数据，那么就可以使用该方法获取数据
      * 这种通常是通过 Post方式
+     *
+     * <p>
+     *     警告：使用该方法获取post的值，{@code HttpServletRequest} 就不可再用，该方法待优化。（2020.5.28）
+     * </p>
+     *
      * @param request HttpServletRequest
      * @return 客户端上传的数据
      * @throws IOException 因为是通过IO流读取数据，
