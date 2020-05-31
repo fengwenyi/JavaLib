@@ -5,7 +5,7 @@ package com.fengwenyi.javalib.constant;
  * @author Wenyi Feng
  * @since 2018-10-28
  */
-public class Charset {
+public class CharsetConstant {
 
     /**
      * UTF-8

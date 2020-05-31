@@ -4,7 +4,7 @@ package com.fengwenyi.javalib.constant;
  * @author Wenyi Feng
  * @since 2018-11-17
  */
-public class UserAgent {
+public class UserAgentConstant {
 
     private static final String MAC_ = "Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1";
 

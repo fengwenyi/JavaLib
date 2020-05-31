@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.util;
 
-import com.fengwenyi.javalib.constant.EncryptionType;
+import com.fengwenyi.javalib.constant.EncryptionTypeConstant;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -25,7 +25,7 @@ public class SHAUtils {
         if (StringUtils.isNotEmpty(plainText)) {
             // SHA 加密开始
             // 创建加密对象 并传入加密类型
-            MessageDigest messageDigest = MessageDigest.getInstance(EncryptionType.SHA1);
+            MessageDigest messageDigest = MessageDigest.getInstance(EncryptionTypeConstant.SHA1);
             // 传入要加密的字符串
             messageDigest.update(plainText.getBytes());
             // 得到 byte 类型结果

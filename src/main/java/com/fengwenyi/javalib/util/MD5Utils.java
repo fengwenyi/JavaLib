@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib.util;
 
 
-import com.fengwenyi.javalib.constant.EncryptionType;
+import com.fengwenyi.javalib.constant.EncryptionTypeConstant;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,7 +21,7 @@ public class MD5Utils {
      */
     public static String md5(String plainText) throws NoSuchAlgorithmException {
         // 创建一个md5算法对象
-        MessageDigest md = MessageDigest.getInstance(EncryptionType.MD5);
+        MessageDigest md = MessageDigest.getInstance(EncryptionTypeConstant.MD5);
         byte[] messageByte = plainText.getBytes();
         // 获得MD5字节数组,16*8=128位
         byte[] md5Byte = md.digest(messageByte);

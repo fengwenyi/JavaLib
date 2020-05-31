@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.util;
 
-import com.fengwenyi.javalib.constant.Charset;
+import com.fengwenyi.javalib.constant.CharsetConstant;
 import com.fengwenyi.javalib.third.Base64;
 
 import javax.crypto.BadPaddingException;
@@ -77,7 +77,7 @@ public class RSAUtils {
         PrivateKey privateKey = commonGetPrivatekeyByText(key);
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
-        byte [] result = cipher.doFinal(plainText.getBytes(Charset.UTF_8));
+        byte [] result = cipher.doFinal(plainText.getBytes(CharsetConstant.UTF_8));
 
         return Base64.byteArrayToBase64(result);
     }
@@ -125,7 +125,7 @@ public class RSAUtils {
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
-        byte [] result = cipher.doFinal(plainText.getBytes(Charset.UTF_8));
+        byte [] result = cipher.doFinal(plainText.getBytes(CharsetConstant.UTF_8));
 
         return Base64.byteArrayToBase64(result);
     }

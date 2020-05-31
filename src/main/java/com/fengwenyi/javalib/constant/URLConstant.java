@@ -4,7 +4,7 @@ package com.fengwenyi.javalib.constant;
  * @author Wenyi Feng
  * @since 2018-10-28
  */
-public class URL {
+public class URLConstant {
 
     /**
      * 获取ip地址的信息的uri

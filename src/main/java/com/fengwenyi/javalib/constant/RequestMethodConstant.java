@@ -5,7 +5,7 @@ package com.fengwenyi.javalib.constant;
  * @author Wenyi Feng
  * @since 2018-09-25
  */
-public class RequestMethod {
+public class RequestMethodConstant {
 
     /**
      * get
