@@ -1,7 +1,9 @@
-package com.fengwenyi.javalib.util;
+package com.fengwenyi.javalib.encryption;
 
 import com.fengwenyi.javalib.constant.CharsetConstant;
 import com.fengwenyi.javalib.third.Base64;
+import com.fengwenyi.javalib.util.HexUtils;
+import com.fengwenyi.javalib.util.StringUtils;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
