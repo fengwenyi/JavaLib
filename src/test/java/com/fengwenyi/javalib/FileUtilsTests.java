@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib;
 
-import com.fengwenyi.javalib.util.FileUtils;
+import com.fengwenyi.javalib.file.FileUtils;
 import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 

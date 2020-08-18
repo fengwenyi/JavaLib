@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib;
 
-import com.fengwenyi.javalib.util.AESUtils;
+import com.fengwenyi.javalib.encryption.AESUtils;
 import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 

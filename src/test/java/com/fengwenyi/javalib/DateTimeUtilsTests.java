@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib;
 
-import com.fengwenyi.javalib.util.DateTimeUtils;
+import com.fengwenyi.javalib.convert.DateTimeUtils;
 import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import java.util.Date;
  * 测试日期和时间工具类
  * @author Erwin Feng[xfsy_2015@163.com]
  * @since 2019/12/11 17:52
- * @see {@link com.fengwenyi.javalib.util.DateTimeUtils}
+ * @see {@link DateTimeUtils}
  */
 public class DateTimeUtilsTests {
 

@@ -1,4 +1,4 @@
-package com.fengwenyi.javalib.util;
+package com.fengwenyi.javalib.convert;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -72,6 +72,17 @@ public class DateTimeUtils {
     public static String format(LocalDateTime dateTime, String pattern) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return dateTime.format(formatter);
+    }
+
+    /**
+     * 将时间格式化成字符串
+     * @param date {@link LocalDate}
+     * @param pattern 描述日期格式的模式
+     * @return 满足指定格式的日期字符串
+     */
+    public static String format(LocalDate date, String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return date.format(formatter);
     }
 
     /**
