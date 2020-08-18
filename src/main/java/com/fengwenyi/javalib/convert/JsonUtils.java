@@ -18,7 +18,7 @@ public class JsonUtils {
      * @param <T> 对象的类型
      * @return JSON字符串
      */
-    public static <T> String convertJson(T value) {
+    public static <T> String convertString(T value) {
         try {
             return objectMapper.writeValueAsString(value);
         } catch (JsonProcessingException e) {
@@ -33,7 +33,7 @@ public class JsonUtils {
      * @param <T> 对象的类型
      * @return 返回一个对象
      */
-    public static <T> T convertJson(String content, Class<T> valueType) {
+    public static <T> T convertObject(String content, Class<T> valueType) {
         try {
             return objectMapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {

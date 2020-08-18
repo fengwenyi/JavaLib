@@ -1,4 +1,4 @@
-package com.fengwenyi.javalib.util;
+package com.fengwenyi.javalib.image;
 
 import net.coobird.thumbnailator.Thumbnails;
 

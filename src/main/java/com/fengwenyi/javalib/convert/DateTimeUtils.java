@@ -1,4 +1,4 @@
-package com.fengwenyi.javalib.util;
+package com.fengwenyi.javalib.convert;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

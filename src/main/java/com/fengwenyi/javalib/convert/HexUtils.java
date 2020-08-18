@@ -1,4 +1,6 @@
-package com.fengwenyi.javalib.util;
+package com.fengwenyi.javalib.convert;
+
+import com.fengwenyi.javalib.util.StringUtils;
 
 /**
  * 进制转换工具类

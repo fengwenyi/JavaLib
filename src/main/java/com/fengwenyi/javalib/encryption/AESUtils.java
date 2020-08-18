@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.encryption;
 
-import com.fengwenyi.javalib.util.HexUtils;
+import com.fengwenyi.javalib.convert.HexUtils;
 
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;

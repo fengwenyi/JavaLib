@@ -1,6 +1,7 @@
-package com.fengwenyi.javalib.util;
+package com.fengwenyi.javalib.convert;
 
 import com.fengwenyi.javalib.constant.CharsetConstant;
+import com.fengwenyi.javalib.util.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -46,7 +47,7 @@ public class ParamUtils {
      * @return 参数Map
      */
     public static Map<String, String> getUrlParams(String param) {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         if (StringUtils.isEmpty(param)) {
             return map;
         }

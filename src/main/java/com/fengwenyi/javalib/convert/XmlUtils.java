@@ -12,14 +12,14 @@ public class XmlUtils {
 
     /**
      * 将对象转换成XML格式的字符串
-     * @param content
-     * @param <T>
-     * @return
+     * @param value 待转换的对象
+     * @param <T> 对象的类型
+     * @return 返回转换后的XML格式的字符串
      */
-    public static <T> String convertXml(T content) {
+    public static <T> String convertString(T value) {
         XmlMapper xmlMapper = new XmlMapper();
         try {
-            return xmlMapper.writeValueAsString(content);
+            return xmlMapper.writeValueAsString(value);
         } catch (JsonProcessingException e) {
             return null;
         }
@@ -27,15 +27,15 @@ public class XmlUtils {
 
     /**
      * 将XML格式的字符串转换成对象
-     * @param content
-     * @param valueType
-     * @param <T>
-     * @return
+     * @param value 待转换的XML格式的字符串
+     * @param valueType 转换后的对象的class
+     * @param <T> 对象的类型
+     * @return 返回转换后的对象
      */
-    public static <T> T convertXml(String content, Class<T> valueType) {
+    public static <T> T convertObject(String value, Class<T> valueType) {
         XmlMapper xmlMapper = new XmlMapper();
         try {
-            return xmlMapper.readValue(content, valueType);
+            return xmlMapper.readValue(value, valueType);
         } catch (JsonProcessingException e) {
             return null;
         }

@@ -1,4 +1,4 @@
-package com.fengwenyi.javalib.util;
+package com.fengwenyi.javalib.net;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
