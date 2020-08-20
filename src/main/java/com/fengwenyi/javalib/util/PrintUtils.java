@@ -24,10 +24,5 @@ public class PrintUtils {
             System.out.println(str);
         }
     }
-    public static void info() {
-        if (DEBUG) {
-            System.out.println();
-        }
-    }
 
 }
