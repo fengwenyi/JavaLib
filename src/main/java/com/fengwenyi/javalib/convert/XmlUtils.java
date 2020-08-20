@@ -1,6 +1,7 @@
 package com.fengwenyi.javalib.convert;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 /**
@@ -10,6 +11,8 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
  */
 public class XmlUtils {
 
+    private static final XmlMapper xmlMapper = new XmlMapper();
+
     /**
      * 将对象转换成XML格式的字符串
      * @param value 待转换的对象
@@ -17,10 +20,10 @@ public class XmlUtils {
      * @return 返回转换后的XML格式的字符串
      */
     public static <T> String convertString(T value) {
-        XmlMapper xmlMapper = new XmlMapper();
         try {
             return xmlMapper.writeValueAsString(value);
         } catch (JsonProcessingException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -33,10 +36,11 @@ public class XmlUtils {
      * @return 返回转换后的对象
      */
     public static <T> T convertObject(String value, Class<T> valueType) {
-        XmlMapper xmlMapper = new XmlMapper();
+        xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
         try {
             return xmlMapper.readValue(value, valueType);
         } catch (JsonProcessingException e) {
+            e.printStackTrace();
             return null;
         }
     }

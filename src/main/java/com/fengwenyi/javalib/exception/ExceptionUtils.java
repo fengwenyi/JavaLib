@@ -1,4 +1,4 @@
-package com.fengwenyi.javalib.util;
+package com.fengwenyi.javalib.exception;
 
 /**
  * 异常工具类
