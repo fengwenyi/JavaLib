@@ -23,7 +23,6 @@ public class MapTests {
             String value = map.get(key);
             PrintUtils.info(key + "---->" + value);
         }
-        PrintUtils.info();
         Set<Map.Entry<String, String>> entries = map.entrySet();
         for (Map.Entry<String, String> entry : entries) {
             String key = entry.getKey();
