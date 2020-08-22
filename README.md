@@ -37,7 +37,7 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>2.0.3.RELEASE</version>
+    <version>2.1.0.RELEASE</version>
 </dependency>
 ```
 
@@ -48,6 +48,16 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 ## 功能列表：
 
 - [x] DateTimeUtils - 日期时间工具类（2020.4.30）
+- [x] JsonUtils - JSON转换工具类。（2020.08.22）
+- [x] XmlUtils - XML转换工具类。（2020.08.22）
+- [x] BeanUtils - Bean工具类。（2020.08.22）
+- [x] CollectionUtils - 集合工具类。（2020.08.22）
+- [x] MapUtils - Map工具类。（2020.08.22）
+- [x] RSAUtils - RSA加/解密工具类。（2020.08.22）
+- [x] MD5Utils - MD5加/解密工具类。（2020.08.22）
+- [x] IdUtils - Id工具类。（2020.08.22）
+- [x] StringUtils - String工具类。（2020.08.22）
+- [x] PrintUtils - 控制台打印工具类。（2020.08.22）
 
 ## Wiki
 
@@ -66,7 +76,3 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 ### RELEASE
 
 稳定版本：已发布到中央仓库。
-
-## 版本更新
-
-[2.0.3版本更新内容](./version/2.0.3.md)
