@@ -1,5 +1,8 @@
 package com.fengwenyi.javalib.util;
 
+import com.fengwenyi.javalib.constant.StringConstant;
+
+import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
 /**
@@ -155,6 +158,69 @@ public class StringUtils {
         } else {
             return str;
         }
+    }
+
+    /**
+     * 生成一个指定长度的星号（*）字符串
+     * @param length 生成星号的长度
+     * @return 生成一个指定长度的星号（*）字符串
+     */
+    public static String generateStar(int length) {
+        StringJoiner sj = new StringJoiner("", "", "");
+        for (int i = 0; i < length; i++) {
+            sj.add("*");
+        }
+        return sj.toString();
+    }
+
+    /**
+     * 获取字符串左边指定长度的字符串。
+     * <p>
+     *     例如，字符串是：张三，截取长度为1，得到的结果是：张。
+     * </p>
+     * <p>
+     *     注意，如果需要截取的长度大于字符串的长度，那么会返回整个字符串。
+     *     如截取的长度是3，那么得到的结果是：张三。
+     * </p>
+     * @param source 需要截取的字符串
+     * @param length 需要获取左边字符串的长度
+     * @return 返回字符串左边指定长度的字符串
+     */
+    public static String getLeft(String source, int length) {
+        if (StringUtils.isEmpty(source)
+                || length < 1) {
+            return StringConstant.BLANK;
+        }
+        if (length > source.length()) {
+            PrintUtils.warn("length(" + length + ") > source's length(" + source.length() + ")");
+            length = source.length();
+        }
+        return source.substring(0, length);
+    }
+
+    /**
+     * 获取字符串右边指定长度的字符串。
+     * <p>
+     *     例如，字符串是：张三，截取长度为1，得到的结果是：三。
+     * </p>
+     * <p>
+     *     注意，如果需要截取的长度大于字符串的长度，那么会返回整个字符串。
+     *     如截取的长度是3，那么得到的结果是：张三。
+     * </p>
+     * @param source 需要截取的字符串
+     * @param length 需要获取右边字符串的长度
+     * @return 返回字符串右边指定长度的字符串
+     */
+    public static String getRight(String source, int length) {
+        if (StringUtils.isEmpty(source)
+                || length < 1) {
+            return StringConstant.BLANK;
+        }
+        if (length > source.length()) {
+            PrintUtils.warn("length(" + length + ") > source's length(" + source.length() + ")");
+            length = source.length();
+        }
+        return source.substring(source.length() - length);
     }
 
 }
