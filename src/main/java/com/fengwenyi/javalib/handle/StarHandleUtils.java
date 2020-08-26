@@ -1,5 +1,6 @@
 package com.fengwenyi.javalib.handle;
 
+import com.fengwenyi.javalib.collection.CollectionUtils;
 import com.fengwenyi.javalib.constant.LengthConstant;
 import com.fengwenyi.javalib.constant.StringConstant;
 import com.fengwenyi.javalib.util.StringUtils;
@@ -12,25 +13,93 @@ import com.fengwenyi.javalib.util.StringUtils;
 public class StarHandleUtils {
 
     public static String ip(String ip) {
-        return "";
+        if (StringUtils.isEmpty(ip)) {
+            return StringConstant.BLANK;
+        }
+        String[] array = ip.split("\\.");
+        if (CollectionUtils.isNotEmpty(array) && array.length == 4) {
+            return String.format("%s.%s.*.*", array[0], array[1]);
+        }
+        return StringConstant.BLANK;
     }
 
+    /**
+     * 手机号星号（*）处理
+     * <p>
+     *     如一个手机号是：12345678901，处理之后是：123****8901
+     * </p>
+     * @param phone 待处理的手机号，11位
+     * @return 返回星号处理之后的手机号
+     */
     public static String phone(String phone) {
-        return "";
+        if (StringUtils.isEmpty(phone)) {
+            return StringConstant.BLANK;
+        }
+        if (phone.length() == 11) {
+            String left = StringUtils.getLeft(phone, 3);
+            String right = StringUtils.getRight(phone, 4);
+            String star = StringUtils.generateStar(4);
+            return left + star + right;
+        }
+        return StringConstant.BLANK;
     }
 
+    /**
+     * 邮箱星号（*）处理
+     * @param email 待处理的邮箱
+     * @return 返回处理之后的邮箱
+     */
     public static String email(String email) {
-        return "";
+        if (StringUtils.isEmpty(email)) {
+            return StringConstant.BLANK;
+        }
+        int index = email.lastIndexOf("@");
+        if (index > 0) {
+            int indexLeft = index == 1 ? 0 : 1;
+            String right = StringUtils.getRight(email, email.length() - index);
+            String left = StringUtils.getLeft(email, indexLeft);
+            String star = StringUtils.generateStar(index - indexLeft);
+            return left + star + right;
+        }
+        return StringConstant.BLANK;
     }
 
+    // 身份证号码
     public static String idCardNo(String idCardNo) {
-        return "";
+         //默认处理结果：123***********5678
+        return StringConstant.BLANK;
     }
 
+    public static String idCardNo(String idCardNo, int leftLength, int rightLength) {
+        return StringConstant.BLANK;
+    }
+
+    public static String cardNo(String cardNo) {
+        // 默认处理结果：**** 1234
+        return StringConstant.BLANK;
+    }
+
+    public static String cardNo(String cardNo, int leftLength) {
+        return StringConstant.BLANK;
+    }
+
+    public static String cardNo(String cardNo, int leftLength, int rightLength) {
+        return StringConstant.BLANK;
+    }
+
+    /**
+     * 密码星号（*）处理
+     * @return 返回32位的星号密码
+     */
     public static String password() {
         return StringUtils.generateStar(LengthConstant.PASSWORD);
     }
 
+    /**
+     * 密码星号（*）处理
+     * @param len 指定生成星号密码的长度
+     * @return 返回指定长度的星号密码
+     */
     public static String password(int len) {
         return StringUtils.generateStar(len);
     }
@@ -47,8 +116,7 @@ public class StarHandleUtils {
      * @return
      */
     public static String realName(String realName) {
-        if (StringUtils.isEmpty(realName)
-                || realName.length() == 0) {
+        if (StringUtils.isEmpty(realName)) {
             return StringConstant.BLANK;
         }
         if (realName.length() == 2) {
