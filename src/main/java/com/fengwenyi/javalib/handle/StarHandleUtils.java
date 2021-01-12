@@ -64,27 +64,43 @@ public class StarHandleUtils {
         return StringConstant.BLANK;
     }
 
-    // 身份证号码
+    /**
+     * 身份证号码星号处理
+     *
+     * <p>
+     *     前留3，后留4，中间由星号填充
+     * </p>
+     *
+     * @param idCardNo 待处理的身份证号码
+     * @return 返回处理之后的身份证号码
+     */
     public static String idCardNo(String idCardNo) {
-         //默认处理结果：123***********5678
-        return StringConstant.BLANK;
+        return idCardNo(idCardNo, 3, 4);
     }
 
+    /**
+     * 身份证号码星号处理
+     * @param idCardNo 待处理的身份证号码
+     * @param leftLength 左边保留长度
+     * @param rightLength 右边保留长度
+     * @return 返回处理之后的身份证号码
+     */
     public static String idCardNo(String idCardNo, int leftLength, int rightLength) {
-        return StringConstant.BLANK;
-    }
 
-    public static String cardNo(String cardNo) {
-        // 默认处理结果：**** 1234
-        return StringConstant.BLANK;
-    }
+        if (StringUtils.isEmpty(idCardNo)) {
+            return StringConstant.BLANK;
+        }
 
-    public static String cardNo(String cardNo, int leftLength) {
-        return StringConstant.BLANK;
-    }
+        if (idCardNo.length() <= leftLength + rightLength) {
+            return StringConstant.BLANK;
+        }
 
-    public static String cardNo(String cardNo, int leftLength, int rightLength) {
-        return StringConstant.BLANK;
+        String leftString = StringUtils.getLeft(idCardNo, leftLength);
+        String rightString = StringUtils.getRight(idCardNo, rightLength);
+        int starLength = idCardNo.length() - leftLength - rightLength;
+        String starString = StringUtils.generateStar(starLength);
+
+        return leftString + starString + rightString;
     }
 
     /**

@@ -100,4 +100,22 @@ public class StarHandleUtilsTests {
 
     }
 
+    @Test
+    public void testIdCardNo() {
+        String idCardNo15 = "320311770706001";
+        String idCardNo18 = "130701199310302288";
+        String idCardNo18x = "52030219891209794X";
+        String star15 = StarHandleUtils.idCardNo(idCardNo15);
+        PrintUtils.info(star15);
+        Assert.assertEquals(star15, "320********6001");
+
+        String star18 = StarHandleUtils.idCardNo(idCardNo18, 5, 5);
+        PrintUtils.info(star18);
+        Assert.assertEquals(star18, "13070********02288");
+
+        String star18x = StarHandleUtils.idCardNo(idCardNo18x);
+        PrintUtils.info(star18x);
+        Assert.assertEquals(star18x, "520***********794X");
+    }
+
 }
