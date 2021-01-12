@@ -37,7 +37,7 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>2.1.1</version>
+    <version>2.1.2</version>
 </dependency>
 ```
 
