@@ -20,6 +20,15 @@ public class CollectionUtils {
     }
 
     /**
+     * 判断数组是空数组
+     * @param array 待判断的数据
+     * @return true：空 / false：非空
+     */
+    public static boolean isEmpty(String [] array) {
+        return array == null || array.length == 0;
+    }
+
+    /**
      * 如果集合不为{@code null}或者空，则返回{@code true}。
      * 否则，返回{@code false}
      * @param collection 待检查的集合
@@ -29,4 +38,12 @@ public class CollectionUtils {
         return !isEmpty(collection);
     }
 
+    /**
+     * 判断数组不是空数组
+     * @param array 待判断的数据
+     * @return true：非空 / false：空
+     */
+    public static boolean isNotEmpty(String [] array) {
+        return !isEmpty(array);
+    }
 }
