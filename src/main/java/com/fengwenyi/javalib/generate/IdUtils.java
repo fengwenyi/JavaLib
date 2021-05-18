@@ -26,4 +26,13 @@ public class IdUtils {
         return UUID.randomUUID().toString();
     }
 
+    /**
+     * 基于UUID生成ID，不含"-"
+     * @return ID字符串
+     */
+    public static String genId() {
+        String uuIdStr = UUID.randomUUID().toString();
+        return uuIdStr.replaceAll("-", "");
+    }
+
 }
