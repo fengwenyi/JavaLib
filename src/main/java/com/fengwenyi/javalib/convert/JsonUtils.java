@@ -3,10 +3,12 @@ package com.fengwenyi.javalib.convert;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * JSON转换工具类
@@ -98,6 +100,26 @@ public class JsonUtils {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
         try {
             return objectMapper.readValue(content, valueTypeRef);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 将json格式的字符串转换成Map格式
+     * @param json 待转换的json格式的字符串
+     * @param kClazz Map key类型
+     * @param vClazz Map value类型
+     * @param <K> Map key对象
+     * @param <V> Map value对象
+     * @return 转换后的 {@code Map<K, V>}
+     */
+    public static <K, V> Map<K, V> convertMap(String json, Class<K> kClazz, Class<V> vClazz) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JavaType javaType = objectMapper.getTypeFactory().constructMapType(Map.class, kClazz, vClazz);
+        try {
+            return objectMapper.readValue(json, javaType);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return null;
