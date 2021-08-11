@@ -28,6 +28,7 @@
         <okhttp.version>3.12.1</okhttp.version>
         <!-- google thumbnailator -->
         <google-thumbnailator.version>0.4.8</google-thumbnailator.version>
+        <slf4j-api.version>1.7.32</slf4j-api.version>
     </properties>
 
     <dependencies>
@@ -84,6 +85,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <licenses>
