@@ -248,4 +248,21 @@ public class DateTimeUtils {
     public static LocalDateTime toLocalDateTime(Long timestamp) {
         return LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
     }
+
+    /**
+     * 校验时间合法性
+     * @param source 待检查的时间字符串
+     * @param pattern 时间字符串格式
+     * @return 验证结果，true: 有效 / false: 无效
+     */
+    public static boolean isValid(String source, String pattern) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        simpleDateFormat.setLenient(false);
+        try {
+            simpleDateFormat.parse(source);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.fengwenyi.javalib.util;
 
 import com.fengwenyi.javalib.constant.StringConstant;
 
+import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
@@ -17,13 +18,24 @@ public class StringUtils {
 
     /**
      * 判断字符串是否为空
+     *
+     * <ul>
+     *     <li>null -> true</li>
+     *     <li>"" -> true</li>
+     *     <li>" " -> true</li>
+     *     <li>"null" -> true</li>
+     *     <li>" null " -> true</li>
+     * </ul>
+     *
      * @param str 待判断的字符串
      * @return 是否是空字符串，true：空字符串；false：非空字符串
      */
     public static boolean isEmpty(String str) {
-        if (str == null)
+        if (Objects.isNull(str))
             return true;
         if ("".equals(str.trim()))
+            return true;
+        if ("null".equals(str.trim()))
             return true;
         return str.isEmpty();
     }
