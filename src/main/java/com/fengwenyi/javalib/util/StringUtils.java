@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
  *     <li>字符串判空</li>
  *     <li>字符串判非空</li>
  * </ul>
+ *
  * @author Wenyi Feng
  */
 public class StringUtils {
@@ -20,11 +21,11 @@ public class StringUtils {
      * 判断字符串是否为空
      *
      * <ul>
-     *     <li>null -> true</li>
-     *     <li>"" -> true</li>
-     *     <li>" " -> true</li>
-     *     <li>"null" -> true</li>
-     *     <li>" null " -> true</li>
+     *     <li>null     - true</li>
+     *     <li>""       - true</li>
+     *     <li>" "      - true</li>
+     *     <li>"null"   - true</li>
+     *     <li>" null " - true</li>
      * </ul>
      *
      * @param str 待判断的字符串
@@ -42,6 +43,7 @@ public class StringUtils {
 
     /**
      * 判断字符串是否不为空
+     *
      * @param str 待判断的字符串
      * @return 是否是空字符串，true：非空字符串；false：空字符串
      */
@@ -52,6 +54,7 @@ public class StringUtils {
 
     /**
      * 自动填充。比如，待填充是：11，填充长度：10，则填充后的字符串为：0000000011
+     *
      * @param source 待填充
      * @param length 填充长度
      * @return 填充后的字符串
@@ -67,22 +70,23 @@ public class StringUtils {
     /**
      * 自动填充
      * <p>
-     *     比如：待填充字符串：Dd，用x在其左侧填充成10位的字符串，
-     *     则为：xxxxxxxxDd
+     * 比如：待填充字符串：Dd，用x在其左侧填充成10位的字符串，
+     * 则为：xxxxxxxxDd
      * </p>
      * <p>
-     *     如果待字符串is null，则返回null。
-     *     如果填充长度is null,或者小于原长度，则返回原待填充字符串。
-     *     例如：待填充字符串：Dd，用x在其左侧填充成10位的字符串，则仍然为：Dd
+     * 如果待字符串is null，则返回null。
+     * 如果填充长度is null,或者小于原长度，则返回原待填充字符串。
+     * 例如：待填充字符串：Dd，用x在其左侧填充成10位的字符串，则仍然为：Dd
      * </p>
      * <p>
-     *     如果你有指定填充字符串，或者填充方向，我们会进行默认。
-     *     填充字符串默认为：0，方向为：左。
-     *     例如：待填充字符串：Dd，填充成10位的字符串，则为：00000000Dd
+     * 如果你有指定填充字符串，或者填充方向，我们会进行默认。
+     * 填充字符串默认为：0，方向为：左。
+     * 例如：待填充字符串：Dd，填充成10位的字符串，则为：00000000Dd
      * </p>
-     * @param source 待填充的字符串
-     * @param length 填充后的长度
-     * @param str 填充的字符（串）
+     *
+     * @param source  待填充的字符串
+     * @param length  填充后的长度
+     * @param str     填充的字符（串）
      * @param isRight 是否在原字符串的右侧填充
      * @return 填充后的字符串
      */
@@ -128,6 +132,7 @@ public class StringUtils {
 
     /**
      * 字符串中只有数字。如果只含有数字，则返回true，反之，返回false.
+     *
      * @param str 待检测字符串
      * @return 是否只含有数字（0-9）
      */
@@ -142,6 +147,7 @@ public class StringUtils {
 
     /**
      * 获取随机字符串
+     *
      * @param length 生成字符串的长度
      * @return 随机字符串
      */
@@ -158,9 +164,10 @@ public class StringUtils {
     /**
      * 删除字符串开始的字符串
      * <p>
-     *     如字符串：abcdefg，删除abc，得到的字符串为defg
+     * 如字符串：abcdefg，删除abc，得到的字符串为defg
      * </p>
-     * @param str 原始字符串
+     *
+     * @param str    原始字符串
      * @param remove 需要移除的字符串
      * @return 移除后的字符串
      */
@@ -174,6 +181,7 @@ public class StringUtils {
 
     /**
      * 生成一个指定长度的星号（*）字符串
+     *
      * @param length 生成星号的长度
      * @return 生成一个指定长度的星号（*）字符串
      */
@@ -188,12 +196,13 @@ public class StringUtils {
     /**
      * 获取字符串左边指定长度的字符串。
      * <p>
-     *     例如，字符串是：张三，截取长度为1，得到的结果是：张。
+     * 例如，字符串是：张三，截取长度为1，得到的结果是：张。
      * </p>
      * <p>
-     *     注意，如果需要截取的长度大于字符串的长度，那么会返回整个字符串。
-     *     如截取的长度是3，那么得到的结果是：张三。
+     * 注意，如果需要截取的长度大于字符串的长度，那么会返回整个字符串。
+     * 如截取的长度是3，那么得到的结果是：张三。
      * </p>
+     *
      * @param source 需要截取的字符串
      * @param length 需要获取左边字符串的长度
      * @return 返回字符串左边指定长度的字符串
@@ -213,12 +222,13 @@ public class StringUtils {
     /**
      * 获取字符串右边指定长度的字符串。
      * <p>
-     *     例如，字符串是：张三，截取长度为1，得到的结果是：三。
+     * 例如，字符串是：张三，截取长度为1，得到的结果是：三。
      * </p>
      * <p>
-     *     注意，如果需要截取的长度大于字符串的长度，那么会返回整个字符串。
-     *     如截取的长度是3，那么得到的结果是：张三。
+     * 注意，如果需要截取的长度大于字符串的长度，那么会返回整个字符串。
+     * 如截取的长度是3，那么得到的结果是：张三。
      * </p>
+     *
      * @param source 需要截取的字符串
      * @param length 需要获取右边字符串的长度
      * @return 返回字符串右边指定长度的字符串

@@ -128,8 +128,8 @@ public class StarHandleUtils {
      * <p>
      *     三个字及以上，只保留第一个和最后一个字，中间都用星号处理
      * </p>
-     * @param realName
-     * @return
+     * @param realName 真实姓名
+     * @return 姓名带星号
      */
     public static String realName(String realName) {
         if (StringUtils.isEmpty(realName)) {
