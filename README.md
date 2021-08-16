@@ -37,7 +37,7 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>2.1.2</version>
+    <version>2.1.3</version>
 </dependency>
 ```
 
@@ -59,6 +59,8 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 - [x] StringUtils - String工具类。（2020.08.22）
 - [x] PrintUtils - 控制台打印工具类。（2020.08.22）
 - [x] StarHandleUtils - 星号处理工具类。【2021.01.12】
+- [x] MdcUtils - MDC工具类。【2021.08.16】
+- [x] TraceIdUtils - traceId工具类。【2021.08.16】
 
 ## Wiki
 
