@@ -12,4 +12,7 @@ public final class Variable {
      */
     public static final String TRACE_ID = "traceId";
 
+    public static final String MDC_METHOD = "method";
+    public static final String MDC_KEYWORD = "keyword";
+    public static final String MDC_TRACE_ID = "traceId";
 }

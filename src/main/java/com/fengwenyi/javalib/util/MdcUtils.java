@@ -2,6 +2,7 @@ package com.fengwenyi.javalib.util;
 
 import com.fengwenyi.javalib.generate.IdUtils;
 import com.fengwenyi.javalib.constant.Variable;
+import com.fengwenyi.javalib.generate.TraceIdUtils;
 import org.slf4j.MDC;
 
 /**
@@ -11,7 +12,6 @@ import org.slf4j.MDC;
  */
 public class MdcUtils {
 
-    private static final InheritableThreadLocal<String> inheritableThreadLocal = new InheritableThreadLocal<>();
 
     /**
      * 请求入口记录日志
@@ -19,9 +19,9 @@ public class MdcUtils {
      * @param keyword 关键字
      */
     public static void call(String method, String keyword) {
-        MDC.put("method", method);
-        MDC.put("keyword", keyword);
-        MDC.put("traceId", traceId());
+        MDC.put(Variable.MDC_METHOD, method);
+        MDC.put(Variable.MDC_KEYWORD, keyword);
+        MDC.put(Variable.MDC_TRACE_ID, traceId());
     }
 
     /**
@@ -29,7 +29,7 @@ public class MdcUtils {
      */
     public static void clear() {
         MDC.clear();
-        inheritableThreadLocal.remove();
+        TraceIdUtils.remove();
     }
 
     /**
@@ -37,11 +37,7 @@ public class MdcUtils {
      * @return traceId
      */
     public static String getTraceId() {
-        String traceId = MDC.get(Variable.TRACE_ID);
-        if (StringUtils.isEmpty(traceId)) {
-            traceId = inheritableThreadLocal.get();
-        }
-        return traceId;
+        return TraceIdUtils.get();
     }
 
     /**
@@ -49,8 +45,7 @@ public class MdcUtils {
      * @param traceId traceId
      */
     public static void setTraceId(String traceId) {
-        MDC.put(Variable.TRACE_ID, traceId);
-        inheritableThreadLocal.set(traceId);
+        TraceIdUtils.set(traceId);
     }
 
     /**
@@ -59,7 +54,7 @@ public class MdcUtils {
      */
     public static String traceId() {
         String traceId = getTraceId();
-        if (StringUtils.isEmpty(traceId)) {
+        if (StringUtils.isNotEmpty(traceId)) {
             traceId = IdUtils.genId();
             setTraceId(traceId);
         }
