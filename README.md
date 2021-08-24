@@ -37,7 +37,7 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>2.1.3</version>
+    <version>2.1.4</version>
 </dependency>
 ```
 
@@ -47,21 +47,28 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 
 ## 功能列表：
 
-- [x] DateTimeUtils - 日期时间工具类（2020.4.30）
-- [x] JsonUtils - JSON转换工具类。（2020.08.22）
-- [x] XmlUtils - XML转换工具类。（2020.08.22）
-- [x] BeanUtils - Bean工具类。（2020.08.22）
-- [x] CollectionUtils - 集合工具类。（2020.08.22）
-- [x] MapUtils - Map工具类。（2020.08.22）
-- [x] RSAUtils - RSA加/解密工具类。（2020.08.22）
-- [x] MD5Utils - MD5加/解密工具类。（2020.08.22）
-- [x] IdUtils - Id工具类。（2020.08.22）
-- [x] StringUtils - String工具类。（2020.08.22）
-- [x] PrintUtils - 控制台打印工具类。（2020.08.22）
-- [x] StarHandleUtils - 星号处理工具类。【2021.01.12】
-- [x] MdcUtils - MDC工具类。【2021.08.16】
-- [x] TraceIdUtils - traceId工具类。【2021.08.16】
+| 名称 | 描述 | 发布版本 | 发布日期 |
+| --- | ---  | :---: | :---: |
+| DateTimeUtils | 日期时间工具类  | - | 2020.04.30 |
+| JsonUtils | JSON转换工具类  | - | 2020.08.22 |
+| XmlUtils | XML转换工具类  | - | 2020.08.22 |
+| BeanUtils | Bean工具类  | - | 2020.08.22 |
+| CollectionUtils | 集合工具类  | - | 2020.08.22 |
+| MapUtils | Map工具类  | - | 2020.08.22 |
+| RSAUtils | RSA加/解密工具类  | - | 2020.08.22 |
+| MD5Utils | MD5加/解密工具类  | - | 2020.08.22 |
+| IdUtils | Id工具类  | - | 2020.08.22 |
+| StringUtils | 字符串工具类  | - | 2020.08.22 |
+| PrintUtils | 控制台打印工具类  | - | 2020.08.22 |
+| ICallback | 回调接口  | - | 2020.4.30 |
+| StarHandleUtils | 星号处理工具类  | v2.1.2 | 2021.01.12 |
+| MdcUtils | MDC工具类  | v2.1.3 | 2021.08.16 |
+| TraceIdUtils | traceId工具类  | v2.1.3 | 2021.08.16 |
+| IBuilder | 构造者接口  | v2.1.4 | 2021.08.24 |
 
-## Wiki
 
-[中文文档](https://github.com/fengwenyi/JavaLib/wiki)
+## 文档
+
+- [wiki](https://github.com/fengwenyi/JavaLib/wiki)
+- [更新日志](LOG.md)
+
