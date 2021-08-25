@@ -8,6 +8,10 @@ package com.fengwenyi.javalib.jk;
  */
 public interface IBuilder<T> {
 
+    /**
+     * 构建一个对象
+     * @return 构建对象
+     */
     T build();
 
 }

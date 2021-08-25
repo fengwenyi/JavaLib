@@ -31,7 +31,7 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 
 ## 快速开始
 
-添加如下依赖：
+**Maven**
 
 ```xml
 <dependency>
@@ -41,9 +41,11 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 </dependency>
 ```
 
-即可使用提供的工具方法。
+**Gradle**
 
-> 如果依赖拉取失败，请检查maven仓库地址是否是从中央仓库下载。
+```groovy
+implementation 'com.fengwenyi:JavaLib:2.1.3'
+```
 
 ## 功能列表：
 
@@ -70,5 +72,6 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 ## 文档
 
 - [wiki](https://github.com/fengwenyi/JavaLib/wiki)
+- [中央仓库](https://search.maven.org/artifact/com.fengwenyi/JavaLib)
 - [更新日志](LOG.md)
 
