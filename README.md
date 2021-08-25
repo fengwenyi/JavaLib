@@ -44,7 +44,7 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 **Gradle**
 
 ```groovy
-implementation 'com.fengwenyi:JavaLib:2.1.3'
+implementation 'com.fengwenyi:JavaLib:2.1.4'
 ```
 
 ## 功能列表：
