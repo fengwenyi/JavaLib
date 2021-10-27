@@ -1,6 +1,7 @@
-package com.fengwenyi.javalib.util;
+package com.fengwenyi.javalib.convert;
 
 import com.fengwenyi.javalib.constant.StringConstant;
+import com.fengwenyi.javalib.util.StringUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

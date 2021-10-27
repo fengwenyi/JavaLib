@@ -1,5 +1,6 @@
-package com.fengwenyi.javalib.util;
+package com.fengwenyi.javalib.convert;
 
+import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 
 /**
