@@ -3,6 +3,12 @@
 ## v2.1.5
 
 - 【新增】新增命名工具类，提供下划线和驼峰命名转换方法。
+- 【升级】fasterxml.jackson -> 2.13.0。
+- 【升级】google-thumbnailator -> 0.4.14。
+- 【升级】transmittable-thread-local -> 2.12.2。
+- 【升级】maven-source-plugin -> 3.2.1。
+- 【升级】maven-javadoc-plugin -> 3.3.1。
+- 【升级】maven-gpg-plugin -> 3.0.1。
 
 ## v2.1.4
 
