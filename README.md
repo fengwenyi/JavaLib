@@ -67,6 +67,8 @@ implementation 'com.fengwenyi:JavaLib:2.1.5'
 | MdcUtils | MDC工具类  | v2.1.3 | 2021.08.16 |
 | TraceIdUtils | traceId工具类  | v2.1.3 | 2021.08.16 |
 | IBuilder | 构造者接口  | v2.1.4 | 2021.08.24 |
+| DateTimePattern | 日期时间规则常量  | v2.1.5 | 2021.12.02 |
+| FormatterUtils | formatter工具类  | v2.1.5 | 2021.12.02 |
 
 
 ## 文档

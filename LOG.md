@@ -3,7 +3,13 @@
 ## v2.1.5
 
 - 【新增】新增命名工具类，提供下划线和驼峰命名转换方法。
+- 【新增】新增DateTimePattern常量类。
+- 【新增】新增FormatterUtils工具类。
+- 
 - 【修复】修复打包插件依赖报错的问题。
+- 
+- 【优化】JsonUtils，优化对日期时间的规范化处理。
+- 
 - 【升级】fasterxml.jackson -> 2.13.0。
 - 【升级】google-thumbnailator -> 0.4.14。
 - 【升级】transmittable-thread-local -> 2.12.2。
