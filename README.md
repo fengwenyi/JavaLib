@@ -37,14 +37,14 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>2.1.4</version>
+    <version>2.1.5</version>
 </dependency>
 ```
 
 **Gradle**
 
 ```groovy
-implementation 'com.fengwenyi:JavaLib:2.1.4'
+implementation 'com.fengwenyi:JavaLib:2.1.5'
 ```
 
 ## 功能列表：
@@ -67,6 +67,8 @@ implementation 'com.fengwenyi:JavaLib:2.1.4'
 | MdcUtils | MDC工具类  | v2.1.3 | 2021.08.16 |
 | TraceIdUtils | traceId工具类  | v2.1.3 | 2021.08.16 |
 | IBuilder | 构造者接口  | v2.1.4 | 2021.08.24 |
+| DateTimePattern | 日期时间规则常量  | v2.1.5 | 2021.12.02 |
+| FormatterUtils | formatter工具类  | v2.1.5 | 2021.12.02 |
 
 
 ## 文档

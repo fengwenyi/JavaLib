@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +35,9 @@ public class JsonUtilsTests {
         otherMap.put("myWeb", "https://fengwenyi.com");
         otherMap.put("github", "https://github.com/fengwenyi");
         map.put("other", otherMap);
+        map.put("birthday", LocalDate.of(1992, 2, 26));
+        map.put("time", LocalTime.now());
+        map.put("testTime", LocalDateTime.now());
         String jsonString = JsonUtils.convertString(map);
         PrintUtils.info(jsonString);
         String jsonStringPetty = JsonUtils.prettyPrint(map);
