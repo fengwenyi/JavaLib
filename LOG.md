@@ -12,7 +12,9 @@
 
 2021.12.08
 
+:star: Feature
 
+- add new utils AliyunOSSUtils
 
 
 ## v2.1.5
