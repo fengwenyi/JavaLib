@@ -265,4 +265,21 @@ public class DateTimeUtils {
             return false;
         }
     }
+
+    /**
+     * 获取年
+     * @param date 日期 LocalDate
+     * @return 年
+     */
+    public static int getYear(LocalDate date) {
+        return date.getYear();
+    }
+
+    /**
+     * 获取年-现在
+     * @return 年
+     */
+    public static int getYear() {
+        return getYear(LocalDate.now());
+    }
 }

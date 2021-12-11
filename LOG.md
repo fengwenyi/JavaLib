@@ -15,6 +15,7 @@
 :star: Feature
 
 - add new utils AliyunOSSUtils
+- 新增获取年的方法：DateTimeUtils.getYear()
 
 
 ## v2.1.5
