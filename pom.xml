@@ -24,7 +24,7 @@
         <!-- servlet版本 -->
         <servlet.api.version>4.0.1</servlet.api.version>
         <!-- jackson版本 -->
-        <jackson.version>2.13.0</jackson.version>
+        <jackson.version>2.13.2.1</jackson.version>
         <!-- okhttp3版本 -->
         <okhttp.version>3.12.1</okhttp.version>
         <!-- google thumbnailator -->
