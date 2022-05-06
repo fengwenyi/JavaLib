@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 日期和时间工具类
@@ -187,6 +188,9 @@ public class DateTimeUtils {
      * @return 毫秒数
      */
     public static Long toMillisecond(LocalDateTime localDateTime) {
+        if (Objects.isNull(localDateTime)) {
+            return null;
+        }
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 
@@ -196,6 +200,9 @@ public class DateTimeUtils {
      * @return 时间戳（秒数）
      */
     public static Long toSecond(LocalDateTime localDateTime) {
+        if (Objects.isNull(localDateTime)) {
+            return null;
+        }
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().getEpochSecond();
     }
 
@@ -246,6 +253,9 @@ public class DateTimeUtils {
      * @return {@link LocalDateTime}
      */
     public static LocalDateTime toLocalDateTime(Long timestamp) {
+        if (Objects.isNull(timestamp)) {
+            return null;
+        }
         return LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
     }
 

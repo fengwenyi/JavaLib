@@ -14,8 +14,8 @@
 
 :star: Feature
 
-- add new utils AliyunOSSUtils
 - 新增获取年的方法：DateTimeUtils.getYear()
+- DateTimeUtils 转换成时间戳 增加对 `null` 的处理
 
 
 ## v2.1.5
