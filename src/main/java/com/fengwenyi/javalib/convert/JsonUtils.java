@@ -101,6 +101,23 @@ public class JsonUtils {
     }
 
     /**
+     * 将json字符串转换成对象
+     * @param content 待转换的JSON字符串
+     * @param valueType {@link TypeReference}
+     * @param <T> 对象的类型
+     * @return 返回一个对象
+     */
+    public static <T> T convertObject(String content, TypeReference<T> valueType) {
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, Boolean.FALSE);
+        try {
+            return objectMapper.readValue(content, valueType);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * 将JSON字符串转换成集合
      * @param content 待转换的JSON字符串
      * @param collectionClass 集合

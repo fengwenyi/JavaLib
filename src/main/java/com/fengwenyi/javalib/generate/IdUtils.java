@@ -13,7 +13,7 @@ public class IdUtils {
      * @return a Id by UUID
      */
     public static String getIdByUUID() {
-        String uuIdStr = UUID.randomUUID().toString();
+        String uuIdStr = getUUID();
 
         return uuIdStr.replaceAll("-", "");
     }
@@ -22,7 +22,7 @@ public class IdUtils {
      * 包含"-"
      * @return UUID
      */
-    public static String getUUID() {
+    public static synchronized String getUUID() {
         return UUID.randomUUID().toString();
     }
 
@@ -31,7 +31,7 @@ public class IdUtils {
      * @return ID字符串
      */
     public static String genId() {
-        String uuIdStr = UUID.randomUUID().toString();
+        String uuIdStr = getUUID();
         return uuIdStr.replaceAll("-", "");
     }
 

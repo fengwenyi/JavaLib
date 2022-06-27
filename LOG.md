@@ -12,6 +12,20 @@
 
 2022.05.05 ~ 
 
+:star: New Features
+
+- JsonUtils 提供 TypeReference 参数转换方法
+- XmlUtils 提供 TypeReference 参数转换方法
+
+:arrow_up: Dependency Upgrades
+
+- Upgrade to Jackson 2.13.3
+- Upgrade to thumbnailator 0.14.7
+- Upgrade to slf4j-api 0.14.7
+- Upgrade to transmittable-thread-local 2.12.6
+- Upgrade to transmittable-thread-local 2.12.6
+- Upgrade to maven-javadoc-plugin 3.4.0
+
 
 
 ## v2.1.6
