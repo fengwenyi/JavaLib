@@ -16,6 +16,9 @@
 
 - JsonUtils 提供 TypeReference 参数转换方法
 - XmlUtils 提供 TypeReference 参数转换方法
+- JsonUtils 提供 mapper 常规配置
+- XmlUtils 提供 mapper 常规配置
+- DateTimeUtils 提供 日期字符串转换成 LocalDate 方法
 
 :arrow_up: Dependency Upgrades
 

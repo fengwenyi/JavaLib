@@ -133,6 +133,18 @@ public class DateTimeUtils {
         return LocalDateTime.parse(dateTimeStr, formatter);
     }
 
+
+    /**
+     * 字符串格式的日期解析成日期格式
+     * @param dateStr 字符串格式的日期时间
+     * @param pattern 描述日期和时间格式的模式
+     * @return 日期时间格式 {@link LocalDate}
+     */
+    public static LocalDate parseLocalDate(String dateStr, String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return LocalDate.parse(dateStr, formatter);
+    }
+
     /**
      *将日期字符串(形如 {@code 2019-07-09} )转为 Instant，结果：{@code 2019-07-08T16:00:00Z}
      *
