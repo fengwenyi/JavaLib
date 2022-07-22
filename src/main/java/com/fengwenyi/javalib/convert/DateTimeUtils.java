@@ -207,6 +207,18 @@ public class DateTimeUtils {
     }
 
     /**
+     * 获取 LocalDate 的毫秒数
+     * @param localDate 时间 {@link LocalDate}
+     * @return 毫秒数
+     */
+    public static Long toMillisecond(LocalDate localDate) {
+        if (Objects.isNull(localDate)) {
+            return null;
+        }
+        return localDate.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    /**
      * 获取 LocalDateTime的秒数
      * @param localDateTime 时间 {@link LocalDateTime}
      * @return 时间戳（秒数）

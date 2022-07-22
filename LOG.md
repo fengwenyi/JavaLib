@@ -8,6 +8,14 @@
 :bug: Bug
 ```
 
+## v2.1.8
+
+:star: New Features
+
+- DateTimeUtils 增加 `Long toMillisecond(LocalDate localDate)` 方法
+
+
+
 ## v2.1.7
 
 2022.05.05 ~ 2022.07.14
