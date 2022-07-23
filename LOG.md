@@ -10,9 +10,12 @@
 
 ## v2.1.8
 
+2022.07.22 ~
+
 :star: New Features
 
 - DateTimeUtils 增加 `Long toMillisecond(LocalDate localDate)` 方法
+- CharsetConstant 标记过时
 
 
 
