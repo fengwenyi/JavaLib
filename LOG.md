@@ -16,6 +16,12 @@
 
 - DateTimeUtils 增加 `Long toMillisecond(LocalDate localDate)` 方法
 - CharsetConstant 标记过时
+- 优化 Jackson Mapper 属性设置
+- Jackson Json 改用 `JsonMapper`
+
+:bug: Bug Fixes
+
+- 修复 Jackson 在版本较低时，可能出现大小写重名的问题
 
 
 

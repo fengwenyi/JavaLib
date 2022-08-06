@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib.convert;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -28,23 +28,23 @@ public class XmlUtils {
         //NON_EMPTY // null、集合数组等没有内容、空字符串等，都不会被序列化
         //NON_DEFAULT // 如果字段是默认值，就不会被序列化
         //NON_ABSENT // null的不会序列化，但如果类型是AtomicReference，依然会被序列化
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        // mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         //允许字段名没有引号（可以进一步减小json体积）：
-        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+        //mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
 
         //允许单引号：
-        mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+        //mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
 
         // 允许出现特殊字符和转义符
         //mapper.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);这个已经过时。
 //        mapper.configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(), true);
 
         //允许C和C++样式注释：
-        mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
+        //mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
 
         //序列化结果格式化，美化输出
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        // mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         //枚举输出成字符串
         //WRITE_ENUMS_USING_INDEX：输出索引
@@ -64,6 +64,10 @@ public class XmlUtils {
 
         //反序列化时，空字符串对于的实例属性为null：
         mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
+
+        // 采用字段，不使用 Getter
+        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        mapper.setVisibility(PropertyAccessor.GETTER, JsonAutoDetect.Visibility.NONE);
     }
 
     /**

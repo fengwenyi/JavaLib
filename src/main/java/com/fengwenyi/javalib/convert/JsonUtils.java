@@ -1,13 +1,14 @@
 package com.fengwenyi.javalib.convert;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -31,7 +32,7 @@ import java.util.Map;
  */
 public class JsonUtils {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final JsonMapper mapper = new JsonMapper();
 
     private static final DateTimeFormatter dateTimeFormatter = FormatterUtils.dateTimeFormatter();
     private static final DateTimeFormatter dateFormatter = FormatterUtils.dateFormatter();
@@ -60,7 +61,7 @@ public class JsonUtils {
         //NON_EMPTY // null、集合数组等没有内容、空字符串等，都不会被序列化
         //NON_DEFAULT // 如果字段是默认值，就不会被序列化
         //NON_ABSENT // null的不会序列化，但如果类型是AtomicReference，依然会被序列化
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        // mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         //允许字段名没有引号（可以进一步减小json体积）：
         mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
@@ -76,7 +77,7 @@ public class JsonUtils {
         mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
 
         //序列化结果格式化，美化输出
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        // mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         //枚举输出成字符串
         //WRITE_ENUMS_USING_INDEX：输出索引
@@ -96,6 +97,10 @@ public class JsonUtils {
 
         //反序列化时，空字符串对于的实例属性为null：
         mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
+
+        // 采用字段，不使用 Getter
+        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        mapper.setVisibility(PropertyAccessor.GETTER, JsonAutoDetect.Visibility.NONE);
     }
 
     /**
