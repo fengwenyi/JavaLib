@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 import java.util.Objects;
 
@@ -315,5 +316,31 @@ public class DateTimeUtils {
      */
     public static int getYear() {
         return getYear(LocalDate.now());
+    }
+
+    /**
+     * 获取自然周的开始时间
+     * @param localDate 日期
+     * @return 一周的开始时间
+     */
+    public static LocalDateTime getStartOfNaturalWeek(LocalDate localDate){
+
+        LocalDateTime nowDateTime = localDate.atStartOfDay();
+
+        int dayOfWeek = localDate.getDayOfWeek().getValue();
+
+        return nowDateTime.minusDays(dayOfWeek - 1).with(LocalTime.MIN);
+    }
+
+    /**
+     * 获取当前月的开始时间
+     * @param localDate 当前日期
+     * @return 当前月的开始时间
+     */
+    public static LocalDateTime getStartOfMonth(LocalDate localDate) {
+        LocalDateTime nowDateTime = localDate.atStartOfDay();
+        return nowDateTime
+                .with(TemporalAdjusters.firstDayOfMonth())
+                .with(LocalTime.MIN);
     }
 }

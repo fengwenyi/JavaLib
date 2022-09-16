@@ -4,6 +4,7 @@ import com.fengwenyi.javalib.convert.DateTimeUtils;
 import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
  * 测试日期和时间工具类
  * @author Erwin Feng[xfsy_2015@163.com]
  * @since 2019/12/11 17:52
- * @see {@link DateTimeUtils}
+ * @see DateTimeUtils
  */
 public class DateTimeUtilsTests {
 
@@ -51,6 +52,18 @@ public class DateTimeUtilsTests {
 
     @Test
     public void testLongToLocalDateTime() {
+    }
+
+    @Test
+    public void testGetStartOfNaturalWeek() {
+        System.out.println(DateTimeUtils.getStartOfNaturalWeek(LocalDate.now()));
+        System.out.println(DateTimeUtils.getStartOfNaturalWeek(LocalDate.of(2022, 9, 12)));
+    }
+
+    @Test
+    public void testGetStartOfMonth() {
+        System.out.println(DateTimeUtils.getStartOfMonth(LocalDate.now()));
+        System.out.println(DateTimeUtils.getStartOfMonth(LocalDate.of(2022, 2, 28)));
     }
 
 }
