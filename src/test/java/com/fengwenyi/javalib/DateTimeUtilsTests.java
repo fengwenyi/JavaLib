@@ -2,10 +2,12 @@ package com.fengwenyi.javalib;
 
 import com.fengwenyi.javalib.convert.DateTimeUtils;
 import com.fengwenyi.javalib.util.PrintUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 /**
@@ -64,6 +66,70 @@ public class DateTimeUtilsTests {
     public void testGetStartOfMonth() {
         System.out.println(DateTimeUtils.getStartOfMonth(LocalDate.now()));
         System.out.println(DateTimeUtils.getStartOfMonth(LocalDate.of(2022, 2, 28)));
+    }
+
+    @Test
+    public void testInTimeDuration() {
+        // 1. 一天内
+        LocalTime startTime = LocalTime.parse("10:00");
+        LocalTime endTime = LocalTime.parse("17:00");
+        LocalTime testTime = LocalTime.parse("12:00");
+        boolean result = DateTimeUtils.judgeInTimeDuration(testTime, startTime, endTime);
+        Assert.assertTrue(result);
+        System.out.println(String.format("开始时间：%s，结束时间：%s，测试时间：%s，测试结果：%b", startTime, endTime, testTime, result));
+
+        startTime = LocalTime.parse("10:00");
+        endTime = LocalTime.parse("17:00");
+        testTime = LocalTime.parse("23:00");
+        result = DateTimeUtils.judgeInTimeDuration(testTime, startTime, endTime);
+        Assert.assertFalse(result);
+        System.out.println(String.format("开始时间：%s，结束时间：%s，测试时间：%s，测试结果：%b", startTime, endTime, testTime, result));
+
+        // 2. 第二天
+        startTime = LocalTime.parse("22:00");
+        endTime = LocalTime.parse("02:00");
+        testTime = LocalTime.parse("23:00");
+        result = DateTimeUtils.judgeInTimeDuration(testTime, startTime, endTime);
+        Assert.assertTrue(result);
+        System.out.println(String.format("开始时间：%s，结束时间：%s，测试时间：%s，测试结果：%b", startTime, endTime, testTime, result));
+
+        startTime = LocalTime.parse("22:00");
+        endTime = LocalTime.parse("02:00");
+        testTime = LocalTime.parse("10:00");
+        result = DateTimeUtils.judgeInTimeDuration(testTime, startTime, endTime);
+        Assert.assertFalse(result);
+        System.out.println(String.format("开始时间：%s，结束时间：%s，测试时间：%s，测试结果：%b", startTime, endTime, testTime, result));
+
+        startTime = LocalTime.parse("22:00");
+        endTime = LocalTime.parse("02:00");
+        testTime = LocalTime.parse("03:00");
+        result = DateTimeUtils.judgeInTimeDuration(testTime, startTime, endTime);
+        Assert.assertFalse(result);
+        System.out.println(String.format("开始时间：%s，结束时间：%s，测试时间：%s，测试结果：%b", startTime, endTime, testTime, result));
+
+        // 3. 时间边界
+        // 此方法不含边界
+        startTime = LocalTime.parse("22:00");
+        endTime = LocalTime.parse("02:00");
+        testTime = LocalTime.parse("22:00");
+        result = DateTimeUtils.judgeInTimeDuration(testTime, startTime, endTime);
+        Assert.assertFalse(result);
+        System.out.println(String.format("开始时间：%s，结束时间：%s，测试时间：%s，测试结果：%b", startTime, endTime, testTime, result));
+
+        startTime = LocalTime.parse("22:00");
+        endTime = LocalTime.parse("02:00");
+        testTime = LocalTime.parse("22:00");
+        result = DateTimeUtils.judgeInTimeDurationWithBoundary(testTime, startTime, endTime);
+        Assert.assertTrue(result);
+        System.out.println(String.format("开始时间：%s，结束时间：%s，测试时间：%s，测试结果：%b", startTime, endTime, testTime, result));
+
+        // 开始时间 与 结束时间 相等
+        startTime = LocalTime.parse("22:00");
+        endTime = LocalTime.parse("22:00");
+        testTime = LocalTime.parse("22:00");
+        result = DateTimeUtils.judgeInTimeDurationWithBoundary(testTime, startTime, endTime);
+        Assert.assertTrue(result);
+        System.out.println(String.format("开始时间：%s，结束时间：%s，测试时间：%s，测试结果：%b", startTime, endTime, testTime, result));
     }
 
 }
