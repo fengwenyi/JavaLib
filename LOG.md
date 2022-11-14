@@ -12,9 +12,17 @@
 
 2022.09.24 ~ 
 
+:star: Features
+
 - 【DateTimeUtils】新增判断时间是否在指定时间区间内，另外，提供了判断含边界的方法。
+- 【DateTimeUtils】新增 `java.time.LocalDateTime` 和 `java.time.LocalDate` 转 `java.util.Date` 的方法。
 
+:arrow_up: Dependency Upgrades
 
+- Upgrade to Jackson 2.14.0
+- Upgrade to maven-javadoc-plugin 3.4.1
+- Upgrade to slf4j-api 2.0.3
+- Upgrade to transmittable-thread-local 2.14.2
 
 
 ## v2.2.0
