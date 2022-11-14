@@ -285,6 +285,39 @@ public class DateTimeUtils {
     }
 
     /**
+     * LocalDateTime 转为 Date
+     * @param localDateTime {@link java.time.LocalDateTime}
+     * @return {@link java.util.Date}
+     */
+    public static Date toDate(LocalDateTime localDateTime) {
+        if (Objects.isNull(localDateTime)) {
+            return null;
+        }
+        return Date.from(
+                localDateTime
+                        .atZone(ZoneId.systemDefault())
+                        .toInstant()
+        );
+    }
+
+    /**
+     * LocalDate 转为 Date
+     * @param localDate {@link java.time.LocalDate}
+     * @return {@link java.util.Date}
+     */
+    public static Date toDate(LocalDate localDate) {
+        if (Objects.isNull(localDate)) {
+            return null;
+        }
+        return Date.from(
+                localDate
+                        .atStartOfDay()
+                        .atZone(ZoneId.systemDefault())
+                        .toInstant()
+        );
+    }
+
+    /**
      * 校验时间合法性
      * @param source 待检查的时间字符串
      * @param pattern 时间字符串格式

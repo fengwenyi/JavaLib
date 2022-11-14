@@ -5,9 +5,7 @@ import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.util.Date;
 
 /**
@@ -130,6 +128,16 @@ public class DateTimeUtilsTests {
         result = DateTimeUtils.judgeInTimeDurationWithBoundary(testTime, startTime, endTime);
         Assert.assertTrue(result);
         System.out.println(String.format("开始时间：%s，结束时间：%s，测试时间：%s，测试结果：%b", startTime, endTime, testTime, result));
+    }
+
+    @Test
+    public void testToDate() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Date date = DateTimeUtils.toDate(localDateTime);
+        System.out.println("LocalDateTime 转 Date: " + date);
+        LocalDate localDate = LocalDate.now();
+        System.out.println("LocalDate 转 Date：" + DateTimeUtils.toDate(localDate));
+        System.out.println(new Date());
     }
 
 }
