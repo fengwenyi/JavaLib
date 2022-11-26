@@ -12,6 +12,10 @@
 
 2022.11.17 ~
 
+:star: Features
+
+- 【http】新增 http 模块，提供Http调用工具类 HttpUtils。
+
 
 
 ## v2.2.1
