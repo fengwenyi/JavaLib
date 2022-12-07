@@ -15,6 +15,7 @@
 :star: Features
 
 - 【http】新增 http 模块，提供Http调用工具类 HttpUtils。
+- 【util】新增 JsoupUtils，从 html 中解析标题。
 
 
 
