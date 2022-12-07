@@ -4,7 +4,6 @@ import com.fengwenyi.javalib.http.client.HttpClient;
 import com.fengwenyi.javalib.http.client.HttpClientFactory;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Objects;
 
@@ -51,6 +50,13 @@ import java.util.Objects;
  */
 public class HttpUtils {
 
+    /**
+     * http get 请求
+     * @param url 地址
+     * @param param 参数
+     * @param headers http headers
+     * @return 服务器响应结果
+     */
     public  static String get(String url, String param, Map<String, String> headers) {
         try {
             Request request = buildRequest(url, param);
@@ -62,14 +68,32 @@ public class HttpUtils {
         }
     }
 
+    /**
+     * http get 请求
+     * @param url 地址
+     * @param param 参数
+     * @return 服务器响应结果
+     */
     public static String get(String url, String param) {
         return get(url, "", null);
     }
 
+    /**
+     * http get 请求
+     * @param url 地址
+     * @return 服务器响应结果
+     */
     public static String get(String url) {
         return get(url, "");
     }
 
+    /**
+     * http post 请求
+     * @param url 地址
+     * @param param 参数
+     * @param headers http headers
+     * @return 服务器响应结果
+     */
     public  static String post(String url, String param, Map<String, String> headers) {
         try {
             Request request = buildRequest(url, param);
@@ -81,24 +105,55 @@ public class HttpUtils {
         }
     }
 
+    /**
+     * http post 请求
+     * @param url 地址
+     * @param param 参数
+     * @return 服务器响应结果
+     */
     public  static String post(String url, String param) {
         return post(url, param, null);
     }
 
+    /**
+     * 构造 Request
+     * @param url 地址
+     * @param param 参数
+     * @return Request
+     */
     public static Request buildRequest(String url, String param) {
         return Request.create(url, null, param);
     }
 
+    /**
+     * 构造 get 请求方式的 Request
+     * @param url 地址
+     * @param param 参数
+     * @return Request
+     */
     public static Request buildGetRequest(String url, String param) {
         return Request.create(url, Request.Method.GET, param);
     }
 
+    /**
+     * 构造 get 请求方式的 Request
+     * @param url 地址
+     * @param param 参数
+     * @return Request
+     */
     public static Request buildPostRequest(String url, String param) {
         return Request.create(url, Request.Method.POST, param);
     }
 
-    public static Request.Option buildOption(Integer connectTimeout, Integer readTimeout, Map<String, String> headers) {
-        return Request.Option.create(connectTimeout, readTimeout, headers);
+    /**
+     * 构造 Request.Option
+     * @param connectTimeoutSecond 连接超时时间，秒
+     * @param readTimeoutSecond 读取超时时间，秒
+     * @param headers http headers
+     * @return Request.Option
+     */
+    public static Request.Option buildOption(Integer connectTimeoutSecond, Integer readTimeoutSecond, Map<String, String> headers) {
+        return Request.Option.create(connectTimeoutSecond, readTimeoutSecond, headers);
     }
 
     /**
@@ -119,25 +174,11 @@ public class HttpUtils {
         if (Objects.isNull(response)) {
             return "";
         }
-        InputStream body = response.getBody().getBody();
-        String data = readAndClose(body);
+        String data = response.getBody();
         if (response.getCode() == 200) {
             return data;
         }
         throw new RuntimeException(data);
-    }
-
-    private static String readAndClose(InputStream inputStream) throws IOException {
-        BufferedReader reader;
-        StringBuilder resultBuffer = new StringBuilder();
-        String tempLine;
-
-        reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-        while ((tempLine = reader.readLine()) != null) {
-            resultBuffer.append(tempLine);
-        }
-        inputStream.close();
-        return resultBuffer.toString();
     }
 
     private static void check(Request request, Request.Option option) {

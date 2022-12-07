@@ -1,6 +1,7 @@
 package com.fengwenyi.javalib.http.client.impl;
 
 import com.fengwenyi.javalib.collection.MapUtils;
+import com.fengwenyi.javalib.file.IOUtils;
 import com.fengwenyi.javalib.http.Request;
 import com.fengwenyi.javalib.http.Response;
 import com.fengwenyi.javalib.http.client.HttpClient;
@@ -21,10 +22,13 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * JDK http 客户端
+ *
  * @author <a href="https://fengwenyi.com">Erwin Feng</a>
  * @since 2022-11-24
  */
 public class JdkHttpClient implements HttpClient {
+
     @Override
     public Response execute(Request request, Request.Option option) throws IOException {
         String requestUrl = request.getUrl();
@@ -70,15 +74,14 @@ public class JdkHttpClient implements HttpClient {
         response.setCode(connection.getResponseCode());
         response.setMsg(connection.getResponseMessage());
         InputStream inputStream;
-        Response.Body body = new Response.Body();
         if (connection.getResponseCode() == 200) {
             inputStream = connection.getInputStream();
         } else {
             inputStream = connection.getErrorStream();
         }
-        body.setBody(inputStream);
+        String body = IOUtils.readAndClose(inputStream);
         response.setBody(body);
-        // connection.disconnect();
+        connection.disconnect();
         return response;
     }
 
