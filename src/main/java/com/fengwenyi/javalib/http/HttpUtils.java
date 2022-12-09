@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * Http 工具类 <br/><br/>
+ * Http 工具类 <br><br>
  *
  * <p>简单示例：</p>
  *
@@ -19,11 +19,11 @@ import java.util.Objects;
  * <p>完整示例：</p>
  *
  * <pre>
- *     Map<String, Object> paramMap = new HashMap<>();
+ *     Map&lt;String, Object&gt; paramMap = new HashMap&lt;&gt;();
  *     paramMap.put("currentPage", 1);
  *     paramMap.put("pageSize", 10);
  *
- *     Map<String, String> headerMap = new HashMap<>();
+ *     Map&lt;String, String&gt; headerMap = new HashMap&lt;&gt;();
  *     headerMap.put("Accept", "application/json");
  *
  *     Request request = new Request();
