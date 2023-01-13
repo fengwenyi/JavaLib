@@ -8,6 +8,13 @@
 :bug: Bug
 ```
 
+## v2.2.3
+
+:bug: Bug Fixes
+
+- 修复 `DateTimeUtils.toInstant(Date)` 可能出现报错的问题。
+
+
 ## v2.2.2
 
 2022.11.17 ~

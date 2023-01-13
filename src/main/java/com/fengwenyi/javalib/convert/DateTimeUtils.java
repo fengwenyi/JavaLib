@@ -246,7 +246,8 @@ public class DateTimeUtils {
      * @return {@link Instant}
      */
     public static Instant toInstant(Date date) {
-        return date.toInstant();
+        // return date.toInstant();
+        return Instant.ofEpochMilli(date.getTime());
     }
 
     /**
