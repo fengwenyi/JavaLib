@@ -4,6 +4,8 @@ import com.fengwenyi.javalib.util.PrintUtils;
 import com.fengwenyi.javalib.encryption.RSAUtils;
 import org.junit.Test;
 
+import java.security.NoSuchAlgorithmException;
+
 /**
  * @author ycq
  * @since 2019/6/27 11:41
@@ -39,6 +41,15 @@ public class RSAUtilsTest {
         }catch (Exception e){
 
         }
+    }
+
+    @Test
+    public void generateKeys() throws NoSuchAlgorithmException {
+        String[] key = RSAUtils.getKey();
+        String rsaPrivateKey = key[0];
+        String rsaPublicKey = key[1];
+        PrintUtils.info("rsaPrivateKey: "+rsaPrivateKey);
+        PrintUtils.info("rsaPublicKey: "+rsaPublicKey);
     }
 
 }
