@@ -8,6 +8,9 @@
 :bug: Bug
 ```
 
+## v2.2.4
+
+
 ## v2.2.3
 
 :bug: Bug Fixes
