@@ -18,6 +18,8 @@ import java.util.StringJoiner;
  */
 public class Request {
 
+    private static final String PARAM_DEFAULT_KEY = "__default__";
+
     /** 请求地址 */
     private String url;
 
@@ -25,10 +27,24 @@ public class Request {
     private Method method;
 
     /** 请求参数 */
-    private String param;
+    private Map<String, Object> param;
+
+    private ParamFormat paramFormat = ParamFormat.STRING;
 
     /** 请求工具 */
     private Util util = Util.JDK;
+
+    public ParamFormat getParamFormat() {
+        return paramFormat;
+    }
+
+    public void setParamFormat(ParamFormat paramFormat) {
+        this.paramFormat = paramFormat;
+    }
+
+    public enum ParamFormat {
+        STRING, FORM, JSON
+    }
 
     /**
      * 请求方法枚举
@@ -41,7 +57,7 @@ public class Request {
      * 请求工具枚举
      */
     public enum Util {
-        JDK //, OkHttp, AsyncHttpClient
+        JDK, OkHttp, //AsyncHttpClient
     }
 
     /**
@@ -61,6 +77,21 @@ public class Request {
      * @return Request
      */
     public static Request create(String url, Method method, String param) {
+        Request request = new Request();
+        request.setUrl(url);
+        request.setMethod(method);
+        request.setParam(param);
+        return request;
+    }
+
+    /**
+     * 创建 Request
+     * @param url 请求地址
+     * @param method 请求方法
+     * @param param 请求参数
+     * @return Request
+     */
+    public static Request create(String url, Method method, Map<String, Object> param) {
         Request request = new Request();
         request.setUrl(url);
         request.setMethod(method);
@@ -184,16 +215,23 @@ public class Request {
         this.method = method;
     }
 
-    public String getParam() {
+    public Map<String, Object> getParam() {
         return param;
     }
 
     public Request setParam(String param) {
-        this.param = param;
+        Map<String, Object> map = new HashMap<>();
+        map.put(PARAM_DEFAULT_KEY, param);
+        this.param = map;
         return this;
     }
 
     public Request setParam(Map<String, Object> map) {
+        this.param = map;
+        return this;
+    }
+
+    public Request bak(Map<String, Object> map) {
         if (MapUtils.isEmpty(map)) {
             return this;
         }

@@ -2,6 +2,7 @@ package com.fengwenyi.javalib.http.client;
 
 import com.fengwenyi.javalib.http.Request;
 import com.fengwenyi.javalib.http.Response;
+import com.fengwenyi.javalib.util.StringUtils;
 
 import java.io.IOException;
 
@@ -12,6 +13,8 @@ import java.io.IOException;
  * @since 2022-11-24
  */
 public interface HttpClient {
+
+    String PARAM_DEFAULT_KEY = "__default__";
 
     /**
      * 执行 http 请求

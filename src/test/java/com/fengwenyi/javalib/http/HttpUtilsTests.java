@@ -16,10 +16,7 @@ public class HttpUtilsTests {
     @Test
     public void testGet() {
         System.out.println(HttpUtils.get("https://www.baidu.com"));
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Accept", "application/json");
-//        headers.put("Accept", "application/xml");
-        System.out.println(HttpUtils.get("https://erwin-api.fengwenyi.com/erwin/bookmark/page?currentPage=1&pageSize=10", null, headers));
+        System.out.println(HttpUtils.get("https://erwin-api.fengwenyi.com/erwin/bookmark/page?currentPage=1&pageSize=10"));
     }
 
     @Test

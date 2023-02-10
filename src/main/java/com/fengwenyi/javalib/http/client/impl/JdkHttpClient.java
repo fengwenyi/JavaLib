@@ -1,6 +1,7 @@
 package com.fengwenyi.javalib.http.client.impl;
 
 import com.fengwenyi.javalib.collection.MapUtils;
+import com.fengwenyi.javalib.convert.JsonUtils;
 import com.fengwenyi.javalib.file.IOUtils;
 import com.fengwenyi.javalib.http.Request;
 import com.fengwenyi.javalib.http.Response;
@@ -31,11 +32,7 @@ public class JdkHttpClient implements HttpClient {
 
     @Override
     public Response execute(Request request, Request.Option option) throws IOException {
-        String requestUrl = request.getUrl();
-        if (Request.Method.GET == request.getMethod()
-                && StringUtils.isNotEmpty(request.getParam())) {
-            requestUrl += "?" + request.getParam();
-        }
+        String requestUrl = getUrl(request);
         URL url = new URL(requestUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         if (connection instanceof HttpsURLConnection) {
@@ -65,9 +62,15 @@ public class JdkHttpClient implements HttpClient {
         connection.setDoInput(true);
         connection.connect();
         if (Request.Method.POST == request.getMethod()
-                && StringUtils.isNotEmpty(request.getParam())) {
+                && MapUtils.isNotEmpty(request.getParam())) {
             OutputStream outputStream = connection.getOutputStream();
-            outputStream.write(request.getParam().getBytes(StandardCharsets.UTF_8));
+            String param = "";
+            if (Request.ParamFormat.JSON == request.getParamFormat()) {
+                param = getParamJson(request);
+            } else {
+                param = getParamForm(request);
+            }
+            outputStream.write(param.getBytes(StandardCharsets.UTF_8));
             outputStream.close();
         }
         Response response = new Response();
@@ -115,6 +118,35 @@ public class JdkHttpClient implements HttpClient {
         @Override
         public X509Certificate[] getAcceptedIssuers() {
             return new X509Certificate[0];
+        }
+    }
+
+    private String getUrl(Request request) {
+        StringBuilder requestUrl = new StringBuilder(request.getUrl());
+        if (Request.Method.GET == request.getMethod()
+                && MapUtils.isNotEmpty(request.getParam())) {
+            requestUrl.append("?").append(getParamForm(request));
+        }
+        return requestUrl.toString();
+    }
+
+    private String getParamJson(Request request) {
+        if (request.getParam().containsKey(PARAM_DEFAULT_KEY)) {
+            return request.getParam().get(PARAM_DEFAULT_KEY) + "";
+        } else {
+            return JsonUtils.convertString(request.getParam());
+        }
+    }
+
+    private String getParamForm(Request request) {
+        if (request.getParam().containsKey(PARAM_DEFAULT_KEY)) {
+            return request.getParam().get(PARAM_DEFAULT_KEY) + "";
+        } else {
+            StringBuilder param = new StringBuilder();
+            for (Map.Entry<String, Object> entry : request.getParam().entrySet()) {
+                param.append(entry.getKey()).append("=").append(entry.getValue());
+            }
+            return param.toString();
         }
     }
 }
