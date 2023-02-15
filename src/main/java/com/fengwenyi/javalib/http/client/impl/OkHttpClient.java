@@ -30,16 +30,23 @@ public class OkHttpClient implements HttpClient {
 
     private okhttp3.OkHttpClient client(Request.Option option) {
         okhttp3.OkHttpClient.Builder builder = new okhttp3.OkHttpClient.Builder();
-        builder.connectTimeout(Duration.ofSeconds(option.getConnectTimeoutSecond()));
-        builder.readTimeout(Duration.ofSeconds(option.getReadTimeoutSecond()));
+        if (Objects.nonNull(option)) {
+            Integer connectTimeoutSecond = getTimeoutSecond(option.getConnectTimeoutSecond());
+            if (Objects.nonNull(connectTimeoutSecond)) {
+                builder.connectTimeout(Duration.ofSeconds(connectTimeoutSecond));
+            }
+            Integer readTimeoutSecond = getTimeoutSecond(option.getReadTimeoutSecond());
+            if (Objects.nonNull(readTimeoutSecond)) {
+                builder.readTimeout(Duration.ofSeconds(readTimeoutSecond));
+            }
+        }
         return builder.build();
     }
 
     private Response get(Request request, Request.Option option) {
         okhttp3.OkHttpClient client = client(option);
         okhttp3.Request httpRequest = buildRequest(getHttpUrl(request), option.getHeaders(), request.getMethod(), null);
-        okhttp3.Response httpResponse = call(client, httpRequest);
-        return convertResponse(httpResponse);
+        return call(client, httpRequest);
     }
 
     private Response post(Request request, Request.Option option) {
@@ -62,8 +69,7 @@ public class OkHttpClient implements HttpClient {
             }
         }
         okhttp3.Request httpRequest = buildRequest(getHttpUrl(request), option.getHeaders(), request.getMethod(), requestBody);
-        okhttp3.Response httpResponse = call(client, httpRequest);
-        return convertResponse(httpResponse);
+        return call(client, httpRequest);
     }
 
     private RequestBody buildJsonRequestBody(String param) {
@@ -101,17 +107,17 @@ public class OkHttpClient implements HttpClient {
         return builder.build();
     }
 
-    private okhttp3.Response call(okhttp3.OkHttpClient client, okhttp3.Request request) {
+    private Response call(okhttp3.OkHttpClient client, okhttp3.Request request) {
         Call call = client.newCall(request);
-        try (okhttp3.Response response = call.execute()) {
-            return response;
+        try (okhttp3.Response httpResponse = call.execute()) {
+            return convertResponse(httpResponse);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private Response convertResponse(okhttp3.Response httpResponse) {
+    private Response convertResponse(okhttp3.Response httpResponse) throws IOException {
         if (Objects.isNull(httpResponse)) {
             throw new RuntimeException("http response null");
         }
@@ -120,11 +126,7 @@ public class OkHttpClient implements HttpClient {
         response.setMsg(httpResponse.message());
         ResponseBody responseBody = httpResponse.body();
         if (Objects.nonNull(responseBody)) {
-            try {
-                response.setBody(responseBody.string());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            response.setBody(responseBody.string());
         }
         return response;
     }

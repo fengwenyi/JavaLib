@@ -37,8 +37,12 @@ public class JdkHttpClient implements HttpClient {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         if (connection instanceof HttpsURLConnection) {
             HttpsURLConnection sslCon = (HttpsURLConnection) connection;
-            SSLSocketFactory sslContextFactory = option.getSslContextFactory();
-            HostnameVerifier hostnameVerifier = option.getHostnameVerifier();
+            SSLSocketFactory sslContextFactory = null;
+            HostnameVerifier hostnameVerifier = null;
+            if (Objects.nonNull(option)) {
+                sslContextFactory = option.getSslContextFactory();
+                hostnameVerifier = option.getHostnameVerifier();
+            }
             if (Objects.isNull(sslContextFactory)) {
                 sslContextFactory = defaultSSLSocketFactory();
             }
@@ -49,22 +53,30 @@ public class JdkHttpClient implements HttpClient {
             sslCon.setHostnameVerifier(hostnameVerifier);
         }
         connection.setRequestMethod(request.getMethod().name());
-        if (MapUtils.isNotEmpty(option.getHeaders())) {
+        if (Objects.nonNull(option) && MapUtils.isNotEmpty(option.getHeaders())) {
             for (Map.Entry<String, String> entry : option.getHeaders().entrySet()) {
                 if (Objects.nonNull(entry) && StringUtils.isNotEmpty(entry.getKey())) {
                     connection.setRequestProperty(entry.getKey(), entry.getValue());
                 }
             }
         }
-        connection.setConnectTimeout((int) TimeUnit.SECONDS.toMillis(option.getConnectTimeoutSecond()));
-        connection.setReadTimeout((int) TimeUnit.SECONDS.toMillis(option.getReadTimeoutSecond()));
+        if (Objects.nonNull(option)) {
+            Integer connectTimeoutSecond = getTimeoutSecond(option.getConnectTimeoutSecond());
+            if (Objects.nonNull(connectTimeoutSecond)) {
+                connection.setConnectTimeout((int) TimeUnit.SECONDS.toMillis(connectTimeoutSecond));
+            }
+            Integer readTimeoutSecond = getTimeoutSecond(option.getReadTimeoutSecond());
+            if (Objects.nonNull(readTimeoutSecond)) {
+                connection.setConnectTimeout((int) TimeUnit.SECONDS.toMillis(readTimeoutSecond));
+            }
+        }
         connection.setDoOutput(true);
         connection.setDoInput(true);
         connection.connect();
         if (Request.Method.POST == request.getMethod()
                 && MapUtils.isNotEmpty(request.getParam())) {
             OutputStream outputStream = connection.getOutputStream();
-            String param = "";
+            String param;
             if (Request.ParamFormat.JSON == request.getParamFormat()) {
                 param = getParamJson(request);
             } else {
@@ -144,9 +156,9 @@ public class JdkHttpClient implements HttpClient {
         } else {
             StringBuilder param = new StringBuilder();
             for (Map.Entry<String, Object> entry : request.getParam().entrySet()) {
-                param.append(entry.getKey()).append("=").append(entry.getValue());
+                param.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
             }
-            return param.toString();
+            return param.substring(0, param.length() - 1);
         }
     }
 }

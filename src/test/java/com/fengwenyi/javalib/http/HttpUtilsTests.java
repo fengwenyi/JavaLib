@@ -16,7 +16,30 @@ public class HttpUtilsTests {
     @Test
     public void testGet() {
         System.out.println(HttpUtils.get("https://www.baidu.com"));
-        System.out.println(HttpUtils.get("https://erwin-api.fengwenyi.com/erwin/bookmark/page?currentPage=1&pageSize=10"));
+    }
+
+    @Test
+    public void testGetJsonResponse() {
+
+        String url = "https://erwin-api.fengwenyi.com/erwin/bookmark/page?currentPage=1&pageSize=10";
+        // System.out.println(HttpUtils.get(url));
+
+        Request request = new Request();
+        request.setUrl(url);
+        request.setMethod(Request.Method.GET);
+
+        Map<String, String> headerMap = new HashMap<>();
+        headerMap.put("Accept", "application/json");
+
+        Request.Option option = new Request.Option();
+        option.setHeaders(headerMap);
+
+        try {
+            System.out.println(HttpUtils.execute(request, option));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Test
@@ -32,7 +55,8 @@ public class HttpUtilsTests {
         request.setUrl("https://erwin-api.fengwenyi.com/erwin/bookmark/page");
         request.setParam(paramMap);
         request.setMethod(Request.Method.GET);
-        request.setUtil(Request.Util.JDK);
+        // request.setUtil(Request.Util.JDK);
+        request.setUtil(Request.Util.OkHttp);
 
         Request.Option option = new Request.Option();
         option.setHeaders(headerMap);

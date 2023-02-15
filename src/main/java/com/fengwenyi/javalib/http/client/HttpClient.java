@@ -5,6 +5,7 @@ import com.fengwenyi.javalib.http.Response;
 import com.fengwenyi.javalib.util.StringUtils;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * HTTP 请求客户端 接口
@@ -24,5 +25,12 @@ public interface HttpClient {
      * @throws IOException IO 异常
      */
     Response execute(Request request, Request.Option option) throws IOException;
+
+    default Integer getTimeoutSecond(Integer timeoutSecond) {
+        if (Objects.nonNull(timeoutSecond) && timeoutSecond > 0) {
+            return timeoutSecond;
+        }
+        return null;
+    }
 
 }
