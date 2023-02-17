@@ -11,6 +11,8 @@
 ## v2.2.4
 
 - 支持使用 OkHttp 发起请求 
+- 弃用 `com.fengwenyi.javalib.third.Base64`
+- RSAUtils 中使用 `com.fengwenyi.javalib.third.Base64` 都进行替换
 
 
 

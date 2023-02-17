@@ -22,7 +22,10 @@ package com.fengwenyi.javalib.third;
  * @author Josh Bloch
  * @version %I%, %G%
  * @since 1.4
+ * @see java.util.Base64
+ * @deprecated 可以直接使用 {@link java.util.Base64}
  */
+@Deprecated
 public class Base64 {
 
     /**

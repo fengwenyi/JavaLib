@@ -1,7 +1,5 @@
 package com.fengwenyi.javalib.encryption;
 
-import com.fengwenyi.javalib.constant.CharsetConstant;
-import com.fengwenyi.javalib.third.Base64;
 import com.fengwenyi.javalib.convert.HexUtils;
 import com.fengwenyi.javalib.util.StringUtils;
 
@@ -10,6 +8,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -79,9 +78,9 @@ public class RSAUtils {
         PrivateKey privateKey = commonGetPrivatekeyByText(key);
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
-        byte [] result = cipher.doFinal(plainText.getBytes(CharsetConstant.UTF_8));
+        byte [] result = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
 
-        return Base64.byteArrayToBase64(result);
+        return Base64Utils.encrypt(result);
     }
 
     /**
@@ -102,7 +101,7 @@ public class RSAUtils {
         PublicKey publicKey = commonGetPublickeyByText(key);
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.DECRYPT_MODE, publicKey);
-        byte[] result = cipher.doFinal(Base64.base64ToByteArray(cipherText));
+        byte[] result = cipher.doFinal(Base64Utils.decode(cipherText));
 
         return new String(result);
     }
@@ -127,9 +126,9 @@ public class RSAUtils {
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
-        byte [] result = cipher.doFinal(plainText.getBytes(CharsetConstant.UTF_8));
+        byte [] result = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
 
-        return Base64.byteArrayToBase64(result);
+        return Base64Utils.encrypt(result);
     }
 
     /**
@@ -149,7 +148,7 @@ public class RSAUtils {
         PrivateKey privateKey = commonGetPrivatekeyByText(key);
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
-        byte[] result = cipher.doFinal(Base64.base64ToByteArray(cipherText));
+        byte[] result = cipher.doFinal(Base64Utils.decode(cipherText));
 
         return new String(result);
     }
@@ -165,9 +164,9 @@ public class RSAUtils {
         RSAPublicKey rsaPublicKey = (RSAPublicKey) keyPair.getPublic();
 
         // 私钥
-        keys[0] = Base64.byteArrayToBase64(rsaPrivateKey.getEncoded());
+        keys[0] = Base64Utils.encrypt(rsaPrivateKey.getEncoded());
         // 公钥
-        keys[1] = Base64.byteArrayToBase64(rsaPublicKey.getEncoded());
+        keys[1] = Base64Utils.encrypt(rsaPublicKey.getEncoded());
 
         return keys;
     }
@@ -175,7 +174,7 @@ public class RSAUtils {
     // (common)通过公钥文本获取公钥
     private static PublicKey commonGetPublickeyByText(String keyText)
             throws NoSuchAlgorithmException, InvalidKeySpecException {
-        byte[] keyBytes = Base64.base64ToByteArray(keyText);
+        byte[] keyBytes = Base64Utils.decode(keyText);
         X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         return keyFactory.generatePublic(x509KeySpec);
@@ -184,7 +183,7 @@ public class RSAUtils {
     // (common)通过私钥文本获取私钥
     private static PrivateKey commonGetPrivatekeyByText(String keyText)
             throws NoSuchAlgorithmException, InvalidKeySpecException {
-        byte[] keyBytes = Base64.base64ToByteArray(keyText);
+        byte[] keyBytes = Base64Utils.decode(keyText);
         PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         return keyFactory.generatePrivate(pkcs8EncodedKeySpec);
