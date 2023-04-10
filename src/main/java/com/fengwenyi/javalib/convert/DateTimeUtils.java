@@ -408,4 +408,31 @@ public class DateTimeUtils {
         return time.compareTo(startTime) >= 0 || time.compareTo(endTime) <= 0;
     }
 
+
+    /**
+     * 时间戳转 LocalDateTime （当天最小值）
+     * @param timestamp 时间戳
+     * @return 当天最小值
+     */
+    public static LocalDateTime toLocalDateTimeMin(Long timestamp) {
+        LocalDateTime localDateTime = toLocalDateTime(timestamp);
+        if (Objects.isNull(localDateTime)) {
+            return null;
+        }
+        return localDateTime.with(LocalTime.MIN);
+    }
+
+    /**
+     * 时间戳转 LocalDateTime （当天最大值）
+     * @param timestamp 时间戳
+     * @return 当天最大值
+     */
+    public static LocalDateTime toLocalDateTimeMax(Long timestamp) {
+        LocalDateTime localDateTime = toLocalDateTime(timestamp);
+        if (Objects.isNull(localDateTime)) {
+            return null;
+        }
+        return localDateTime.with(LocalTime.MAX);
+    }
+
 }
