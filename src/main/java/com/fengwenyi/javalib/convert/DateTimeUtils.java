@@ -27,18 +27,20 @@ import java.util.Objects;
  * </ul>
  *
  * <p>
- *     关于为什么没有推出预定义时间格式呢?
- *     因为每个人的需求不一样，不是很好定义，
- *     推荐名称为：DateTimePattern
- *     yyyyMMddHHmmss   → 2019-12-17 10:37:21
- *     yyyyMMdd         → 2019-12-17
- *     yyMMddHHmm       → 19-12-17 10:37
- *     HHmmss           → 10:37:21
- *                      → 19.12.17 10:37
- *                      → 12.17 10:37
- *                      → 2019/12/17 10:37:21
- *                      → 2019/12/17 10:37
- *                      → 2019/12/17
+ *     关于为什么没有推出预定义时间格式呢? <br>
+ *     <pre>
+ *          因为每个人的需求不一样，不是很好定义，
+ *          推荐名称为：DateTimePattern
+ *          yyyyMMddHHmmss   → 2019-12-17 10:37:21
+ *          yyyyMMdd         → 2019-12-17
+ *          yyMMddHHmm       → 19-12-17 10:37
+ *          HHmmss           → 10:37:21
+ *                           → 19.12.17 10:37
+ *                           → 12.17 10:37
+ *                           → 2019/12/17 10:37:21
+ *                           → 2019/12/17 10:37
+ *                           → 2019/12/17
+ *     </pre>
  * </p>
  *
  * <br>
@@ -64,6 +66,10 @@ import java.util.Objects;
  * java 8 time end
  */
 public class DateTimeUtils {
+
+    public static final String DATE_TIME = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE = "yyyy-MM-dd";
+    public static final String TIME = "HH:mm:ss";
 
     /**
      * 将时间格式化成字符串

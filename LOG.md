@@ -8,6 +8,10 @@
 :bug: Bug
 ```
 
+## v2.2.6
+
+- DateTimeUtils 提供日期时间格式常量，废除 DateTimePattern
+
 ## v2.2.5
 
 - DateTimeUtils 新增可根据时间戳获取当天最大或最小的方法
