@@ -11,6 +11,12 @@
 ## v2.2.6
 
 - DateTimeUtils 提供日期时间格式常量，废除 DateTimePattern
+- JsonUtils 新增获取json字符串的key
+- 新增日志级别枚举 LogLevel 从低到高
+- PrintUtils 支持 调整日志级别
+
+
+
 
 ## v2.2.5
 
