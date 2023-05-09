@@ -71,4 +71,13 @@ public class JsonUtilsTests {
         PrintUtils.info(list2);
     }
 
+    @Test
+    public void testGetKeys() {
+        String json = "{\"other\":{\"myWeb\":\"https://fengwenyi.com\",\"github\":\"https://github.com/fengwenyi\"},\"like\":[\"movie\",\"game\",\"music\",\"tea\",\"travel\"],\"sex\":\"男\",\"name\":\"冯文议\",\"age\":28}";
+        List<String> keys = JsonUtils.getKeys(json);
+        for (String key : keys) {
+            System.out.println(key);
+        }
+    }
+
 }

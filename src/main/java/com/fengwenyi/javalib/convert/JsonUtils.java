@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
@@ -17,13 +18,16 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
+import com.fengwenyi.javalib.util.StringUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * JSON转换工具类
@@ -220,6 +224,37 @@ public class JsonUtils {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * 获取 json 字符串的 key
+     *
+     * <p>
+     *     只获取 json 第一层的 key
+     * </p>
+     *
+     * @param content JSON字符串
+     * @return key列表
+     */
+    public static List<String> getKeys(String content) {
+        if (StringUtils.isEmpty(content)) {
+            return Collections.emptyList();
+        }
+        JsonNode jsonNode;
+        try {
+            jsonNode = mapper.readTree(content);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        if (Objects.isNull(jsonNode)) {
+            return Collections.emptyList();
+        }
+        Iterator<String> iterator = jsonNode.fieldNames();
+        List<String> keys = new ArrayList<>();
+        while (iterator.hasNext()) {
+            keys.add(iterator.next());
+        }
+        return keys;
     }
 
 }
