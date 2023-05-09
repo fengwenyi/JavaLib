@@ -7,13 +7,13 @@ package com.fengwenyi.javalib.constant;
  */
 public enum LogLevel {
 
-    ALL,
-    TRACE,
-    DEBUG,
-    INFO,
-    WARN,
-    ERROR,
-    FATAL,
-    OFF
+    ALL /* 显示所有日志 */
+    , TRACE /* 指定细粒度比DEBUG更低的信息事件 */
+    , DEBUG
+    , INFO
+    , WARN
+    , ERROR
+    , FATAL /* 指定非常严重的错误事件，这可能导致应用程序中止 */
+    , OFF /* 关闭所有日志 */
 
 }
