@@ -245,4 +245,25 @@ public class StringUtils {
         return source.substring(source.length() - length);
     }
 
+    // 截取前缀后的字符串
+    public static String substringAfter(String content, String prefix) {
+        if (isEmpty(content)) {
+            return "";
+        }
+        if (isEmpty(prefix)) {
+            return content;
+        }
+        return content.substring(prefix.length());
+    }
+
+    // 将字符串的第一个字符大写
+    public static String lowerCaseFirst(String content) {
+        if (isEmpty(content)) {
+            return "";
+        }
+        String first = content.substring(0, 1);
+        String after = content.substring(1);
+        return first.toLowerCase() + after;
+    }
+
 }

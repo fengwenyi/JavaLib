@@ -10,9 +10,9 @@ public class BeanUtilsTests {
 
     @Test
     public void testGetFieldName() {
-        String result = BeanUtils.getFieldName(User::getUserName);
+        String result = BeanUtils.getFieldNameByGet(User::getUserName);
         System.out.println(result);
-        String result2 = BeanUtils.convertToFieldName(User::setUserName);
+        String result2 = BeanUtils.getFieldNameBySet(User::setUserName);
         System.out.println(result2);
     }
 
