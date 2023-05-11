@@ -26,22 +26,6 @@ import java.util.Objects;
  *     <li>自然语言描述过去的时间（中/英文）</li>
  * </ul>
  *
- * <p>
- *     关于为什么没有推出预定义时间格式呢? <br>
- *     <pre>
- *          因为每个人的需求不一样，不是很好定义，
- *          推荐名称为：DateTimePattern
- *          yyyyMMddHHmmss   → 2019-12-17 10:37:21
- *          yyyyMMdd         → 2019-12-17
- *          yyMMddHHmm       → 19-12-17 10:37
- *          HHmmss           → 10:37:21
- *                           → 19.12.17 10:37
- *                           → 12.17 10:37
- *                           → 2019/12/17 10:37:21
- *                           → 2019/12/17 10:37
- *                           → 2019/12/17
- *     </pre>
- * </p>
  *
  * <br>
  *     关于时间，我们一般会用来做什么呢？
@@ -55,15 +39,12 @@ import java.util.Objects;
  *
  * @author Erwin Feng[xfsy_2015@163.com]
  * @since 2019-12-11
- * @see Date 时间
- *
- * java 8 time start
+ * @see Date
  * @see Instant
  * @see LocalDate
  * @see LocalTime
  * @see LocalDateTime
  * @see ZonedDateTime
- * java 8 time end
  */
 public class DateTimeUtils {
 

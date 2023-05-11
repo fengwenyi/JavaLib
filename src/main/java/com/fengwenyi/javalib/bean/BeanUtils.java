@@ -38,6 +38,9 @@ public class BeanUtils {
 
     /**
      * 获取getter方法引用为属性名
+     * @param fn getter方法函数
+     * @param <T> [忽略]
+     * @return 返回属性名
      */
     public static <T> String getFieldNameByGet(IGetter<T, Object> fn) {
         SerializedLambda lambda = getSerializedLambda(fn);
@@ -47,6 +50,10 @@ public class BeanUtils {
 
     /**
      * 获取setter方法引用为属性名
+     * @param fn getter方法函数
+     * @param <T> [忽略]
+     * @param <U> [忽略]
+     * @return 返回属性名
      */
     public static <T, U> String getFieldNameBySet(ISetter<T, U> fn) {
         SerializedLambda lambda = getSerializedLambda(fn);
