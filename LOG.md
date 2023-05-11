@@ -14,6 +14,7 @@
 - JsonUtils 新增获取json字符串的key
 - 新增日志级别枚举 LogLevel 从低到高
 - PrintUtils 支持 调整日志级别
+- BeanUtils 新增根据 getter / setter 获取字段名方法
 
 
 
