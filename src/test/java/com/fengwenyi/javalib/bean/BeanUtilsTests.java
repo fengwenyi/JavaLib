@@ -28,6 +28,17 @@ public class BeanUtilsTests {
         System.out.println(result8);
         String result9 = BeanUtils.getFieldNameBySet(Entity::setId);
         System.out.println(result9);
+/*
+userName
+userName
+_x
+_x
+status
+status
+uName
+uName
+id
+ */
     }
 
     public static class User {
