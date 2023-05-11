@@ -36,21 +36,6 @@ public class BeanUtils {
     }
 
 
-    // 获取类对应的Lambda
-    private static SerializedLambda getSerializedLambda(Serializable fn){
-        SerializedLambda lambda = null;
-        try{
-            Method method = fn.getClass().getDeclaredMethod("writeReplace");
-            method.setAccessible(Boolean.TRUE);
-            lambda = (SerializedLambda) method.invoke(fn);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return lambda;
-    }
-
-
     /**
      * 获取getter方法引用为属性名
      */
@@ -69,8 +54,23 @@ public class BeanUtils {
         return getFieldNameByMethodName(methodName);
     }
 
+    // 获取类对应的Lambda
+    private static SerializedLambda getSerializedLambda(Serializable fn){
+        SerializedLambda lambda = null;
+        try{
+            Method method = fn.getClass().getDeclaredMethod("writeReplace");
+            method.setAccessible(Boolean.TRUE);
+            lambda = (SerializedLambda) method.invoke(fn);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return lambda;
+    }
+
+    // 根据方法名获取字段名
     private static String getFieldNameByMethodName(String methodName) {
-        String prefix = getMethodPrefix(methodName);
+        String prefix = getGetSetMethodPrefix(methodName);
         if(StringUtils.isEmpty(prefix)){
             System.err.println("无效的方法: " + methodName);
             return "";
@@ -78,7 +78,8 @@ public class BeanUtils {
         return StringUtils.lowerCaseFirst(StringUtils.substringAfter(methodName, prefix));
     }
 
-    private static String getMethodPrefix(String methodName) {
+    // 获取 getter / setter 方法前缀
+    private static String getGetSetMethodPrefix(String methodName) {
         for (String prefix : GET_SET_PREFIX) {
             if (methodName.startsWith(prefix)) {
                 return prefix;
