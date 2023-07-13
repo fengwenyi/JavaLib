@@ -8,6 +8,11 @@
 :bug: Bug
 ```
 
+## v2.2.7
+
+
+
+
 ## v2.2.6
 
 - DateTimeUtils 提供日期时间格式常量，废除 DateTimePattern

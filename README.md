@@ -37,14 +37,14 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>2.2.6</version>
+    <version>2.2.7</version>
 </dependency>
 ```
 
 **Gradle**
 
 ```groovy
-implementation 'com.fengwenyi:JavaLib:2.2.6'
+implementation 'com.fengwenyi:JavaLib:2.2.7'
 ```
 
 ## 功能列表：
@@ -76,9 +76,9 @@ implementation 'com.fengwenyi:JavaLib:2.2.6'
 
 ### TODO LIST
 
-- OkHttpUtils
-- WebServiceUtils
-- AliyunOssUtils
+- [x] OkHttpUtils
+- [ ] WebServiceUtils
+- [ ] AliyunOssUtils
 
 
 ## 文档
