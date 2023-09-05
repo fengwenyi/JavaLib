@@ -140,4 +140,16 @@ public class DateTimeUtilsTests {
         System.out.println(new Date());
     }
 
+    @Test
+    public void testOffsetDateTime() {
+        String pattern = "yyyy-MM-dd HH:mm:ssXXX";
+        String result = DateTimeUtils.format(OffsetDateTime.now(), pattern);
+        System.out.println(result);
+
+        LocalDateTime localDateTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(10, 30));
+        OffsetDateTime offsetDateTime = DateTimeUtils.toOffsetDateTime(localDateTime);
+        result = DateTimeUtils.format(offsetDateTime, pattern);
+        System.out.println(result);
+    }
+
 }

@@ -44,6 +44,9 @@ import java.util.Objects;
  * @see LocalDate
  * @see LocalTime
  * @see LocalDateTime
+ * @see OffsetDateTime
+ * @see ZoneOffset
+ * @see ZoneId
  * @see ZonedDateTime
  */
 public class DateTimeUtils {
@@ -108,6 +111,17 @@ public class DateTimeUtils {
     public static String format(Instant instant, String pattern) {
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         return localDateTime.format(DateTimeFormatter.ofPattern(pattern));
+    }
+
+    /**
+     * 将时间格式化成字符串
+     * @param offsetDateTime 偏移日期时间（OffsetDateTime）
+     * @param pattern 描述日期和时间格式的模式
+     * @return 满足指定格式的时间字符串
+     */
+    public static String format(OffsetDateTime offsetDateTime, String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        return offsetDateTime.format(formatter);
     }
 
     /**
@@ -303,6 +317,51 @@ public class DateTimeUtils {
                         .atZone(ZoneId.systemDefault())
                         .toInstant()
         );
+    }
+
+    /**
+     * LocalDateTime 转为 OffsetDateTime
+     * @param localDateTime LocalDateTime
+     * @return OffsetDateTime
+     */
+    public static OffsetDateTime toOffsetDateTime(LocalDateTime localDateTime) {
+        return OffsetDateTime.of(localDateTime, ZoneId.systemDefault().getRules().getOffset(localDateTime));
+    }
+
+    /**
+     * LocalDateTime 转为 OffsetDateTime
+     * @param localDateTime LocalDateTime
+     * @param zoneOffset ZoneOffset
+     * @return OffsetDateTime
+     */
+    public static OffsetDateTime toOffsetDateTime(LocalDateTime localDateTime, ZoneOffset zoneOffset) {
+        return OffsetDateTime.of(localDateTime, zoneOffset);
+    }
+
+    /**
+     * LocalDateTime 转为 OffsetDateTime
+     *
+     * <ul>
+     * <li>{@code Z} - for UTC
+     * <li>{@code +h}
+     * <li>{@code +hh}
+     * <li>{@code +hh:mm}
+     * <li>{@code -hh:mm}
+     * <li>{@code +hhmm}
+     * <li>{@code -hhmm}
+     * <li>{@code +hh:mm:ss}
+     * <li>{@code -hh:mm:ss}
+     * <li>{@code +hhmmss}
+     * <li>{@code -hhmmss}
+     * </ul>
+     *
+     * @param localDateTime LocalDateTime
+     * @param offsetId ZoneOffset
+     * @return OffsetDateTime
+     * @see ZoneOffset#of(String)
+     */
+    public static OffsetDateTime toOffsetDateTime(LocalDateTime localDateTime, String offsetId) {
+        return OffsetDateTime.of(localDateTime, ZoneOffset.of(offsetId));
     }
 
     /**
