@@ -5,6 +5,7 @@ import com.fengwenyi.javalib.convert.JsonUtils;
 import com.fengwenyi.javalib.http.Request;
 import com.fengwenyi.javalib.http.Response;
 import com.fengwenyi.javalib.http.client.HttpClient;
+import com.fengwenyi.javalib.util.StringUtils;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -45,7 +46,7 @@ public class OkHttpClient implements HttpClient {
 
     private Response get(Request request, Request.Option option) {
         okhttp3.OkHttpClient client = client(option);
-        okhttp3.Request httpRequest = buildRequest(getHttpUrl(request), option.getHeaders(), request.getMethod(), null);
+        okhttp3.Request httpRequest = buildRequest(getUrl(request), option.getHeaders(), request.getMethod(), null);
         return call(client, httpRequest);
     }
 
@@ -68,7 +69,7 @@ public class OkHttpClient implements HttpClient {
                 }
             }
         }
-        okhttp3.Request httpRequest = buildRequest(getHttpUrl(request), option.getHeaders(), request.getMethod(), requestBody);
+        okhttp3.Request httpRequest = buildRequest(getUrl(request), option.getHeaders(), request.getMethod(), requestBody);
         return call(client, httpRequest);
     }
 
@@ -89,9 +90,9 @@ public class OkHttpClient implements HttpClient {
         return builder.build();
     }
 
-    private okhttp3.Request buildRequest(HttpUrl httpUrl, Map<String, String> headers, Request.Method requestMethod, RequestBody requestBody) {
+    private okhttp3.Request buildRequest(String url, Map<String, String> headers, Request.Method requestMethod, RequestBody requestBody) {
         okhttp3.Request.Builder builder = new okhttp3.Request.Builder();
-        builder.url(httpUrl);
+        builder.url(url);
         if (MapUtils.isNotEmpty(headers)) {
             for (Map.Entry<String, String> entry : headers.entrySet()) {
                 builder.addHeader(entry.getKey(), entry.getValue());
@@ -147,6 +148,36 @@ public class OkHttpClient implements HttpClient {
         }
 
         return builder.build();
+    }
+
+    private String getUrl(Request request) {
+
+        StringBuilder url = new StringBuilder(request.getUrl());
+
+        if (StringUtils.isEmpty(url.toString().trim())) {
+            throw new RuntimeException("url不能为空");
+        }
+
+        if (Request.Method.GET == request.getMethod()) {
+            if (!url.toString().contains("?")) {
+                url.append("?");
+            }
+            if (MapUtils.isNotEmpty(request.getParam())) {
+                if (request.getParam().containsKey(PARAM_DEFAULT_KEY)) {
+                    url.append(request.getParam().get(PARAM_DEFAULT_KEY));
+                } else {
+                    for (Map.Entry<String, Object> entry : request.getParam().entrySet()) {
+                        url.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+                    }
+                }
+            }
+        }
+
+        String result = url.toString();
+        if (result.endsWith("&")) {
+            result = result.substring(0, result.length() - 1);
+        }
+        return result;
     }
 
 }

@@ -220,9 +220,11 @@ public class Request {
     }
 
     public Request setParam(String param) {
-        Map<String, Object> map = new HashMap<>();
-        map.put(PARAM_DEFAULT_KEY, param);
-        this.param = map;
+        if (StringUtils.isNotEmpty(param)) {
+            Map<String, Object> map = new HashMap<>();
+            map.put(PARAM_DEFAULT_KEY, param);
+            this.param = map;
+        }
         return this;
     }
 
