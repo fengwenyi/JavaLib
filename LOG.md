@@ -11,7 +11,7 @@
 ## v2.2.7
 
 - DateTimeUtils, 提供 OffsetDateTime处理
-- OkHttp 升级到 4.11.0
+- ~~OkHttp 升级到 4.11.0~~
 - 因为报错原因，暂时弃用 okHttp.HttpUrl
 
 
