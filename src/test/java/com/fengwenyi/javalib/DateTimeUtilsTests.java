@@ -152,4 +152,24 @@ public class DateTimeUtilsTests {
         System.out.println(result);
     }
 
+    @Test
+    public void testToLocalDateTimeMin() {
+        LocalDateTime localDateTimeMin = DateTimeUtils.toLocalDateTimeMin();
+        System.out.println(DateTimeUtils.format(localDateTimeMin, DateTimeUtils.DATE_TIME));
+        localDateTimeMin = DateTimeUtils.toLocalDateTimeMin(LocalDate.now());
+        System.out.println(DateTimeUtils.format(localDateTimeMin, DateTimeUtils.DATE_TIME));
+        localDateTimeMin = DateTimeUtils.toLocalDateTimeMin(LocalDateTime.now());
+        System.out.println(DateTimeUtils.format(localDateTimeMin, DateTimeUtils.DATE_TIME));
+    }
+
+    @Test
+    public void testToLocalDateTimeMax() {
+        LocalDateTime localDateTimeMin = DateTimeUtils.toLocalDateTimeMax();
+        System.out.println(DateTimeUtils.format(localDateTimeMin, DateTimeUtils.DATE_TIME));
+        localDateTimeMin = DateTimeUtils.toLocalDateTimeMax(LocalDate.now());
+        System.out.println(DateTimeUtils.format(localDateTimeMin, DateTimeUtils.DATE_TIME));
+        localDateTimeMin = DateTimeUtils.toLocalDateTimeMax(LocalDateTime.now());
+        System.out.println(DateTimeUtils.format(localDateTimeMin, DateTimeUtils.DATE_TIME));
+    }
+
 }
