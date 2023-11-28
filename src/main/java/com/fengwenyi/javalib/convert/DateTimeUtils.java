@@ -469,6 +469,32 @@ public class DateTimeUtils {
     }
 
     /**
+     * LocalDateTime （当天最小值）
+     * @param localDateTime 时间戳
+     * @return 当天最小值
+     */
+    public static LocalDateTime toLocalDateTimeMin(LocalDateTime localDateTime) {
+        return localDateTime.with(LocalTime.MIN);
+    }
+
+    /**
+     * LocalDate 转 LocalDateTime （当天最小值）
+     * @param localDate 日期
+     * @return 当天最小值
+     */
+    public static LocalDateTime toLocalDateTimeMin(LocalDate localDate) {
+        return LocalDateTime.of(localDate, LocalTime.MIN);
+    }
+
+    /**
+     * LocalDateTime （当天最小值）
+     * @return 当天最小值
+     */
+    public static LocalDateTime toLocalDateTimeMin() {
+        return LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
+    }
+
+    /**
      * 时间戳转 LocalDateTime （当天最大值）
      * @param timestamp 时间戳
      * @return 当天最大值
@@ -479,6 +505,32 @@ public class DateTimeUtils {
             return null;
         }
         return localDateTime.with(LocalTime.MAX);
+    }
+
+    /**
+     * LocalDateTime （当天最大值）
+     * @param localDateTime 日期时间
+     * @return 当天最大值
+     */
+    public static LocalDateTime toLocalDateTimeMax(LocalDateTime localDateTime) {
+        return localDateTime.with(LocalTime.MAX);
+    }
+
+    /**
+     * LocalDate 转 LocalDateTime （当天最大值）
+     * @param localDate 日期
+     * @return 当天最大值
+     */
+    public static LocalDateTime toLocalDateTimeMax(LocalDate localDate) {
+        return LocalDateTime.of(localDate, LocalTime.MAX);
+    }
+
+    /**
+     * LocalDateTime （当天最大值）
+     * @return 当天最大值
+     */
+    public static LocalDateTime toLocalDateTimeMax() {
+        return LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
     }
 
 }
