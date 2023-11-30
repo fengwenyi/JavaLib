@@ -172,4 +172,14 @@ public class DateTimeUtilsTests {
         System.out.println(DateTimeUtils.format(localDateTimeMin, DateTimeUtils.DATE_TIME));
     }
 
+    @Test
+    public void testPeriod() {
+        LocalDate startDate = LocalDate.of(2021, 10, 11);
+        LocalDate endDate = LocalDate.of(2023, 12, 13);
+
+        Period period = Period.between(startDate, startDate);
+        System.out.printf("年：%d，月：%d，日：%d \n", period.getYears(), period.getMonths(), period.getDays());
+        System.out.println(period.isNegative()); // startDate > endDate; 负数；ture ; 相等：false
+    }
+
 }

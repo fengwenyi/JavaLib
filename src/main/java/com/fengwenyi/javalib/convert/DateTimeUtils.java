@@ -48,6 +48,7 @@ import java.util.Objects;
  * @see ZoneOffset
  * @see ZoneId
  * @see ZonedDateTime
+ * @see Period
  */
 public class DateTimeUtils {
 
@@ -531,6 +532,16 @@ public class DateTimeUtils {
      */
     public static LocalDateTime toLocalDateTimeMax() {
         return LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+    }
+
+    /**
+     * 计算两个 LocalDate 相差周期 Period
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 相差周期 {@link Period }
+     */
+    public static Period betweenLocalDate(LocalDate startDate, LocalDate endDate) {
+        return Period.between(startDate, endDate);
     }
 
 }
