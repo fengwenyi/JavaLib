@@ -37,14 +37,14 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>2.2.7</version>
+    <version>2.2.8</version>
 </dependency>
 ```
 
 **Gradle**
 
 ```groovy
-implementation 'com.fengwenyi:JavaLib:2.2.7'
+implementation 'com.fengwenyi:JavaLib:2.2.8'
 ```
 
 ## 功能列表：
