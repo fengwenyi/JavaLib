@@ -6,7 +6,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * XML转换工具类
@@ -19,6 +21,18 @@ public class XmlUtils {
     
     static {
         mapper();
+        jacksonXmlModule();
+        javaTimeModel();
+    }
+
+    private static void jacksonXmlModule() {
+        JacksonXmlModule javaTimeModule = new JacksonXmlModule();
+        mapper.registerModule(javaTimeModule);
+    }
+
+    private static void javaTimeModel() {
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        mapper.registerModule(javaTimeModule);
     }
 
 

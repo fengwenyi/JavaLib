@@ -10,10 +10,19 @@
 
 ## v2.2.8
 
-- 【JsonUtils】去掉没有用到的引入。
+:star: Feature
+
 - 【ThreadUtils】新增工具类，提供获取当前类和方法的名称。
+- 【JsonUtils】JavaTimeModule 使用默认的配置，去掉自定义配置。
+- 【XmlUtils】增加JavaTimeModule和JacksonXmlModule配置。
 
+:arrow_up: Dependency Upgrades
 
+- Upgrade to Jackson 2.16.0
+
+other
+
+- 【JsonUtils】去掉没有用到的引入。
 
 
 ## v2.2.7

@@ -24,7 +24,7 @@
         <!-- servlet版本 -->
         <servlet.api.version>4.0.1</servlet.api.version>
         <!-- jackson版本 -->
-        <jackson.version>2.14.0</jackson.version>
+        <jackson.version>2.16.0</jackson.version>
         <!-- okhttp3版本 -->
         <!--<okhttp.version>4.11.0</okhttp.version>-->
         <okhttp.version>4.9.3</okhttp.version>
