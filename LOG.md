@@ -8,6 +8,10 @@
 :bug: Bug
 ```
 
+## v3.0.0
+
+
+
 ## v2.2.8
 
 :star: Feature

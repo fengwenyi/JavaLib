@@ -12,7 +12,7 @@
 		<img src="https://img.shields.io/:license-apache-blue.svg" ></img>
 	</a>
 	<a target="_blank" href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">
-		<img src="https://img.shields.io/badge/JDK-1.8+-green.svg" ></img>
+		<img src="https://img.shields.io/badge/JDK-17+-green.svg" ></img>
 	</a>
 	<a target="_blank" href='https://github.com/fengwenyi/JavaLib'>
 		<img src="https://img.shields.io/github/stars/fengwenyi/JavaLib.svg?style=social" alt="github star"></img>
@@ -37,49 +37,20 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>2.2.8</version>
+    <version>3.0.0</version>
 </dependency>
 ```
 
 **Gradle**
 
 ```groovy
-implementation 'com.fengwenyi:JavaLib:2.2.8'
+implementation 'com.fengwenyi:JavaLib:3.0.0'
 ```
 
 ## 功能列表：
 
-| 名称              | 描述          |  发布版本  |    发布日期    |
-|-----------------|-------------|:------:|:----------:|
-| DateTimeUtils   | 日期时间工具类     |   -    | 2020.04.30 |
-| JsonUtils       | JSON转换工具类   |   -    | 2020.08.22 |
-| XmlUtils        | XML转换工具类    |   -    | 2020.08.22 |
-| BeanUtils       | Bean工具类     |   -    | 2020.08.22 |
-| CollectionUtils | 集合工具类       |   -    | 2020.08.22 |
-| MapUtils        | Map工具类      |   -    | 2020.08.22 |
-| RSAUtils        | RSA加/解密工具类  |   -    | 2020.08.22 |
-| MD5Utils        | MD5加/解密工具类  |   -    | 2020.08.22 |
-| IdUtils         | Id工具类       |   -    | 2020.08.22 |
-| StringUtils     | 字符串工具类      |   -    | 2020.08.22 |
-| PrintUtils      | 控制台打印工具类    |   -    | 2020.08.22 |
-| ICallback       | 回调接口        |   -    | 2020.4.30  |
-| StarHandleUtils | 星号处理工具类     | v2.1.2 | 2021.01.12 |
-| MdcUtils        | MDC工具类      | v2.1.3 | 2021.08.16 |
-| TraceIdUtils    | traceId工具类  | v2.1.3 | 2021.08.16 |
-| IBuilder        | 构造者接口       | v2.1.4 | 2021.08.24 |
-| DateTimePattern | 日期时间规则常量    | v2.1.5 | 2021.12.02 |
-| FormatterUtils  | formatter工具类 | v2.1.5 | 2021.12.02 |
-| MapHelper       | 方便构造 Map    | v2.2.0 | 2022.09.17 |
-| HttpUtils       | http 工具类    | v2.2.2 | 2022.12.09 |
-| JsoupUtils      | jsoup 工具类   | v2.2.2 | 2022.12.09 |
-| ThreadUtils      | 线程工具类       | v2.2.8 | 2023.12.23 |
-
 
 ### TODO LIST
-
-- [x] OkHttpUtils
-- [ ] WebServiceUtils
-- [ ] AliyunOssUtils
 
 
 ## 文档
