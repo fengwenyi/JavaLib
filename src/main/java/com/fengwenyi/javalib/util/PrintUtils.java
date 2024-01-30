@@ -12,13 +12,6 @@ import java.time.LocalTime;
  */
 public class PrintUtils {
 
-    /**
-     * 打印开关，默认开启<br>
-     * 无效， 已弃用
-     * @deprecated {@link LogLevel}
-     */
-    @Deprecated
-     public static boolean DEBUG = true;
 
     public static LogLevel LEVEL = LogLevel.INFO;
 

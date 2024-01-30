@@ -1,10 +1,10 @@
 package com.fengwenyi.javalib.convert;
 
-import com.fengwenyi.javalib.constant.CharsetConstant;
 import com.fengwenyi.javalib.util.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +32,7 @@ public class ParamUtils {
 
             sb.append(i.getKey())
                     .append("=")
-                    .append(URLEncoder.encode(i.getValue(), CharsetConstant.UTF_8))
+                    .append(URLEncoder.encode(i.getValue(), StandardCharsets.UTF_8))
                     .append("&");
 
         }

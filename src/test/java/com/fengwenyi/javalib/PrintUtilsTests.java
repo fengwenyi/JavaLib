@@ -11,13 +11,6 @@ import org.junit.Test;
 public class PrintUtilsTests {
 
     @Test
-    @Deprecated
-    public void testDebug() {
-        PrintUtils.DEBUG = false;
-        PrintUtils.info("debug");
-    }
-
-    @Test
     public void testLevel() {
 
         PrintUtils.LEVEL = LogLevel.DEBUG;
