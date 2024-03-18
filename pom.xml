@@ -29,8 +29,8 @@
         <!--<okhttp.version>4.11.0</okhttp.version>-->
         <okhttp.version>4.9.3</okhttp.version>
         <slf4j-api.version>2.0.3</slf4j-api.version>
-        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
-        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+        <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
+        <maven-gpg-plugin.version>3.2.1</maven-gpg-plugin.version>
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
     </properties>
 
