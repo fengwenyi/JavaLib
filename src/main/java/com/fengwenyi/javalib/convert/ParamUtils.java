@@ -32,7 +32,7 @@ public class ParamUtils {
 
             sb.append(i.getKey())
                     .append("=")
-                    .append(URLEncoder.encode(i.getValue(), StandardCharsets.UTF_8))
+                    .append(URLEncoder.encode(i.getValue(), StandardCharsets.UTF_8.toString()))
                     .append("&");
 
         }
