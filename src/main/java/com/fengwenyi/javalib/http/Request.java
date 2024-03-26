@@ -32,7 +32,7 @@ public class Request {
     private ParamFormat paramFormat = ParamFormat.STRING;
 
     /** 请求工具 */
-    private Util util = Util.JDK;
+    private Util util = Util.OkHttp;
 
     public ParamFormat getParamFormat() {
         return paramFormat;
@@ -57,7 +57,9 @@ public class Request {
      * 请求工具枚举
      */
     public enum Util {
-        JDK, OkHttp, //AsyncHttpClient
+        // JDK,
+        OkHttp,
+        // AsyncHttpClient
     }
 
     /**

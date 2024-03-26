@@ -2,7 +2,7 @@ package com.fengwenyi.javalib;
 
 import com.fengwenyi.javalib.constant.LogLevel;
 import com.fengwenyi.javalib.util.PrintUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="https://fengwenyi.com">Erwin Feng</a>

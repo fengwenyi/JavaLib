@@ -2,7 +2,7 @@ package com.fengwenyi.javalib.convert;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fengwenyi.javalib.util.PrintUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

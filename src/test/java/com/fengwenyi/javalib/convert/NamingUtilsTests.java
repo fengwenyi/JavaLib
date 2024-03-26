@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib.convert;
 
 import com.fengwenyi.javalib.util.PrintUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="https://www.fengwenyi.com">Erwin Feng</a>

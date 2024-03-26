@@ -1,7 +1,6 @@
 package com.fengwenyi.javalib.http.client;
 
 import com.fengwenyi.javalib.http.Request;
-import com.fengwenyi.javalib.http.client.impl.JdkHttpClient;
 import com.fengwenyi.javalib.http.client.impl.OkHttpClient;
 
 /**
@@ -18,9 +17,7 @@ public class HttpClientFactory {
      * @return http client 实现
      */
     public static HttpClient get(Request.Util httpUtil) {
-        if (Request.Util.JDK == httpUtil) {
-            return new JdkHttpClient();
-        } else if (Request.Util.OkHttp == httpUtil) {
+        if (Request.Util.OkHttp == httpUtil) {
             return new OkHttpClient();
         } else {
             throw new RuntimeException("not find http util: " + httpUtil.name());

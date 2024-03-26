@@ -12,8 +12,6 @@
     <description>JAVA开发常用工具集</description>
 
     <properties>
-<!--        <maven.compiler.source>17</maven.compiler.source>-->
-<!--        <maven.compiler.target>17</maven.compiler.target>-->
         <!-- 工程源码编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- 工程导出编码 -->
@@ -22,7 +20,7 @@
         <java.version>17</java.version>
         <encoding>UTF-8</encoding>
         <!-- junit版本 -->
-        <junit.version>4.13.2</junit.version>
+        <junit.version>5.10.2</junit.version>
         <!-- jackson版本 -->
         <jackson.version>2.16.1</jackson.version>
         <!-- okhttp3版本 -->
@@ -36,15 +34,11 @@
     </properties>
 
     <dependencies>
-        <!--
-        https://mvnrepository.com/artifact/junit/junit
-         service test / controller test / method test / interface test / or other test
-         -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
-            <scope>provided</scope>
+            <scope>test</scope>
         </dependency>
 
         <!-- jackson -->

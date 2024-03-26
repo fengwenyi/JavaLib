@@ -2,8 +2,8 @@ package com.fengwenyi.javalib;
 
 import com.fengwenyi.javalib.convert.DateTimeUtils;
 import com.fengwenyi.javalib.util.PrintUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import junit.framework.Assert;
+import org.junit.jupiter.api.Test;
 
 import java.time.*;
 import java.util.Date;

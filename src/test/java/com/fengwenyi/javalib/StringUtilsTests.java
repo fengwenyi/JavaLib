@@ -3,8 +3,8 @@ package com.fengwenyi.javalib;
 import com.fengwenyi.javalib.constant.LengthConstant;
 import com.fengwenyi.javalib.util.PrintUtils;
 import com.fengwenyi.javalib.util.StringUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import junit.framework.Assert;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Erwin Feng

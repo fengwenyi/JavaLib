@@ -2,7 +2,7 @@ package com.fengwenyi.javalib;
 
 import com.fengwenyi.javalib.util.PrintUtils;
 import com.fengwenyi.javalib.encryption.RSAUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.security.NoSuchAlgorithmException;
 
