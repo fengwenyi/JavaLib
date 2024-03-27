@@ -1,6 +1,9 @@
 package com.fengwenyi.javalib.convert;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.jupiter.api.Test;
 
@@ -77,6 +80,27 @@ public class JsonUtilsTests {
         List<String> keys = JsonUtils.getKeys(json);
         for (String key : keys) {
             System.out.println(key);
+        }
+    }
+
+    @Test
+    public void testXmlToJson() {
+
+        try {
+
+            String xmlString = "<person><name>John</name><age>30</age></person>";
+
+            // XML String 转换为 JsonNode
+            XmlMapper xmlMapper = new XmlMapper();
+            JsonNode jsonNode = xmlMapper.readTree(xmlString.getBytes());
+
+            // 使用 ObjectMapper 将 JsonNode 转换为 JSON
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
+
+            System.out.println(jsonString);
+        } catch (Exception e) {
+
         }
     }
 
