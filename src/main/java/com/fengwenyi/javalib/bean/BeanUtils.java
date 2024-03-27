@@ -31,8 +31,8 @@ public class BeanUtils {
      * @return 返回目标对象
      */
     public static <T> T copy(Object source, Class<T> targetClazz) {
-        String jsonString = JsonUtils.convertString(source);
-        return JsonUtils.convertObject(jsonString, targetClazz);
+        String jsonString = JsonUtils.string(source);
+        return JsonUtils.object(jsonString, targetClazz);
     }
 
 

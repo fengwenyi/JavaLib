@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
  * @author Wenyi Feng
  * @since 2018-10-28
  */
-public class SHAUtils {
+public class ShaUtils {
 
     /**
      * 字符串 SHA 加密
@@ -19,7 +19,7 @@ public class SHAUtils {
      * @return [ellipsis]
      * @throws NoSuchAlgorithmException [ellipsis]
      */
-    public static String SHA1(String plainText) throws NoSuchAlgorithmException {
+    public static String encrypt(String plainText) throws NoSuchAlgorithmException {
         // 返回值
         String result = null;
         // 是否是有效字符串

@@ -41,18 +41,18 @@ public class JsonUtilsTests {
         map.put("birthday", LocalDate.of(1992, 2, 26));
         map.put("time", LocalTime.now());
         map.put("testTime", LocalDateTime.now());
-        String jsonString = JsonUtils.convertString(map);
+        String jsonString = JsonUtils.string(map);
         PrintUtils.info(jsonString);
-        String jsonStringPetty = JsonUtils.prettyPrint(map);
+        String jsonStringPetty = JsonUtils.pretty(map);
         PrintUtils.info(jsonStringPetty);
     }
 
     @Test
     public void testConvertObject() {
         String jsonString = "{\"other\":{\"myWeb\":\"https://fengwenyi.com\",\"github\":\"https://github.com/fengwenyi\"},\"like\":[\"movie\",\"game\",\"music\",\"tea\",\"travel\"],\"sex\":\"男\",\"name\":\"冯文议\",\"age\":28}";
-        Map map = JsonUtils.convertObject(jsonString, Map.class);
+        Map map = JsonUtils.object(jsonString, Map.class);
         PrintUtils.info(map);
-        ErwinEntity erwinEntity = JsonUtils.convertObject(jsonString, ErwinEntity.class);
+        ErwinEntity erwinEntity = JsonUtils.object(jsonString, ErwinEntity.class);
         PrintUtils.info(erwinEntity);
     }
 
@@ -64,13 +64,13 @@ public class JsonUtilsTests {
                 "tea",
                 "travel"
         );
-        String jsonString = JsonUtils.convertString(likes);
-        List list = JsonUtils.convertObject(jsonString, List.class);
+        String jsonString = JsonUtils.string(likes);
+        List list = JsonUtils.object(jsonString, List.class);
         PrintUtils.info(list);
-        List<String> list1 = JsonUtils.convertCollection(jsonString, List.class, String.class);
+        List<String> list1 = JsonUtils.collection(jsonString, List.class, String.class);
         PrintUtils.info(list1);
 
-        List<String> list2 = JsonUtils.convertCollection(jsonString, new TypeReference<List<String>>() {});
+        List<String> list2 = JsonUtils.collection(jsonString, new TypeReference<List<String>>() {});
         PrintUtils.info(list2);
     }
 

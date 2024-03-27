@@ -9,20 +9,10 @@ import java.util.UUID;
 public class IdUtils {
 
     /**
-     * 不含"-"
-     * @return a Id by UUID
-     */
-    public static String getIdByUUID() {
-        String uuIdStr = getUUID();
-
-        return uuIdStr.replaceAll("-", "");
-    }
-
-    /**
      * 包含"-"
      * @return UUID
      */
-    public static synchronized String getUUID() {
+    public static synchronized String generateUUID() {
         return UUID.randomUUID().toString();
     }
 
@@ -30,8 +20,8 @@ public class IdUtils {
      * 基于UUID生成ID，不含"-"
      * @return ID字符串
      */
-    public static String genId() {
-        String uuIdStr = getUUID();
+    public static String generateId() {
+        String uuIdStr = generateUUID();
         return uuIdStr.replaceAll("-", "");
     }
 

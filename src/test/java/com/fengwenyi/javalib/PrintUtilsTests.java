@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib;
 
-import com.fengwenyi.javalib.constant.LogLevel;
+import com.fengwenyi.javalib.enums.LogLevel;
 import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.jupiter.api.Test;
 

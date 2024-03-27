@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fengwenyi.javalib.exception.ExceptionUtils;
+import com.fengwenyi.javalib.util.PrintUtils;
 import com.fengwenyi.javalib.util.StringUtils;
 
 import java.util.*;
@@ -26,17 +29,10 @@ public class JsonUtils {
     private static final JsonMapper mapper = new JsonMapper();
 
     static {
-        javaTimeModel();
-        mapper();
+        configure(mapper);
     }
 
-    private static void javaTimeModel() {
-        JavaTimeModule javaTimeModule = new JavaTimeModule();
-        mapper.registerModule(javaTimeModule);
-    }
-
-
-    private static void mapper() {
+    public static void configure(JsonMapper mapper) {
         // Include.NON_NULL 属性为NULL 不序列化
         //ALWAYS // 默认策略，任何情况都执行序列化
         //NON_EMPTY // null、集合数组等没有内容、空字符串等，都不会被序列化
@@ -51,14 +47,10 @@ public class JsonUtils {
         mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
 
         // 允许出现特殊字符和转义符
-        //mapper.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);这个已经过时。
-//        mapper.configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(), true);
+        mapper.configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(), true);
 
         //允许C和C++样式注释：
         mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
-
-        //序列化结果格式化，美化输出
-        // mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         //枚举输出成字符串
         //WRITE_ENUMS_USING_INDEX：输出索引
@@ -82,6 +74,10 @@ public class JsonUtils {
         // 采用字段，不使用 Getter
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         mapper.setVisibility(PropertyAccessor.GETTER, JsonAutoDetect.Visibility.NONE);
+
+        // java.time 设置
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        mapper.registerModule(javaTimeModule);
     }
 
     /**
@@ -90,11 +86,11 @@ public class JsonUtils {
      * @param <T> 对象的类型
      * @return JSON字符串
      */
-    public static <T> String convertString(T value) {
+    public static <T> String string(T value) {
         try {
             return mapper.writeValueAsString(value);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -109,11 +105,11 @@ public class JsonUtils {
      * @param value 待转换并格式化的对象
      * @return 返回一个格式化的JSON格式的字符串
      */
-    public static String prettyPrint(Object value) {
+    public static String pretty(Object value) {
         try {
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(value);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -125,11 +121,11 @@ public class JsonUtils {
      * @param <T> 对象的类型
      * @return 返回一个对象
      */
-    public static <T> T convertObject(String content, Class<T> valueType) {
+    public static <T> T object(String content, Class<T> valueType) {
         try {
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -141,11 +137,11 @@ public class JsonUtils {
      * @param <T> 对象的类型
      * @return 返回一个对象
      */
-    public static <T> T convertObject(String content, TypeReference<T> valueType) {
+    public static <T> T object(String content, TypeReference<T> valueType) {
         try {
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -158,12 +154,12 @@ public class JsonUtils {
      * @param <T> 转换后的对象
      * @return 返回转换后的集合对象
      */
-    public static <T> T convertCollection(String content, Class<? extends Collection> collectionClass, Class<?> clazz) {
+    public static <T> T collection(String content, Class<? extends Collection> collectionClass, Class<?> clazz) {
         CollectionType valueType = mapper.getTypeFactory().constructCollectionType(collectionClass, clazz);
         try {
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -175,11 +171,11 @@ public class JsonUtils {
      * @param <T> 转换后的对象
      * @return 返回转换后的集合对象
      */
-    public static <T> T convertCollection(String content, TypeReference<T> valueTypeRef) {
+    public static <T> T collection(String content, TypeReference<T> valueTypeRef) {
         try {
             return mapper.readValue(content, valueTypeRef);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -193,12 +189,12 @@ public class JsonUtils {
      * @param <V> Map value对象
      * @return 转换后的 {@code Map<K, V>}
      */
-    public static <K, V> Map<K, V> convertMap(String json, Class<K> kClazz, Class<V> vClazz) {
+    public static <K, V> Map<K, V> map(String json, Class<K> kClazz, Class<V> vClazz) {
         JavaType javaType = mapper.getTypeFactory().constructMapType(Map.class, kClazz, vClazz);
         try {
             return mapper.readValue(json, javaType);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }

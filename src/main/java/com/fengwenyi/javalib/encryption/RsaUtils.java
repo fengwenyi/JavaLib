@@ -22,7 +22,7 @@ import java.security.spec.X509EncodedKeySpec;
  *
  * @author Wenyi Feng(xfsy_2015@163.com)
  */
-public class RSAUtils {
+public class RsaUtils {
 
     /*
     // 这里面有很多异常，都交给使用者自行处理，

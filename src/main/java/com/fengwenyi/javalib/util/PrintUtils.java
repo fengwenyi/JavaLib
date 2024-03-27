@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.util;
 
-import com.fengwenyi.javalib.constant.LogLevel;
+import com.fengwenyi.javalib.enums.LogLevel;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

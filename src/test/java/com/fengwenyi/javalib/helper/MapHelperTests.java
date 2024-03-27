@@ -14,7 +14,7 @@ public class MapHelperTests {
     @Test
     public void testBuild() {
         Map<String, Object> map = MapHelper.init().put("key", "value").build();
-        System.out.println(JsonUtils.prettyPrint(map));
+        System.out.println(JsonUtils.pretty(map));
     }
 
 }
