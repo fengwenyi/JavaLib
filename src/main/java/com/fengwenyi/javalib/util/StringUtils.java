@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  *     <li>字符串判非空</li>
  * </ul>
  *
- * @author Wenyi Feng
+ * @author Erwin Feng
  */
 public class StringUtils {
 
@@ -31,14 +31,14 @@ public class StringUtils {
      * @param str 待判断的字符串
      * @return 是否是空字符串，true：空字符串；false：非空字符串
      */
-    public static boolean isEmpty(String str) {
+    public static boolean isBlank(String str) {
         if (Objects.isNull(str))
             return true;
         if ("".equals(str.trim()))
             return true;
         if ("null".equals(str.trim()))
             return true;
-        return str.isEmpty();
+        return str.isBlank();
     }
 
     /**
@@ -47,8 +47,8 @@ public class StringUtils {
      * @param str 待判断的字符串
      * @return 是否是空字符串，true：非空字符串；false：空字符串
      */
-    public static boolean isNotEmpty(String str) {
-        return !isEmpty(str);
+    public static boolean isNotBlank(String str) {
+        return !isBlank(str);
     }
 
 
@@ -97,7 +97,7 @@ public class StringUtils {
             return source + "";
 
         // 指定填充字符
-        if (isEmpty(str))
+        if (isBlank(str))
             str = "0";
 
         // 指定填充方向
@@ -138,7 +138,7 @@ public class StringUtils {
      */
     public static boolean hasOnlyNum(String str) {
 
-        if (isEmpty(str))
+        if (isBlank(str))
             return false;
 
         Pattern pattern = Pattern.compile("[0-9]*");
@@ -172,7 +172,7 @@ public class StringUtils {
      * @return 移除后的字符串
      */
     public static String removeStart(String str, String remove) {
-        if (isNotEmpty(str) && isNotEmpty(remove)) {
+        if (isNotBlank(str) && isNotBlank(remove)) {
             return str.startsWith(remove) ? str.substring(remove.length()) : str;
         } else {
             return str;
@@ -208,7 +208,7 @@ public class StringUtils {
      * @return 返回字符串左边指定长度的字符串
      */
     public static String getLeft(String source, int length) {
-        if (StringUtils.isEmpty(source)
+        if (StringUtils.isBlank(source)
                 || length < 1) {
             return StringConstant.BLANK;
         }
@@ -234,7 +234,7 @@ public class StringUtils {
      * @return 返回字符串右边指定长度的字符串
      */
     public static String getRight(String source, int length) {
-        if (StringUtils.isEmpty(source)
+        if (StringUtils.isBlank(source)
                 || length < 1) {
             return StringConstant.BLANK;
         }
@@ -247,10 +247,10 @@ public class StringUtils {
 
     // 截取前缀后的字符串
     public static String substringAfter(String content, String prefix) {
-        if (isEmpty(content)) {
+        if (isBlank(content)) {
             return "";
         }
-        if (isEmpty(prefix)) {
+        if (isBlank(prefix)) {
             return content;
         }
         return content.substring(prefix.length());
@@ -258,7 +258,7 @@ public class StringUtils {
 
     // 将字符串的第一个字符大写
     public static String lowerCaseFirst(String content) {
-        if (isEmpty(content)) {
+        if (isBlank(content)) {
             return "";
         }
         String first = content.substring(0, 1);
