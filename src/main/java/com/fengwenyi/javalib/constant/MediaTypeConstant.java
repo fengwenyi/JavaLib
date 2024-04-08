@@ -11,6 +11,6 @@ public class MediaTypeConstant {
     public static final String APPLICATION_JSON_VALUE = "application/json";
 
     /** application/...form... */
-    public static final String APPLICATION_FORM_VALUE = "application/x-www-form-urlencoded;";
+    public static final String APPLICATION_FORM_VALUE = "application/x-www-form-urlencoded";
 
 }

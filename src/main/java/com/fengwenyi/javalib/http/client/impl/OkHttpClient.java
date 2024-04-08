@@ -63,7 +63,7 @@ public class OkHttpClient implements HttpClient {
                 }
             } else {
                 if (Request.ParamFormat.JSON == paramFormat) {
-                    requestBody = buildJsonRequestBody(JsonUtils.convertString(param));
+                    requestBody = buildJsonRequestBody(JsonUtils.string(param));
                 } else if (Request.ParamFormat.FORM == paramFormat) {
                     requestBody = buildFormRequestBody(param);
                 }

@@ -1,11 +1,10 @@
 package com.fengwenyi.javalib.http;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="https://fengwenyi.com">Erwin Feng</a>

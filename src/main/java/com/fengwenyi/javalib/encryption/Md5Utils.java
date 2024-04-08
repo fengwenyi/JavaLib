@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
  * @author Wenyi Feng
  * @since 2018-10-16
  */
-public class MD5Utils {
+public class Md5Utils {
 
     /**
      * MD5加密
@@ -19,7 +19,7 @@ public class MD5Utils {
      * @return MD5加密之后的字符串，32位小写
      * @throws NoSuchAlgorithmException 算法失败
      */
-    public static String md5(String plainText) throws NoSuchAlgorithmException {
+    public static String encrypt(String plainText) throws NoSuchAlgorithmException {
         // 创建一个md5算法对象
         MessageDigest md = MessageDigest.getInstance(EncryptionTypeConstant.MD5);
         byte[] messageByte = plainText.getBytes();

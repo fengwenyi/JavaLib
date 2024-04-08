@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fengwenyi.javalib.exception.ExceptionUtils;
+import com.fengwenyi.javalib.util.PrintUtils;
 
 /**
  * XML转换工具类
@@ -20,45 +22,10 @@ public class XmlUtils {
     private static final XmlMapper mapper = new XmlMapper();
     
     static {
-        mapper();
-        jacksonXmlModule();
-        javaTimeModel();
+        configure(mapper);
     }
 
-    private static void jacksonXmlModule() {
-        JacksonXmlModule javaTimeModule = new JacksonXmlModule();
-        mapper.registerModule(javaTimeModule);
-    }
-
-    private static void javaTimeModel() {
-        JavaTimeModule javaTimeModule = new JavaTimeModule();
-        mapper.registerModule(javaTimeModule);
-    }
-
-
-    private static void mapper() {
-        // Include.NON_NULL 属性为NULL 不序列化
-        //ALWAYS // 默认策略，任何情况都执行序列化
-        //NON_EMPTY // null、集合数组等没有内容、空字符串等，都不会被序列化
-        //NON_DEFAULT // 如果字段是默认值，就不会被序列化
-        //NON_ABSENT // null的不会序列化，但如果类型是AtomicReference，依然会被序列化
-        // mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-
-        //允许字段名没有引号（可以进一步减小json体积）：
-        //mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-
-        //允许单引号：
-        //mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-
-        // 允许出现特殊字符和转义符
-        //mapper.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);这个已经过时。
-//        mapper.configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(), true);
-
-        //允许C和C++样式注释：
-        //mapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
-
-        //序列化结果格式化，美化输出
-        // mapper.enable(SerializationFeature.INDENT_OUTPUT);
+    public static void configure(XmlMapper mapper) {
 
         //枚举输出成字符串
         //WRITE_ENUMS_USING_INDEX：输出索引
@@ -82,6 +49,14 @@ public class XmlUtils {
         // 采用字段，不使用 Getter
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         mapper.setVisibility(PropertyAccessor.GETTER, JsonAutoDetect.Visibility.NONE);
+
+        // jackson xml
+        JacksonXmlModule jacksonXmlModule = new JacksonXmlModule();
+        mapper.registerModule(jacksonXmlModule);
+
+        // java.time
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        mapper.registerModule(javaTimeModule);
     }
 
     /**
@@ -90,11 +65,11 @@ public class XmlUtils {
      * @param <T> 对象的类型
      * @return 返回转换后的XML格式的字符串
      */
-    public static <T> String convertString(T value) {
+    public static <T> String string(T value) {
         try {
             return mapper.writeValueAsString(value);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -106,11 +81,11 @@ public class XmlUtils {
      * @param <T> 对象的类型
      * @return 返回转换后的对象
      */
-    public static <T> T convertObject(String value, Class<T> valueType) {
+    public static <T> T object(String value, Class<T> valueType) {
         try {
             return mapper.readValue(value, valueType);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -122,11 +97,11 @@ public class XmlUtils {
      * @param <T> 对象的类型
      * @return 返回转换后的对象
      */
-    public static <T> T convertObject(String value, TypeReference<T> valueType) {
+    public static <T> T object(String value, TypeReference<T> valueType) {
         try {
             return mapper.readValue(value, valueType);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }

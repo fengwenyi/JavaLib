@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.bean;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="https://fengwenyi.com">Erwin Feng</a>
