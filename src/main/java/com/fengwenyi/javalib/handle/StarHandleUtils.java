@@ -3,7 +3,7 @@ package com.fengwenyi.javalib.handle;
 import com.fengwenyi.javalib.collection.CollectionUtils;
 import com.fengwenyi.javalib.constant.LengthConstant;
 import com.fengwenyi.javalib.constant.StringConstant;
-import com.fengwenyi.javalib.util.StringUtils;
+import com.fengwenyi.javalib.util.StrUtils;
 
 /**
  * 星号（*）处理工具类
@@ -13,7 +13,7 @@ import com.fengwenyi.javalib.util.StringUtils;
 public class StarHandleUtils {
 
     public static String ip(String ip) {
-        if (StringUtils.isEmpty(ip)) {
+        if (StrUtils.isBlank(ip)) {
             return StringConstant.BLANK;
         }
         String[] array = ip.split("\\.");
@@ -32,13 +32,13 @@ public class StarHandleUtils {
      * @return 返回星号处理之后的手机号
      */
     public static String phone(String phone) {
-        if (StringUtils.isEmpty(phone)) {
+        if (StrUtils.isBlank(phone)) {
             return StringConstant.BLANK;
         }
         if (phone.length() == 11) {
-            String left = StringUtils.getLeft(phone, 3);
-            String right = StringUtils.getRight(phone, 4);
-            String star = StringUtils.generateStar(4);
+            String left = StrUtils.getLeft(phone, 3);
+            String right = StrUtils.getRight(phone, 4);
+            String star = StrUtils.generateStar(4);
             return left + star + right;
         }
         return StringConstant.BLANK;
@@ -50,15 +50,15 @@ public class StarHandleUtils {
      * @return 返回处理之后的邮箱
      */
     public static String email(String email) {
-        if (StringUtils.isEmpty(email)) {
+        if (StrUtils.isBlank(email)) {
             return StringConstant.BLANK;
         }
         int index = email.lastIndexOf("@");
         if (index > 0) {
             int indexLeft = index == 1 ? 0 : 1;
-            String right = StringUtils.getRight(email, email.length() - index);
-            String left = StringUtils.getLeft(email, indexLeft);
-            String star = StringUtils.generateStar(index - indexLeft);
+            String right = StrUtils.getRight(email, email.length() - index);
+            String left = StrUtils.getLeft(email, indexLeft);
+            String star = StrUtils.generateStar(index - indexLeft);
             return left + star + right;
         }
         return StringConstant.BLANK;
@@ -87,7 +87,7 @@ public class StarHandleUtils {
      */
     public static String idCardNo(String idCardNo, int leftLength, int rightLength) {
 
-        if (StringUtils.isEmpty(idCardNo)) {
+        if (StrUtils.isBlank(idCardNo)) {
             return StringConstant.BLANK;
         }
 
@@ -95,10 +95,10 @@ public class StarHandleUtils {
             return StringConstant.BLANK;
         }
 
-        String leftString = StringUtils.getLeft(idCardNo, leftLength);
-        String rightString = StringUtils.getRight(idCardNo, rightLength);
+        String leftString = StrUtils.getLeft(idCardNo, leftLength);
+        String rightString = StrUtils.getRight(idCardNo, rightLength);
         int starLength = idCardNo.length() - leftLength - rightLength;
-        String starString = StringUtils.generateStar(starLength);
+        String starString = StrUtils.generateStar(starLength);
 
         return leftString + starString + rightString;
     }
@@ -108,7 +108,7 @@ public class StarHandleUtils {
      * @return 返回32位的星号密码
      */
     public static String password() {
-        return StringUtils.generateStar(LengthConstant.PASSWORD);
+        return StrUtils.generateStar(LengthConstant.PASSWORD);
     }
 
     /**
@@ -117,7 +117,7 @@ public class StarHandleUtils {
      * @return 返回指定长度的星号密码
      */
     public static String password(int len) {
-        return StringUtils.generateStar(len);
+        return StrUtils.generateStar(len);
     }
 
     /**
@@ -132,21 +132,21 @@ public class StarHandleUtils {
      * @return 姓名带星号
      */
     public static String realName(String realName) {
-        if (StringUtils.isEmpty(realName)) {
+        if (StrUtils.isBlank(realName)) {
             return StringConstant.BLANK;
         }
         if (realName.length() == 2) {
-            String right = StringUtils.getRight(realName, 1);
-            String star = StringUtils.generateStar(1);
+            String right = StrUtils.getRight(realName, 1);
+            String star = StrUtils.generateStar(1);
             return star + right;
         }
         if (realName.length() > 2) {
-            String left = StringUtils.getLeft(realName, 1);
-            String right = StringUtils.getRight(realName, 1);
-            String star = StringUtils.generateStar(realName.length() - 2);
+            String left = StrUtils.getLeft(realName, 1);
+            String right = StrUtils.getRight(realName, 1);
+            String star = StrUtils.generateStar(realName.length() - 2);
             return left + star + right;
         }
-        return StringUtils.generateStar(1);
+        return StrUtils.generateStar(1);
     }
 
 }

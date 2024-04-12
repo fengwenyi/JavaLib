@@ -5,7 +5,7 @@ import com.fengwenyi.javalib.convert.JsonUtils;
 import com.fengwenyi.javalib.http.Request;
 import com.fengwenyi.javalib.http.Response;
 import com.fengwenyi.javalib.http.client.HttpClient;
-import com.fengwenyi.javalib.util.StringUtils;
+import com.fengwenyi.javalib.util.StrUtils;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -152,11 +152,11 @@ public class OkHttpClient implements HttpClient {
 
     private String getUrl(Request request) {
 
-        StringBuilder url = new StringBuilder(request.getUrl());
-
-        if (StringUtils.isEmpty(url.toString().trim())) {
+        if (StrUtils.isBlank(request.getUrl())) {
             throw new RuntimeException("url不能为空");
         }
+
+        StringBuilder url = new StringBuilder(request.getUrl());
 
         if (Request.Method.GET == request.getMethod()) {
             if (!url.toString().contains("?")) {

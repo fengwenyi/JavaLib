@@ -3,7 +3,7 @@ package com.fengwenyi.javalib.bean;
 import com.fengwenyi.javalib.convert.JsonUtils;
 import com.fengwenyi.javalib.jk.IGetter;
 import com.fengwenyi.javalib.jk.ISetter;
-import com.fengwenyi.javalib.util.StringUtils;
+import com.fengwenyi.javalib.util.StrUtils;
 
 import java.io.Serializable;
 import java.lang.invoke.SerializedLambda;
@@ -78,11 +78,11 @@ public class BeanUtils {
     // 根据方法名获取字段名
     private static String getFieldNameByMethodName(String methodName) {
         String prefix = getGetSetMethodPrefix(methodName);
-        if(StringUtils.isEmpty(prefix)){
+        if(StrUtils.isEmpty(prefix)){
             System.err.println("无效的方法: " + methodName);
             return "";
         }
-        return StringUtils.lowerCaseFirst(StringUtils.substringAfter(methodName, prefix));
+        return StrUtils.lowerCaseFirst(StrUtils.substringAfter(methodName, prefix));
     }
 
     // 获取 getter / setter 方法前缀

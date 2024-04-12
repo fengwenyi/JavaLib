@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  *
  * @author Erwin Feng
  */
-public class StringUtils {
+public class StrUtils {
 
     /**
      * 判断字符串是否为空
@@ -38,7 +38,7 @@ public class StringUtils {
             return true;
         if ("null".equals(str.trim()))
             return true;
-        return str.isBlank();
+        return str.trim().length() == 0;
     }
 
     /**
@@ -208,7 +208,7 @@ public class StringUtils {
      * @return 返回字符串左边指定长度的字符串
      */
     public static String getLeft(String source, int length) {
-        if (StringUtils.isBlank(source)
+        if (StrUtils.isBlank(source)
                 || length < 1) {
             return StringConstant.BLANK;
         }
@@ -234,7 +234,7 @@ public class StringUtils {
      * @return 返回字符串右边指定长度的字符串
      */
     public static String getRight(String source, int length) {
-        if (StringUtils.isBlank(source)
+        if (StrUtils.isBlank(source)
                 || length < 1) {
             return StringConstant.BLANK;
         }

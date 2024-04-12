@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib.convert;
 
 import com.fengwenyi.javalib.constant.StringConstant;
-import com.fengwenyi.javalib.util.StringUtils;
+import com.fengwenyi.javalib.util.StrUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,7 +22,7 @@ public class NamingUtils {
      * @return 转换后的名称
      */
     public static String humpToMidline(String name) {
-        if (StringUtils.isEmpty(name)) {
+        if (StrUtils.isEmpty(name)) {
             return StringConstant.BLANK;
         }
         Matcher matcher = HUMP_PATTERN.matcher(name);
@@ -40,7 +40,7 @@ public class NamingUtils {
      * @return 转换后的名称
      */
     public static String humpToUnderline(String name) {
-        if (StringUtils.isEmpty(name)) {
+        if (StrUtils.isEmpty(name)) {
             return StringConstant.BLANK;
         }
         Matcher matcher = HUMP_PATTERN.matcher(name);
@@ -58,7 +58,7 @@ public class NamingUtils {
      * @return 转换后的名称
      */
     public static String underlineToHump(String name) {
-        if (StringUtils.isEmpty(name)) {
+        if (StrUtils.isEmpty(name)) {
             return StringConstant.BLANK;
         }
         name = name.toLowerCase();

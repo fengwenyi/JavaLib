@@ -2,7 +2,7 @@ package com.fengwenyi.javalib.http.client;
 
 import com.fengwenyi.javalib.http.Request;
 import com.fengwenyi.javalib.http.Response;
-import com.fengwenyi.javalib.util.StringUtils;
+import com.fengwenyi.javalib.util.StrUtils;
 
 import java.io.IOException;
 import java.util.Objects;

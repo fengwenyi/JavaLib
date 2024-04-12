@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib.http;
 
 import com.fengwenyi.javalib.collection.MapUtils;
-import com.fengwenyi.javalib.util.StringUtils;
+import com.fengwenyi.javalib.util.StrUtils;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSocketFactory;
@@ -222,7 +222,7 @@ public class Request {
     }
 
     public Request setParam(String param) {
-        if (StringUtils.isNotEmpty(param)) {
+        if (StrUtils.isNotEmpty(param)) {
             Map<String, Object> map = new HashMap<>();
             map.put(PARAM_DEFAULT_KEY, param);
             this.param = map;
@@ -241,7 +241,7 @@ public class Request {
         }
         StringJoiner stringJoiner = new StringJoiner("&", "", "");
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if (StringUtils.isNotEmpty(entry.getKey())) {
+            if (StrUtils.isNotEmpty(entry.getKey())) {
                 stringJoiner.add(entry.getKey() + "=" + entry.getValue());
             }
         }

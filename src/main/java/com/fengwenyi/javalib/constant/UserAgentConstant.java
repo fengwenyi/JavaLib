@@ -6,7 +6,7 @@ package com.fengwenyi.javalib.constant;
  */
 public class UserAgentConstant {
 
-    private static final String MAC_ = "Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1";
+    public static final String Chrome_Mac = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36";
 
     /**
      * Chrome Win7

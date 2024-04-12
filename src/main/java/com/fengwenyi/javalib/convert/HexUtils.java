@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.convert;
 
-import com.fengwenyi.javalib.util.StringUtils;
+import com.fengwenyi.javalib.util.StrUtils;
 
 /**
  * 进制转换工具类
@@ -36,7 +36,7 @@ public class HexUtils {
      * @return byte[]
      */
     public static byte[] _16_2(String hexStr) {
-        if (StringUtils.isEmpty(hexStr))
+        if (StrUtils.isEmpty(hexStr))
             return null;
 
         byte[] result = new byte[hexStr.length() / 2];

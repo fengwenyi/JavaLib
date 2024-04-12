@@ -1,6 +1,6 @@
 package com.fengwenyi.javalib.convert;
 
-import com.fengwenyi.javalib.util.StringUtils;
+import com.fengwenyi.javalib.util.StrUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -48,7 +48,7 @@ public class ParamUtils {
      */
     public static Map<String, String> getUrlParams(String param) {
         Map<String, String> map = new HashMap<>();
-        if (StringUtils.isEmpty(param)) {
+        if (StrUtils.isEmpty(param)) {
             return map;
         }
         String[] params = param.split("&");

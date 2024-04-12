@@ -1,7 +1,7 @@
 package com.fengwenyi.javalib.encryption;
 
 import com.fengwenyi.javalib.convert.HexUtils;
-import com.fengwenyi.javalib.util.StringUtils;
+import com.fengwenyi.javalib.util.StrUtils;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -208,7 +208,7 @@ public class RsaUtils {
         Signature signTool = Signature.getInstance(algorithm);
         PrivateKey key = commonGetPrivatekeyByText(privateKey);
         signTool.initSign(key);
-        if (StringUtils.isEmpty(charset)) {
+        if (StrUtils.isEmpty(charset)) {
             signTool.update(content.getBytes());
         } else {
             signTool.update(content.getBytes(charset));
@@ -238,7 +238,7 @@ public class RsaUtils {
         Signature signTool = Signature.getInstance(algorithm);
         PublicKey key = commonGetPublickeyByText(publicKey);
         signTool.initVerify(key);
-        if (StringUtils.isEmpty(charset)) {
+        if (StrUtils.isEmpty(charset)) {
             signTool.update(content.getBytes());
         } else {
             signTool.update(content.getBytes(charset));
