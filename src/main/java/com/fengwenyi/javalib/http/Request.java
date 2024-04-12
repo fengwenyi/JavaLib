@@ -222,7 +222,7 @@ public class Request {
     }
 
     public Request setParam(String param) {
-        if (StrUtils.isNotEmpty(param)) {
+        if (StrUtils.isNotBlank(param)) {
             Map<String, Object> map = new HashMap<>();
             map.put(PARAM_DEFAULT_KEY, param);
             this.param = map;
@@ -241,7 +241,7 @@ public class Request {
         }
         StringJoiner stringJoiner = new StringJoiner("&", "", "");
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if (StrUtils.isNotEmpty(entry.getKey())) {
+            if (StrUtils.isNotBlank(entry.getKey())) {
                 stringJoiner.add(entry.getKey() + "=" + entry.getValue());
             }
         }

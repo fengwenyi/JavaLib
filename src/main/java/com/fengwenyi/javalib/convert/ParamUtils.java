@@ -48,7 +48,7 @@ public class ParamUtils {
      */
     public static Map<String, String> getUrlParams(String param) {
         Map<String, String> map = new HashMap<>();
-        if (StrUtils.isEmpty(param)) {
+        if (StrUtils.isBlank(param)) {
             return map;
         }
         String[] params = param.split("&");

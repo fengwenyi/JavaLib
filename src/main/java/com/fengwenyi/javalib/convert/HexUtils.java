@@ -36,7 +36,7 @@ public class HexUtils {
      * @return byte[]
      */
     public static byte[] _16_2(String hexStr) {
-        if (StrUtils.isEmpty(hexStr))
+        if (StrUtils.isBlank(hexStr))
             return null;
 
         byte[] result = new byte[hexStr.length() / 2];

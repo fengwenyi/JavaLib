@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fengwenyi.javalib.constant.StringConstant;
 import com.fengwenyi.javalib.exception.ExceptionUtils;
 import com.fengwenyi.javalib.util.PrintUtils;
 import com.fengwenyi.javalib.util.StrUtils;
@@ -87,6 +88,9 @@ public class JsonUtils {
      * @return JSON字符串
      */
     public static <T> String string(T value) {
+        if (Objects.isNull(value)) {
+            return StringConstant.BLANK;
+        }
         try {
             return mapper.writeValueAsString(value);
         } catch (JsonProcessingException e) {
@@ -106,6 +110,9 @@ public class JsonUtils {
      * @return 返回一个格式化的JSON格式的字符串
      */
     public static String pretty(Object value) {
+        if (Objects.isNull(value)) {
+            return StringConstant.BLANK;
+        }
         try {
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(value);
         } catch (JsonProcessingException e) {
@@ -122,6 +129,9 @@ public class JsonUtils {
      * @return 返回一个对象
      */
     public static <T> T object(String content, Class<T> valueType) {
+        if (StrUtils.isBlank(content) || Objects.isNull(valueType)) {
+            return null;
+        }
         try {
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
@@ -138,6 +148,9 @@ public class JsonUtils {
      * @return 返回一个对象
      */
     public static <T> T object(String content, TypeReference<T> valueType) {
+        if (StrUtils.isBlank(content) || Objects.isNull(valueType)) {
+            return null;
+        }
         try {
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
@@ -155,8 +168,11 @@ public class JsonUtils {
      * @return 返回转换后的集合对象
      */
     public static <T> T collection(String content, Class<? extends Collection> collectionClass, Class<?> clazz) {
-        CollectionType valueType = mapper.getTypeFactory().constructCollectionType(collectionClass, clazz);
+        if (StrUtils.isBlank(content) || Objects.isNull(collectionClass) || Objects.isNull(clazz)) {
+            return null;
+        }
         try {
+            CollectionType valueType = mapper.getTypeFactory().constructCollectionType(collectionClass, clazz);
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
             PrintUtils.error(ExceptionUtils.getStackTrace(e));
@@ -172,6 +188,9 @@ public class JsonUtils {
      * @return 返回转换后的集合对象
      */
     public static <T> T collection(String content, TypeReference<T> valueTypeRef) {
+        if (StrUtils.isBlank(content) || Objects.isNull(valueTypeRef)) {
+            return null;
+        }
         try {
             return mapper.readValue(content, valueTypeRef);
         } catch (JsonProcessingException e) {
@@ -190,8 +209,11 @@ public class JsonUtils {
      * @return 转换后的 {@code Map<K, V>}
      */
     public static <K, V> Map<K, V> map(String json, Class<K> kClazz, Class<V> vClazz) {
-        JavaType javaType = mapper.getTypeFactory().constructMapType(Map.class, kClazz, vClazz);
+        if (StrUtils.isBlank(json) || Objects.isNull(kClazz) || Objects.isNull(vClazz)) {
+            return null;
+        }
         try {
+            JavaType javaType = mapper.getTypeFactory().constructMapType(Map.class, kClazz, vClazz);
             return mapper.readValue(json, javaType);
         } catch (JsonProcessingException e) {
             PrintUtils.error(ExceptionUtils.getStackTrace(e));
@@ -210,7 +232,7 @@ public class JsonUtils {
      * @return key列表
      */
     public static List<String> getKeys(String content) {
-        if (StrUtils.isEmpty(content)) {
+        if (StrUtils.isBlank(content)) {
             return Collections.emptyList();
         }
         JsonNode jsonNode;

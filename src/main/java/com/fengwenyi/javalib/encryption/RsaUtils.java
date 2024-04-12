@@ -208,7 +208,7 @@ public class RsaUtils {
         Signature signTool = Signature.getInstance(algorithm);
         PrivateKey key = commonGetPrivatekeyByText(privateKey);
         signTool.initSign(key);
-        if (StrUtils.isEmpty(charset)) {
+        if (StrUtils.isBlank(charset)) {
             signTool.update(content.getBytes());
         } else {
             signTool.update(content.getBytes(charset));
@@ -238,7 +238,7 @@ public class RsaUtils {
         Signature signTool = Signature.getInstance(algorithm);
         PublicKey key = commonGetPublickeyByText(publicKey);
         signTool.initVerify(key);
-        if (StrUtils.isEmpty(charset)) {
+        if (StrUtils.isBlank(charset)) {
             signTool.update(content.getBytes());
         } else {
             signTool.update(content.getBytes(charset));

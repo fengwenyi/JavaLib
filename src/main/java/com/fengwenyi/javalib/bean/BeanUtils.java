@@ -1,8 +1,10 @@
 package com.fengwenyi.javalib.bean;
 
 import com.fengwenyi.javalib.convert.JsonUtils;
+import com.fengwenyi.javalib.exception.ExceptionUtils;
 import com.fengwenyi.javalib.jk.IGetter;
 import com.fengwenyi.javalib.jk.ISetter;
+import com.fengwenyi.javalib.util.PrintUtils;
 import com.fengwenyi.javalib.util.StrUtils;
 
 import java.io.Serializable;
@@ -63,22 +65,21 @@ public class BeanUtils {
 
     // 获取类对应的Lambda
     private static SerializedLambda getSerializedLambda(Serializable fn){
-        SerializedLambda lambda = null;
         try{
             Method method = fn.getClass().getDeclaredMethod("writeReplace");
             method.setAccessible(Boolean.TRUE);
-            lambda = (SerializedLambda) method.invoke(fn);
+            return (SerializedLambda) method.invoke(fn);
         }
         catch (Exception e){
-            e.printStackTrace();
+            PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            return null;
         }
-        return lambda;
     }
 
     // 根据方法名获取字段名
     private static String getFieldNameByMethodName(String methodName) {
         String prefix = getGetSetMethodPrefix(methodName);
-        if(StrUtils.isEmpty(prefix)){
+        if(StrUtils.isBlank(prefix)){
             System.err.println("无效的方法: " + methodName);
             return "";
         }

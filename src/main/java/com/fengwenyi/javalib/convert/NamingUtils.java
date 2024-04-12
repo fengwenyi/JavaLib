@@ -22,7 +22,7 @@ public class NamingUtils {
      * @return 转换后的名称
      */
     public static String humpToMidline(String name) {
-        if (StrUtils.isEmpty(name)) {
+        if (StrUtils.isBlank(name)) {
             return StringConstant.BLANK;
         }
         Matcher matcher = HUMP_PATTERN.matcher(name);
@@ -40,7 +40,7 @@ public class NamingUtils {
      * @return 转换后的名称
      */
     public static String humpToUnderline(String name) {
-        if (StrUtils.isEmpty(name)) {
+        if (StrUtils.isBlank(name)) {
             return StringConstant.BLANK;
         }
         Matcher matcher = HUMP_PATTERN.matcher(name);
@@ -58,7 +58,7 @@ public class NamingUtils {
      * @return 转换后的名称
      */
     public static String underlineToHump(String name) {
-        if (StrUtils.isEmpty(name)) {
+        if (StrUtils.isBlank(name)) {
             return StringConstant.BLANK;
         }
         name = name.toLowerCase();

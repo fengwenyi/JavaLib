@@ -23,7 +23,7 @@ public class ShaUtils {
         // 返回值
         String result = null;
         // 是否是有效字符串
-        if (StrUtils.isNotEmpty(plainText)) {
+        if (StrUtils.isNotBlank(plainText)) {
             // SHA 加密开始
             // 创建加密对象 并传入加密类型
             MessageDigest messageDigest = MessageDigest.getInstance(EncryptionTypeConstant.SHA1);
