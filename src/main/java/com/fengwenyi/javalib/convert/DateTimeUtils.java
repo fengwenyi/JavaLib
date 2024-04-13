@@ -1,5 +1,8 @@
 package com.fengwenyi.javalib.convert;
 
+import com.fengwenyi.javalib.constant.StringConstant;
+import com.fengwenyi.javalib.util.StrUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
@@ -63,6 +66,9 @@ public class DateTimeUtils {
      * @return 满足指定格式的时间字符串
      */
     public static String format(LocalDateTime dateTime, String pattern) {
+        if (Objects.isNull(dateTime) || StrUtils.isBlank(pattern)) {
+            return StringConstant.BLANK;
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return dateTime.format(formatter);
     }
@@ -74,6 +80,9 @@ public class DateTimeUtils {
      * @return 满足指定格式的日期字符串
      */
     public static String format(LocalDate date, String pattern) {
+        if (Objects.isNull(date) || StrUtils.isBlank(pattern)) {
+            return StringConstant.BLANK;
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return date.format(formatter);
     }
@@ -85,6 +94,9 @@ public class DateTimeUtils {
      * @return 满足指定格式的时间字符串
      */
     public static String format(Date date, String pattern) {
+        if (Objects.isNull(date) || StrUtils.isBlank(pattern)) {
+            return StringConstant.BLANK;
+        }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(date);
     }
@@ -99,6 +111,9 @@ public class DateTimeUtils {
      * @return 满足指定格式的时间字符串
      */
     public static String format(Long timestamp, String pattern) {
+        if (Objects.isNull(timestamp) || StrUtils.isBlank(pattern)) {
+            return StringConstant.BLANK;
+        }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(timestamp);
     }
@@ -110,6 +125,9 @@ public class DateTimeUtils {
      * @return 满足指定格式的时间字符串
      */
     public static String format(Instant instant, String pattern) {
+        if (Objects.isNull(instant) || StrUtils.isBlank(pattern)) {
+            return StringConstant.BLANK;
+        }
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         return localDateTime.format(DateTimeFormatter.ofPattern(pattern));
     }
@@ -121,6 +139,9 @@ public class DateTimeUtils {
      * @return 满足指定格式的时间字符串
      */
     public static String format(OffsetDateTime offsetDateTime, String pattern) {
+        if (Objects.isNull(offsetDateTime) || StrUtils.isBlank(pattern)) {
+            return StringConstant.BLANK;
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return offsetDateTime.format(formatter);
     }
@@ -132,6 +153,9 @@ public class DateTimeUtils {
      * @return 日期时间格式 {@link LocalDateTime}
      */
     public static LocalDateTime parseLocalDateTime(String dateTimeStr, String pattern) {
+        if (StrUtils.isBlank(dateTimeStr) || StrUtils.isBlank(pattern)) {
+            return null;
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return LocalDateTime.parse(dateTimeStr, formatter);
     }
@@ -144,6 +168,9 @@ public class DateTimeUtils {
      * @return 日期时间格式 {@link LocalDate}
      */
     public static LocalDate parseLocalDate(String dateStr, String pattern) {
+        if (StrUtils.isBlank(dateStr) || StrUtils.isBlank(pattern)) {
+            return null;
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return LocalDate.parse(dateStr, formatter);
     }
@@ -155,6 +182,9 @@ public class DateTimeUtils {
      * @return Instant {@code 2019-07-08T16:00:00Z}
      */
     public static Instant parseInstant(String source) {
+        if (StrUtils.isBlank(source)) {
+            return null;
+        }
         LocalDate date = LocalDate.parse(source);
         return date.atStartOfDay(ZoneId.systemDefault()).toInstant();
     }
@@ -166,6 +196,9 @@ public class DateTimeUtils {
      * @return Instant
      */
     public static Instant parseInstant(String source, String pattern) {
+        if (StrUtils.isBlank(source) || StrUtils.isBlank(pattern)) {
+            return null;
+        }
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern);
         LocalDateTime dateTime = LocalDateTime.parse(source, dateTimeFormatter);
         return dateTime.atZone(ZoneOffset.systemDefault()).toInstant();
@@ -178,6 +211,9 @@ public class DateTimeUtils {
      * @return 时间类型({@link java.util.Date})
      */
     public static Date parseDate(String source, String pattern) {
+        if (StrUtils.isBlank(source) || StrUtils.isBlank(pattern)) {
+            return null;
+        }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         try {
             return simpleDateFormat.parse(source);
@@ -239,6 +275,9 @@ public class DateTimeUtils {
      * @return {@link LocalDateTime}
      */
     public static LocalDateTime toLocalDateTime(Instant instant) {
+        if (Objects.isNull(instant)) {
+            return null;
+        }
         return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
@@ -248,6 +287,9 @@ public class DateTimeUtils {
      * @return {@link Instant}
      */
     public static Instant toInstant(Date date) {
+        if (Objects.isNull(date)) {
+            return null;
+        }
         // return date.toInstant();
         return Instant.ofEpochMilli(date.getTime());
     }
@@ -258,6 +300,9 @@ public class DateTimeUtils {
      * @return {@link LocalDateTime}
      */
     public static LocalDateTime toLocalDateTime(Date date) {
+        if (Objects.isNull(date)) {
+            return null;
+        }
         return toLocalDateTime(toInstant(date));
     }
 
@@ -272,6 +317,9 @@ public class DateTimeUtils {
      * @return {@code before < after} 是否成立
      */
     public static Boolean isBefore(LocalDateTime before, LocalDateTime after) {
+        if (Objects.isNull(before) || Objects.isNull(after)) {
+            return null;
+        }
         return before.isBefore(after);
     }
 
@@ -326,6 +374,9 @@ public class DateTimeUtils {
      * @return OffsetDateTime
      */
     public static OffsetDateTime toOffsetDateTime(LocalDateTime localDateTime) {
+        if (Objects.isNull(localDateTime)) {
+            return null;
+        }
         return OffsetDateTime.of(localDateTime, ZoneId.systemDefault().getRules().getOffset(localDateTime));
     }
 
@@ -336,6 +387,9 @@ public class DateTimeUtils {
      * @return OffsetDateTime
      */
     public static OffsetDateTime toOffsetDateTime(LocalDateTime localDateTime, ZoneOffset zoneOffset) {
+        if (Objects.isNull(localDateTime) || Objects.isNull(zoneOffset)) {
+            return null;
+        }
         return OffsetDateTime.of(localDateTime, zoneOffset);
     }
 
@@ -362,6 +416,9 @@ public class DateTimeUtils {
      * @see ZoneOffset#of(String)
      */
     public static OffsetDateTime toOffsetDateTime(LocalDateTime localDateTime, String offsetId) {
+        if (Objects.isNull(localDateTime) || StrUtils.isBlank(offsetId)) {
+            return null;
+        }
         return OffsetDateTime.of(localDateTime, ZoneOffset.of(offsetId));
     }
 
@@ -371,7 +428,10 @@ public class DateTimeUtils {
      * @param pattern 时间字符串格式
      * @return 验证结果，true: 有效 / false: 无效
      */
-    public static boolean isValid(String source, String pattern) {
+    public static Boolean isValid(String source, String pattern) {
+        if (StrUtils.isBlank(source) || StrUtils.isBlank(pattern)) {
+            return null;
+        }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         simpleDateFormat.setLenient(false);
         try {
@@ -387,7 +447,10 @@ public class DateTimeUtils {
      * @param date 日期 LocalDate
      * @return 年
      */
-    public static int getYear(LocalDate date) {
+    public static Integer getYear(LocalDate date) {
+        if (Objects.isNull(date)) {
+            return null;
+        }
         return date.getYear();
     }
 
@@ -395,7 +458,7 @@ public class DateTimeUtils {
      * 获取年-现在
      * @return 年
      */
-    public static int getYear() {
+    public static Integer getYear() {
         return getYear(LocalDate.now());
     }
 
@@ -405,6 +468,10 @@ public class DateTimeUtils {
      * @return 一周的开始时间
      */
     public static LocalDateTime getStartOfNaturalWeek(LocalDate localDate){
+
+        if (Objects.isNull(localDate)) {
+            return null;
+        }
 
         LocalDateTime nowDateTime = localDate.atStartOfDay();
 
@@ -419,6 +486,11 @@ public class DateTimeUtils {
      * @return 当前月的开始时间
      */
     public static LocalDateTime getStartOfMonth(LocalDate localDate) {
+
+        if (Objects.isNull(localDate)) {
+            return null;
+        }
+
         LocalDateTime nowDateTime = localDate.atStartOfDay();
         return nowDateTime
                 .with(TemporalAdjusters.firstDayOfMonth())
@@ -433,7 +505,12 @@ public class DateTimeUtils {
      * @return true-在区间内；false-不在区间内
      * @since 2.2.1
      */
-    public static boolean judgeInTimeDuration(LocalTime time, LocalTime startTime, LocalTime endTime) {
+    public static Boolean judgeInTimeDuration(LocalTime time, LocalTime startTime, LocalTime endTime) {
+
+        if (Objects.isNull(time) || Objects.isNull(startTime) || Objects.isNull(endTime)) {
+            return null;
+        }
+
         if (endTime.isAfter(startTime)) {
             return time.isAfter(startTime) && time.isBefore(endTime);
         }
@@ -448,7 +525,12 @@ public class DateTimeUtils {
      * @return true-在区间内；false-不在区间内
      * @since 2.2.1
      */
-    public static boolean judgeInTimeDurationWithBoundary(LocalTime time, LocalTime startTime, LocalTime endTime) {
+    public static Boolean judgeInTimeDurationWithBoundary(LocalTime time, LocalTime startTime, LocalTime endTime) {
+
+        if (Objects.isNull(time) || Objects.isNull(startTime) || Objects.isNull(endTime)) {
+            return null;
+        }
+
         if (endTime.isAfter(startTime)) {
             return time.compareTo(startTime) >= 0 && time.compareTo(endTime) <= 0;
         }
@@ -462,6 +544,11 @@ public class DateTimeUtils {
      * @return 当天最小值
      */
     public static LocalDateTime toLocalDateTimeMin(Long timestamp) {
+
+        if (Objects.isNull(timestamp)) {
+            return null;
+        }
+
         LocalDateTime localDateTime = toLocalDateTime(timestamp);
         if (Objects.isNull(localDateTime)) {
             return null;
@@ -475,6 +562,11 @@ public class DateTimeUtils {
      * @return 当天最小值
      */
     public static LocalDateTime toLocalDateTimeMin(LocalDateTime localDateTime) {
+
+        if (Objects.isNull(localDateTime)) {
+            return null;
+        }
+
         return localDateTime.with(LocalTime.MIN);
     }
 
@@ -484,6 +576,11 @@ public class DateTimeUtils {
      * @return 当天最小值
      */
     public static LocalDateTime toLocalDateTimeMin(LocalDate localDate) {
+
+        if (Objects.isNull(localDate)) {
+            return null;
+        }
+
         return LocalDateTime.of(localDate, LocalTime.MIN);
     }
 
@@ -514,6 +611,11 @@ public class DateTimeUtils {
      * @return 当天最大值
      */
     public static LocalDateTime toLocalDateTimeMax(LocalDateTime localDateTime) {
+
+        if (Objects.isNull(localDateTime)) {
+            return null;
+        }
+
         return localDateTime.with(LocalTime.MAX);
     }
 
@@ -523,6 +625,11 @@ public class DateTimeUtils {
      * @return 当天最大值
      */
     public static LocalDateTime toLocalDateTimeMax(LocalDate localDate) {
+
+        if (Objects.isNull(localDate)) {
+            return null;
+        }
+
         return LocalDateTime.of(localDate, LocalTime.MAX);
     }
 
@@ -541,6 +648,11 @@ public class DateTimeUtils {
      * @return 相差周期 {@link Period }
      */
     public static Period betweenLocalDate(LocalDate startDate, LocalDate endDate) {
+
+        if (Objects.isNull(startDate) || Objects.isNull(endDate)) {
+            return null;
+        }
+
         return Period.between(startDate, endDate);
     }
 
