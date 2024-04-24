@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
  * @author <a href="https://www.fengwenyi.com">Erwin Feng</a>
  * @since 2021-10-27
  */
+@Deprecated
 public class NamingUtilsTests {
 
     @Test

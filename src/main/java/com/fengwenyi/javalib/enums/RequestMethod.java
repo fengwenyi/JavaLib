@@ -5,6 +5,7 @@ package com.fengwenyi.javalib.enums;
  * @author Wenyi Feng
  * @since 2018-09-25
  */
+@Deprecated
 public enum RequestMethod {
 
     /**

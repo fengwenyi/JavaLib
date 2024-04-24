@@ -13,6 +13,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Md5Utils {
 
+    private static final String MD5 = "MD5";
+
     /**
      * MD5加密
      * @param plainText 待加密的字符串
@@ -21,7 +23,7 @@ public class Md5Utils {
      */
     public static String encrypt(String plainText) throws NoSuchAlgorithmException {
         // 创建一个md5算法对象
-        MessageDigest md = MessageDigest.getInstance(EncryptionTypeConstant.MD5);
+        MessageDigest md = MessageDigest.getInstance(MD5);
         byte[] messageByte = plainText.getBytes();
         // 获得MD5字节数组,16*8=128位
         byte[] md5Byte = md.digest(messageByte);

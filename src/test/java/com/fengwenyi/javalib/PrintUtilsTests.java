@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
  * @author <a href="https://fengwenyi.com">Erwin Feng</a>
  * @since 2023-05-09
  */
+@Deprecated
 public class PrintUtilsTests {
 
     @Test

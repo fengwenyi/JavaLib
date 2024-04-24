@@ -8,5 +8,6 @@ import java.util.function.Function;
  * @author <a href="https://fengwenyi.com">Erwin Feng</a>
  * @since 2023-05-11
  */
+@Deprecated
 public interface IGetter <T, R> extends Function<T, R>, Serializable {
 }

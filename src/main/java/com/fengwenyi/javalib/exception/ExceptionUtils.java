@@ -10,6 +10,7 @@ import java.io.StringWriter;
  * @author Erwin Feng
  * @since 2020/8/13
  */
+@Deprecated
 public class ExceptionUtils {
 
     /**

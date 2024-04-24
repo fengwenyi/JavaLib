@@ -8,6 +8,7 @@ package com.fengwenyi.javalib.jk;
  * </p>
  * @author Wenyi Feng
  */
+@Deprecated
 public interface ICallback<T> {
 
     /**

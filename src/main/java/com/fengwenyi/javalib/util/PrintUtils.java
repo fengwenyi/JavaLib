@@ -10,6 +10,7 @@ import java.time.LocalTime;
  * @author Erwin Feng
  * @since 2019-05-22 22:34
  */
+@Deprecated
 public class PrintUtils {
 
 

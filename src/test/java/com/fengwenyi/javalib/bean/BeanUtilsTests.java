@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
  * @author <a href="https://fengwenyi.com">Erwin Feng</a>
  * @since 2023-05-10
  */
+@Deprecated
 public class BeanUtilsTests {
 
     @Test

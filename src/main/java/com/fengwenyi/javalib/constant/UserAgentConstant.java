@@ -4,6 +4,7 @@ package com.fengwenyi.javalib.constant;
  * @author Wenyi Feng
  * @since 2018-11-17
  */
+@Deprecated
 public class UserAgentConstant {
 
     public static final String Chrome_Mac = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36";

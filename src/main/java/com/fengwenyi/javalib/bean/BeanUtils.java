@@ -16,6 +16,7 @@ import java.lang.reflect.Method;
  * @author Erwin Feng
  * @since 2020/8/18
  */
+@Deprecated
 public class BeanUtils {
 
     /* getter and setter 方法前缀 */

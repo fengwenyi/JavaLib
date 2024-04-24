@@ -5,6 +5,7 @@ package com.fengwenyi.javalib.constant;
  * @author Erwin Feng
  * @since 2020/5/11 12:08 上午
  */
+@Deprecated
 public class MediaTypeConstant {
 
     /** application/json */

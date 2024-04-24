@@ -13,6 +13,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public class ShaUtils {
 
+    private static final String SHA1 = "SHA1";
+
     /**
      * 字符串 SHA 加密
      * @param plainText [ellipsis]
@@ -26,7 +28,7 @@ public class ShaUtils {
         if (StrUtils.isNotBlank(plainText)) {
             // SHA 加密开始
             // 创建加密对象 并传入加密类型
-            MessageDigest messageDigest = MessageDigest.getInstance(EncryptionTypeConstant.SHA1);
+            MessageDigest messageDigest = MessageDigest.getInstance(SHA1);
             // 传入要加密的字符串
             messageDigest.update(plainText.getBytes());
             // 得到 byte 类型结果

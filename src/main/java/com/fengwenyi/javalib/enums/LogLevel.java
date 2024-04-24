@@ -5,6 +5,7 @@ package com.fengwenyi.javalib.enums;
  * @author <a href="https://fengwenyi.com">Erwin Feng</a>
  * @since 2023-05-09
  */
+@Deprecated
 public enum LogLevel {
 
     ALL, /* 显示所有日志 */

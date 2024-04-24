@@ -12,6 +12,8 @@ import com.fengwenyi.javalib.util.StrUtils;
  */
 public class StarHandleUtils {
 
+    private final static int DEFAULT_PWD_LEN = 32;
+
     public static String ip(String ip) {
         if (StrUtils.isBlank(ip)) {
             return StringConstant.BLANK;
@@ -108,7 +110,7 @@ public class StarHandleUtils {
      * @return 返回32位的星号密码
      */
     public static String password() {
-        return StrUtils.generateStar(LengthConstant.PASSWORD);
+        return StrUtils.generateStar(DEFAULT_PWD_LEN);
     }
 
     /**

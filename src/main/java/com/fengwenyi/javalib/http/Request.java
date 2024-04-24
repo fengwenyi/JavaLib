@@ -256,4 +256,14 @@ public class Request {
     public void setUtil(Util util) {
         this.util = util;
     }
+
+    public static class MediaConstant {
+
+        /** application/json */
+        public static final String APPLICATION_JSON_VALUE = "application/json";
+
+        /** application/...form... */
+        public static final String APPLICATION_FORM_VALUE = "application/x-www-form-urlencoded";
+
+    }
 }

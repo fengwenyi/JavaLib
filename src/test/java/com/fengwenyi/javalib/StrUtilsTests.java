@@ -14,8 +14,8 @@ public class StrUtilsTests {
 
     @Test
     public void testGenerateStar() {
-        String passwordStar = StrUtils.generateStar(LengthConstant.PASSWORD);
-        Assert.assertEquals(passwordStar.length(), LengthConstant.PASSWORD);
+        String passwordStar = StrUtils.generateStar(32);
+        Assert.assertEquals(passwordStar.length(), 32);
         PrintUtils.info(passwordStar);
     }
 

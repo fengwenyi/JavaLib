@@ -6,6 +6,7 @@ package com.fengwenyi.javalib.jk;
  * @author <a href="https://www.fengwenyi.com">Erwin Feng</a>
  * @since 2.1.4
  */
+@Deprecated
 public interface IBuilder<T> {
 
     /**

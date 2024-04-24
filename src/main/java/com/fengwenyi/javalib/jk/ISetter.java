@@ -8,5 +8,6 @@ import java.util.function.BiConsumer;
  * @author <a href="https://fengwenyi.com">Erwin Feng</a>
  * @since 2023-05-11
  */
+@Deprecated
 public interface ISetter <T, U> extends BiConsumer<T, U>, Serializable {
 }

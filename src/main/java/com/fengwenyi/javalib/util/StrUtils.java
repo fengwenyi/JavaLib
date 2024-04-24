@@ -17,6 +17,9 @@ import java.util.regex.Pattern;
  */
 public class StrUtils {
 
+    /** 空的字符串（""） */
+    public static final String BLANK = "";
+
     /**
      * 判断字符串是否为空
      *

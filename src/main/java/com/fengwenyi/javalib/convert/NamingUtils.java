@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
  * @author <a href="https://www.fengwenyi.com">Erwin Feng</a>
  * @since 2021-10-27
  */
+@Deprecated
 public class NamingUtils {
 
     private static final Pattern HUMP_PATTERN = Pattern.compile("[A-Z]");
