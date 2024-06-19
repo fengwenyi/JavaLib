@@ -160,6 +160,17 @@ public class DateTimeUtils {
         return LocalDateTime.parse(dateTimeStr, formatter);
     }
 
+    /**
+     * 字符串格式的日期解析成日期格式
+     * @param date 字符串格式的日期时间, {@code yyyy-MM-dd} {@link DateTimeFormatter ISO_LOCAL_DATE}
+     * @return 日期时间格式 {@link LocalDate}
+     */
+    public static LocalDate parseLocalDate(String date) {
+        if (StrUtils.isBlank(date)) {
+            return null;
+        }
+        return LocalDate.parse(date);
+    }
 
     /**
      * 字符串格式的日期解析成日期格式
