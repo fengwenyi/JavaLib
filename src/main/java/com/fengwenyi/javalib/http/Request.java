@@ -20,18 +20,26 @@ public class Request {
 
     private static final String PARAM_DEFAULT_KEY = "__default__";
 
-    /** 请求地址 */
+    /**
+     * 请求地址
+     */
     private String url;
 
-    /** 请求方式 */
+    /**
+     * 请求方式
+     */
     private Method method;
 
-    /** 请求参数 */
+    /**
+     * 请求参数
+     */
     private Map<String, Object> param;
 
     private ParamFormat paramFormat = ParamFormat.STRING;
 
-    /** 请求工具 */
+    /**
+     * 请求工具
+     */
     private Util util = Util.OkHttp;
 
     public ParamFormat getParamFormat() {
@@ -73,9 +81,10 @@ public class Request {
 
     /**
      * 创建 Request
-     * @param url 请求地址
+     *
+     * @param url    请求地址
      * @param method 请求方法
-     * @param param 请求参数
+     * @param param  请求参数
      * @return Request
      */
     public static Request create(String url, Method method, String param) {
@@ -88,9 +97,10 @@ public class Request {
 
     /**
      * 创建 Request
-     * @param url 请求地址
+     *
+     * @param url    请求地址
      * @param method 请求方法
-     * @param param 请求参数
+     * @param param  请求参数
      * @return Request
      */
     public static Request create(String url, Method method, Map<String, Object> param) {
@@ -106,28 +116,41 @@ public class Request {
      */
     public static class Option {
 
-        /** 连接超时时间，秒，默认5秒 */
+        /**
+         * 连接超时时间，秒，默认5秒
+         */
         private Integer connectTimeoutSecond = 5;
 
-        /** 读取超时时间，秒，默认45秒 */
+        /**
+         * 读取超时时间，秒，默认45秒
+         */
         private Integer readTimeoutSecond = 45;
 
-        /** 请求头 */
+        /**
+         * 请求头
+         */
         private Map<String, String> headers = new HashMap<>();
 
-        /** ssl */
+        /**
+         * ssl
+         */
         private SSLSocketFactory sslContextFactory;
 
-        /** HostnameVerifier */
+        /**
+         * HostnameVerifier
+         */
         private HostnameVerifier hostnameVerifier;
 
-        /** 日志级别 */
+        /**
+         * 日志级别
+         */
         private LogLevel logLevel;
 
         /**
          * 创建 Request.Option
+         *
          * @param connectTimeoutSecond 连接超时时间，秒
-         * @param readTimeoutSecond 读取超时时间，秒
+         * @param readTimeoutSecond    读取超时时间，秒
          * @return Request.Option
          */
         public static Option create(Integer connectTimeoutSecond, Integer readTimeoutSecond) {
@@ -139,9 +162,10 @@ public class Request {
 
         /**
          * 创建 Request.Option
+         *
          * @param connectTimeoutSecond 连接超时时间，秒
-         * @param readTimeoutSecond 读取超时时间，秒
-         * @param headers http headers
+         * @param readTimeoutSecond    读取超时时间，秒
+         * @param headers              http headers
          * @return Request.Option
          */
         public static Option create(Integer connectTimeoutSecond, Integer readTimeoutSecond, Map<String, String> headers) {
@@ -259,10 +283,14 @@ public class Request {
 
     public static class MediaConstant {
 
-        /** application/json */
+        /**
+         * application/json
+         */
         public static final String APPLICATION_JSON_VALUE = "application/json";
 
-        /** application/...form... */
+        /**
+         * application/...form...
+         */
         public static final String APPLICATION_FORM_VALUE = "application/x-www-form-urlencoded";
 
     }

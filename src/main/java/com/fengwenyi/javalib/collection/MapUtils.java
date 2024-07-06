@@ -8,6 +8,7 @@ import java.util.Map;
  *     <li>判断Map是否为空</li>
  *     <li>判断Map是否不为空</li>
  * </ul>
+ *
  * @author Wenyi Feng
  * @since 2018-11-17
  */
@@ -15,6 +16,7 @@ public class MapUtils {
 
     /**
      * 判断Map是否为空
+     *
      * @param map 待判断的Map
      * @return 是否为空，true：空；false：不为空
      */
@@ -27,6 +29,7 @@ public class MapUtils {
 
     /**
      * 判断Map是否不为空
+     *
      * @param map 待判断的Map
      * @return 是否不为空，true：不为空；false：空
      */

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -42,18 +41,18 @@ public class JsonUtilsTests {
         map.put("time", LocalTime.now());
         map.put("testTime", LocalDateTime.now());
         String jsonString = JsonUtils.string(map);
-        PrintUtils.info(jsonString);
+        System.out.println(jsonString);
         String jsonStringPetty = JsonUtils.pretty(map);
-        PrintUtils.info(jsonStringPetty);
+        System.out.println(jsonStringPetty);
     }
 
     @Test
     public void testConvertObject() {
         String jsonString = "{\"other\":{\"myWeb\":\"https://fengwenyi.com\",\"github\":\"https://github.com/fengwenyi\"},\"like\":[\"movie\",\"game\",\"music\",\"tea\",\"travel\"],\"sex\":\"男\",\"name\":\"冯文议\",\"age\":28}";
         Map map = JsonUtils.object(jsonString, Map.class);
-        PrintUtils.info(map);
+        System.out.println(map);
         ErwinEntity erwinEntity = JsonUtils.object(jsonString, ErwinEntity.class);
-        PrintUtils.info(erwinEntity);
+        System.out.println(erwinEntity);
     }
 
     @Test
@@ -66,12 +65,13 @@ public class JsonUtilsTests {
         );
         String jsonString = JsonUtils.string(likes);
         List list = JsonUtils.object(jsonString, List.class);
-        PrintUtils.info(list);
+        System.out.println(list);
         List<String> list1 = JsonUtils.collection(jsonString, List.class, String.class);
-        PrintUtils.info(list1);
+        System.out.println(list1);
 
-        List<String> list2 = JsonUtils.collection(jsonString, new TypeReference<List<String>>() {});
-        PrintUtils.info(list2);
+        List<String> list2 = JsonUtils.collection(jsonString, new TypeReference<List<String>>() {
+        });
+        System.out.println(list2);
     }
 
     @Test

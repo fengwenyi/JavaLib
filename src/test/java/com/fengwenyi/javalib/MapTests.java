@@ -1,6 +1,5 @@
 package com.fengwenyi.javalib;
 
-import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -21,13 +20,13 @@ public class MapTests {
         Set<String> keys = map.keySet();
         for (String key : keys) {
             String value = map.get(key);
-            PrintUtils.info(key + "---->" + value);
+            System.out.println(key + "---->" + value);
         }
         Set<Map.Entry<String, String>> entries = map.entrySet();
         for (Map.Entry<String, String> entry : entries) {
             String key = entry.getKey();
             String value = entry.getValue();
-            PrintUtils.info(key + "====>" + value);
+            System.out.println(key + "====>" + value);
         }
     }
 }

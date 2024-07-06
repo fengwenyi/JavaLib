@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * IO工具类
+ *
  * @author Erwin Feng[xfsy_2015@163.com]
  * @since 2019/12/24
  */
@@ -14,6 +15,7 @@ public class IOUtils {
 
     /**
      * byte[] 转成 BufferedImage
+     *
      * @param data byte[]
      * @return BufferedImage
      * @throws IOException IO异常
@@ -25,6 +27,7 @@ public class IOUtils {
 
     /**
      * 读取 InputStream，并关闭
+     *
      * @param inputStream 输入流
      * @return 读取流结果
      * @throws IOException IO 异常
@@ -37,6 +40,7 @@ public class IOUtils {
 
     /**
      * 读取 InputStream
+     *
      * @param inputStream 输入流
      * @return 读取流结果
      * @throws IOException IO 异常

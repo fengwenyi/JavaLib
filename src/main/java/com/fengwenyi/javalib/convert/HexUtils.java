@@ -4,12 +4,14 @@ import com.fengwenyi.javalib.util.StrUtils;
 
 /**
  * 进制转换工具类
+ *
  * @author Wenyi Feng.
  */
 public class HexUtils {
 
     /**
      * 二进制转十六进制
+     *
      * @param bytes [ellipsis]
      * @return [ellipsis]
      */
@@ -32,6 +34,7 @@ public class HexUtils {
 
     /**
      * 16进制转化为 2进制
+     *
      * @param hexStr 16进制字符串
      * @return byte[]
      */

@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * 参数处理工具类
+ *
  * @author Wenyi Feng
  * @since 2018-10-28
  */
@@ -19,9 +20,7 @@ public class ParamUtils {
      * 将Map型转为请求参数型
      *
      * @param data Map类型的参数
-     *
      * @return url请求的参数
-     *
      * @throws UnsupportedEncodingException 异常
      */
     public static String getUrlParamsByMap(Map<String, String> data) throws UnsupportedEncodingException {
@@ -43,7 +42,8 @@ public class ParamUtils {
 
     /**
      * 将url参数转换成map
-     * @param  param [ellipsis]
+     *
+     * @param param [ellipsis]
      * @return 参数Map
      */
     public static Map<String, String> getUrlParams(String param) {

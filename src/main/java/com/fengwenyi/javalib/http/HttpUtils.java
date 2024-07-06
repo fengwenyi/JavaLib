@@ -3,7 +3,7 @@ package com.fengwenyi.javalib.http;
 import com.fengwenyi.javalib.http.client.HttpClient;
 import com.fengwenyi.javalib.http.client.HttpClientFactory;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
 
@@ -53,6 +53,7 @@ public class HttpUtils {
 
     /**
      * http get 请求
+     *
      * @param url 地址
      * @return 服务器响应结果
      */
@@ -62,7 +63,8 @@ public class HttpUtils {
 
     /**
      * http get 请求
-     * @param url 地址
+     *
+     * @param url   地址
      * @param param 参数
      * @return 服务器响应结果
      */
@@ -78,7 +80,8 @@ public class HttpUtils {
 
     /**
      * http get 请求
-     * @param url 地址
+     *
+     * @param url   地址
      * @param param 参数
      * @return 服务器响应结果
      */
@@ -94,11 +97,12 @@ public class HttpUtils {
 
     /**
      * http post 请求
-     * @param url 地址
+     *
+     * @param url   地址
      * @param param 参数
      * @return 服务器响应结果
      */
-    public  static String postJson(String url, String param) {
+    public static String postJson(String url, String param) {
         try {
             Request request = Request.create(url, Request.Method.POST, param);
             request.setParamFormat(Request.ParamFormat.JSON);
@@ -110,11 +114,12 @@ public class HttpUtils {
 
     /**
      * http post 请求
-     * @param url 地址
+     *
+     * @param url   地址
      * @param param 参数
      * @return 服务器响应结果
      */
-    public  static String postJson(String url, Map<String, Object> param) {
+    public static String postJson(String url, Map<String, Object> param) {
         try {
             Request request = Request.create(url, Request.Method.POST, param);
             request.setParamFormat(Request.ParamFormat.JSON);
@@ -126,11 +131,12 @@ public class HttpUtils {
 
     /**
      * http post 请求
-     * @param url 地址
+     *
+     * @param url   地址
      * @param param 参数
      * @return 服务器响应结果
      */
-    public  static String postForm(String url, Map<String, Object> param) {
+    public static String postForm(String url, Map<String, Object> param) {
         try {
             Request request = Request.create(url, Request.Method.POST, param);
             request.setParamFormat(Request.ParamFormat.FORM);
@@ -142,9 +148,10 @@ public class HttpUtils {
 
     /**
      * 构造 Request.Option
+     *
      * @param connectTimeoutSecond 连接超时时间，秒
-     * @param readTimeoutSecond 读取超时时间，秒
-     * @param headers http headers
+     * @param readTimeoutSecond    读取超时时间，秒
+     * @param headers              http headers
      * @return Request.Option
      */
     public static Request.Option buildOption(Integer connectTimeoutSecond, Integer readTimeoutSecond, Map<String, String> headers) {
@@ -153,8 +160,9 @@ public class HttpUtils {
 
     /**
      * 执行 HTTP 请求
+     *
      * @param request 请求相关参数, {@link Request}
-     * @param option Http 请求属性, {@link Request.Option}
+     * @param option  Http 请求属性, {@link Request.Option}
      * @return 服务器响应结果
      * @throws IOException IO读取异常, {@link IOException}
      */

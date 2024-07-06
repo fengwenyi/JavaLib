@@ -12,7 +12,6 @@
 
 - java version 17
 
-
 ## v2.2.8
 
 :star: Feature
@@ -29,14 +28,12 @@ other
 
 - 【JsonUtils】去掉没有用到的引入。
 
-
 ## v2.2.7
 
 - DateTimeUtils, 提供 OffsetDateTime处理
 - ~~OkHttp 升级到 4.11.0~~
 - 因为报错原因，暂时弃用 okHttp.HttpUrl
 - DateTimeUtils, 提供 转 LocalDateTime 当天最大/最小值
-
 
 ## v2.2.6
 
@@ -46,29 +43,21 @@ other
 - PrintUtils 支持 调整日志级别
 - BeanUtils 新增根据 getter / setter 获取字段名方法
 
-
-
-
 ## v2.2.5
 
 - DateTimeUtils 新增可根据时间戳获取当天最大或最小的方法
 
-
-
 ## v2.2.4
 
-- 支持使用 OkHttp 发起请求 
+- 支持使用 OkHttp 发起请求
 - 弃用 `com.fengwenyi.javalib.third.Base64`
 - RSAUtils 中使用 `com.fengwenyi.javalib.third.Base64` 都进行替换
-
-
 
 ## v2.2.3
 
 :bug: Bug Fixes
 
 - 修复 `DateTimeUtils.toInstant(Date)` 可能出现报错的问题。
-
 
 ## v2.2.2
 
@@ -78,8 +67,6 @@ other
 
 - 【http】新增 http 模块，提供Http调用工具类 HttpUtils。
 - 【util】新增 JsoupUtils，从 html 中解析标题。
-
-
 
 ## v2.2.1
 
@@ -97,7 +84,6 @@ other
 - Upgrade to slf4j-api 2.0.3
 - Upgrade to transmittable-thread-local 2.14.2
 
-
 ## v2.2.0
 
 2022.08.28 ~ 2022.09.18
@@ -107,7 +93,6 @@ other
 - 【DateTimeUtils】新增获取自然周的开始时间
 - 【DateTimeUtils】新增获取月的开始时间
 - 【新增】MapHelper，方便构建 `Map`
-
 
 ## v2.1.8
 
@@ -123,8 +108,6 @@ other
 :bug: Bug Fixes
 
 - 修复 Jackson 在版本较低时，可能出现大小写重名的问题
-
-
 
 ## v2.1.7
 
@@ -147,8 +130,6 @@ other
 - Upgrade to transmittable-thread-local 2.12.6
 - Upgrade to maven-javadoc-plugin 3.4.0
 
-
-
 ## v2.1.6
 
 2021.12.08 ~ 2022.05.05
@@ -157,7 +138,6 @@ other
 
 - 新增获取年的方法：DateTimeUtils.getYear()
 - DateTimeUtils 转换成时间戳 增加对 `null` 的处理
-
 
 ## v2.1.5
 

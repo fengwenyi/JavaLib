@@ -1,6 +1,5 @@
 package com.fengwenyi.javalib.encryption;
 
-import com.fengwenyi.javalib.constant.EncryptionTypeConstant;
 import com.fengwenyi.javalib.util.StrUtils;
 
 import java.security.MessageDigest;
@@ -8,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * SHA加密算法工具类
+ *
  * @author Wenyi Feng
  * @since 2018-10-28
  */
@@ -17,6 +17,7 @@ public class ShaUtils {
 
     /**
      * 字符串 SHA 加密
+     *
      * @param plainText [ellipsis]
      * @return [ellipsis]
      * @throws NoSuchAlgorithmException [ellipsis]
@@ -32,7 +33,7 @@ public class ShaUtils {
             // 传入要加密的字符串
             messageDigest.update(plainText.getBytes());
             // 得到 byte 类型结果
-            byte byteBuffer[] = messageDigest.digest();
+            byte[] byteBuffer = messageDigest.digest();
             // 将 byte 转换为 string
             StringBuilder strHexString = new StringBuilder();
             // 遍历 byte buffer

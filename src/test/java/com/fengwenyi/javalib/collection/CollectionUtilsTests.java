@@ -11,7 +11,7 @@ public class CollectionUtilsTests {
 
     @Test
     public void testArrayEmpty() {
-        String [] array = new String[0];
+        String[] array = new String[0];
         boolean result = CollectionUtils.isEmpty(array);
         Assert.assertTrue(result);
 

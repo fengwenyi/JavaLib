@@ -10,6 +10,7 @@ public class IdUtils {
 
     /**
      * 包含"-"
+     *
      * @return UUID
      */
     public static synchronized String generateUUID() {
@@ -18,6 +19,7 @@ public class IdUtils {
 
     /**
      * 基于UUID生成ID，不含"-"
+     *
      * @return ID字符串
      */
     public static String generateId() {

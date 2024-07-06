@@ -2,7 +2,6 @@ package com.fengwenyi.javalib.convert.xml;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fengwenyi.javalib.util.PrintUtils;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,8 +14,7 @@ public class XmlUtilsTests {
     public void testToXml() {
         User user = new User()
                 .setName("Zhang San")
-                .setAge(20)
-                ;
+                .setAge(20);
         // String xml = XmlUtils.convertString(user);
         XmlMapper xmlMapper = new XmlMapper();
         String xml = null;
@@ -25,7 +23,7 @@ public class XmlUtilsTests {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        PrintUtils.info(xml);
+        System.out.println(xml);
     }
 
 }

@@ -17,9 +17,6 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 /**
- *
- *
- *
  * @author Wenyi Feng(xfsy_2015@163.com)
  */
 public class RsaUtils {
@@ -41,9 +38,10 @@ public class RsaUtils {
 
     /**
      * 获取密钥
+     *
      * @param keySize 64的整数倍
-     * @throws NoSuchAlgorithmException [ellipsis]
      * @return 默认先私钥后公钥
+     * @throws NoSuchAlgorithmException [ellipsis]
      */
     public static String[] getKey(int keySize) throws NoSuchAlgorithmException {
         LENGTH = keySize;
@@ -52,25 +50,27 @@ public class RsaUtils {
 
     /**
      * 获取密钥
-     * @throws NoSuchAlgorithmException [ellipsis]
+     *
      * @return 默认先私钥后公钥
+     * @throws NoSuchAlgorithmException [ellipsis]
      */
     public static String[] getKey() throws NoSuchAlgorithmException {
-       return commonKey(LENGTH);
+        return commonKey(LENGTH);
     }
 
     /**
      * 私钥加密
-     * @param key [ellipsis]
+     *
+     * @param key       [ellipsis]
      * @param plainText [ellipsis]
      * @return [ellipsis]
-     * @throws NoSuchAlgorithmException [ellipsis]
-     * @throws InvalidKeySpecException [ellipsis]
-     * @throws NoSuchPaddingException [ellipsis]
+     * @throws NoSuchAlgorithmException     [ellipsis]
+     * @throws InvalidKeySpecException      [ellipsis]
+     * @throws NoSuchPaddingException       [ellipsis]
      * @throws UnsupportedEncodingException [ellipsis]
-     * @throws BadPaddingException [ellipsis]
-     * @throws IllegalBlockSizeException [ellipsis]
-     * @throws InvalidKeyException [ellipsis]
+     * @throws BadPaddingException          [ellipsis]
+     * @throws IllegalBlockSizeException    [ellipsis]
+     * @throws InvalidKeyException          [ellipsis]
      */
     public static String privateKeyEncrypt(String key, String plainText) throws NoSuchAlgorithmException,
             InvalidKeySpecException, NoSuchPaddingException, UnsupportedEncodingException, BadPaddingException,
@@ -78,21 +78,22 @@ public class RsaUtils {
         PrivateKey privateKey = commonGetPrivatekeyByText(key);
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
-        byte [] result = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
+        byte[] result = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
 
         return Base64Utils.encrypt(result);
     }
 
     /**
      * 公钥解密
-     * @param key [ellipsis]
+     *
+     * @param key        [ellipsis]
      * @param cipherText [ellipsis]
      * @return [ellipsis]
-     * @throws NoSuchAlgorithmException [ellipsis]
-     * @throws InvalidKeySpecException [ellipsis]
-     * @throws NoSuchPaddingException [ellipsis]
-     * @throws InvalidKeyException [ellipsis]
-     * @throws BadPaddingException [ellipsis]
+     * @throws NoSuchAlgorithmException  [ellipsis]
+     * @throws InvalidKeySpecException   [ellipsis]
+     * @throws NoSuchPaddingException    [ellipsis]
+     * @throws InvalidKeyException       [ellipsis]
+     * @throws BadPaddingException       [ellipsis]
      * @throws IllegalBlockSizeException [ellipsis]
      */
     public static String publicKeyDecrypt(String key, String cipherText) throws NoSuchAlgorithmException,
@@ -108,15 +109,16 @@ public class RsaUtils {
 
     /**
      * 公钥加密
-     * @param key [ellipsis]
+     *
+     * @param key       [ellipsis]
      * @param plainText [ellipsis]
      * @return [ellipsis]
-     * @throws NoSuchAlgorithmException [ellipsis]
-     * @throws InvalidKeySpecException [ellipsis]
-     * @throws NoSuchPaddingException [ellipsis]
-     * @throws InvalidKeyException [ellipsis]
-     * @throws BadPaddingException [ellipsis]
-     * @throws IllegalBlockSizeException [ellipsis]
+     * @throws NoSuchAlgorithmException     [ellipsis]
+     * @throws InvalidKeySpecException      [ellipsis]
+     * @throws NoSuchPaddingException       [ellipsis]
+     * @throws InvalidKeyException          [ellipsis]
+     * @throws BadPaddingException          [ellipsis]
+     * @throws IllegalBlockSizeException    [ellipsis]
      * @throws UnsupportedEncodingException [ellipsis]
      */
     public static String publicKeyEncrypt(String key, String plainText) throws NoSuchAlgorithmException,
@@ -126,21 +128,22 @@ public class RsaUtils {
         Cipher cipher = Cipher.getInstance(RSA);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
-        byte [] result = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
+        byte[] result = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
 
         return Base64Utils.encrypt(result);
     }
 
     /**
      * 私钥解密
-     * @param key [ellipsis]
+     *
+     * @param key        [ellipsis]
      * @param cipherText [ellipsis]
      * @return [ellipsis]
-     * @throws NoSuchAlgorithmException [ellipsis]
-     * @throws InvalidKeySpecException [ellipsis]
-     * @throws NoSuchPaddingException [ellipsis]
-     * @throws InvalidKeyException [ellipsis]
-     * @throws BadPaddingException [ellipsis]
+     * @throws NoSuchAlgorithmException  [ellipsis]
+     * @throws InvalidKeySpecException   [ellipsis]
+     * @throws NoSuchPaddingException    [ellipsis]
+     * @throws InvalidKeyException       [ellipsis]
+     * @throws BadPaddingException       [ellipsis]
      * @throws IllegalBlockSizeException [ellipsis]
      */
     public static String privateKeyDecrypt(String key, String cipherText) throws NoSuchAlgorithmException,
@@ -155,7 +158,7 @@ public class RsaUtils {
 
     // (common)获取密钥
     private static String[] commonKey(int size) throws NoSuchAlgorithmException {
-        String [] keys = new String[2];
+        String[] keys = new String[2];
 
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(RSA);
         keyPairGenerator.initialize(size);
@@ -191,15 +194,16 @@ public class RsaUtils {
 
     /**
      * 签名
-     * @param content 待签名内容
-     * @param algorithm 签名算法
+     *
+     * @param content    待签名内容
+     * @param algorithm  签名算法
      * @param privateKey 私钥
-     * @param charset 签名内容为中文时，你可能需要指定编码
+     * @param charset    签名内容为中文时，你可能需要指定编码
      * @return 签名(String)
-     * @throws NoSuchAlgorithmException 签名算法异常
-     * @throws InvalidKeySpecException 密钥格式不正确
-     * @throws InvalidKeyException 密钥异常
-     * @throws SignatureException 签名异常
+     * @throws NoSuchAlgorithmException     签名算法异常
+     * @throws InvalidKeySpecException      密钥格式不正确
+     * @throws InvalidKeyException          密钥异常
+     * @throws SignatureException           签名异常
      * @throws UnsupportedEncodingException 可能你指定的编码不能正确读取你要签名的内容
      */
     public static String sign(String content, String algorithm, String privateKey, String charset)
@@ -220,16 +224,17 @@ public class RsaUtils {
 
     /**
      * 验证签名
-     * @param content 签名的内容
+     *
+     * @param content   签名的内容
      * @param signature 签名
      * @param algorithm 签名算法
      * @param publicKey 公钥
-     * @param charset 当签名内容为中文时，你可能需要指定编码
+     * @param charset   当签名内容为中文时，你可能需要指定编码
      * @return 该签名是否和内容匹配
-     * @throws NoSuchAlgorithmException 签名算法异常
-     * @throws InvalidKeySpecException 密钥格式不正确
-     * @throws InvalidKeyException 密钥异常
-     * @throws SignatureException 签名异常
+     * @throws NoSuchAlgorithmException     签名算法异常
+     * @throws InvalidKeySpecException      密钥格式不正确
+     * @throws InvalidKeyException          密钥异常
+     * @throws SignatureException           签名异常
      * @throws UnsupportedEncodingException 可能你指定的编码不能正确读取你要签名的内容
      */
     public static boolean verify(String content, String signature, String algorithm, String publicKey, String charset)

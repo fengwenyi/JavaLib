@@ -1,7 +1,5 @@
 package com.fengwenyi.javalib.util;
 
-import com.fengwenyi.javalib.constant.StringConstant;
-
 import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
@@ -17,7 +15,9 @@ import java.util.regex.Pattern;
  */
 public class StrUtils {
 
-    /** 空的字符串（""） */
+    /**
+     * 空的字符串（""）
+     */
     public static final String BLANK = "";
 
     /**
@@ -35,13 +35,17 @@ public class StrUtils {
      * @return 是否是空字符串，true：空字符串；false：非空字符串
      */
     public static boolean isBlank(String str) {
-        if (Objects.isNull(str))
+        if (Objects.isNull(str)) {
             return true;
-        if ("".equals(str.trim()))
+        }
+        str = str.trim();
+        if (str.isEmpty()) {
             return true;
-        if ("null".equals(str.trim()))
+        }
+        if ("null".equalsIgnoreCase(str)) {
             return true;
-        return str.trim().length() == 0;
+        }
+        return str.length() == 0;
     }
 
     /**
@@ -96,8 +100,8 @@ public class StrUtils {
     public static String autoFill(String source, Integer length, String str, Boolean isRight) {
 
         // 初始化校验
-        if (source == null || length == null || (source + "").length() >= length)
-            return source + "";
+        if (source == null || length == null || (source).length() >= length)
+            return source;
 
         // 指定填充字符
         if (isBlank(str))
@@ -109,7 +113,7 @@ public class StrUtils {
 
 
         // 字符填充长度
-        int count = (source + "").length();
+        int count = (source).length();
 
         StringBuilder sb = new StringBuilder(length);
 
@@ -213,10 +217,10 @@ public class StrUtils {
     public static String getLeft(String source, int length) {
         if (StrUtils.isBlank(source)
                 || length < 1) {
-            return StringConstant.BLANK;
+            return BLANK;
         }
         if (length > source.length()) {
-            PrintUtils.warn("length(" + length + ") > source's length(" + source.length() + ")");
+//            PrintUtils.warn("length(" + length + ") > source's length(" + source.length() + ")");
             length = source.length();
         }
         return source.substring(0, length);
@@ -239,10 +243,9 @@ public class StrUtils {
     public static String getRight(String source, int length) {
         if (StrUtils.isBlank(source)
                 || length < 1) {
-            return StringConstant.BLANK;
+            return BLANK;
         }
         if (length > source.length()) {
-            PrintUtils.warn("length(" + length + ") > source's length(" + source.length() + ")");
             length = source.length();
         }
         return source.substring(source.length() - length);
@@ -251,7 +254,7 @@ public class StrUtils {
     // 截取前缀后的字符串
     public static String substringAfter(String content, String prefix) {
         if (isBlank(content)) {
-            return "";
+            return BLANK;
         }
         if (isBlank(prefix)) {
             return content;
@@ -262,7 +265,7 @@ public class StrUtils {
     // 将字符串的第一个字符大写
     public static String lowerCaseFirst(String content) {
         if (isBlank(content)) {
-            return "";
+            return BLANK;
         }
         String first = content.substring(0, 1);
         String after = content.substring(1);

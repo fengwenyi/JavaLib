@@ -1,6 +1,5 @@
 package com.fengwenyi.javalib.convert;
 
-import com.fengwenyi.javalib.constant.StringConstant;
 import com.fengwenyi.javalib.util.StrUtils;
 
 import java.text.ParseException;
@@ -41,7 +40,6 @@ import java.util.Objects;
  *     </ul>
  *
  * @author Erwin Feng[xfsy_2015@163.com]
- * @since 2019-12-11
  * @see Date
  * @see Instant
  * @see LocalDate
@@ -52,6 +50,7 @@ import java.util.Objects;
  * @see ZoneId
  * @see ZonedDateTime
  * @see Period
+ * @since 2019-12-11
  */
 public class DateTimeUtils {
 
@@ -61,13 +60,14 @@ public class DateTimeUtils {
 
     /**
      * 将时间格式化成字符串
+     *
      * @param dateTime {@link LocalDateTime}
-     * @param pattern 描述日期和时间格式的模式
+     * @param pattern  描述日期和时间格式的模式
      * @return 满足指定格式的时间字符串
      */
     public static String format(LocalDateTime dateTime, String pattern) {
         if (Objects.isNull(dateTime) || StrUtils.isBlank(pattern)) {
-            return StringConstant.BLANK;
+            return StrUtils.BLANK;
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return dateTime.format(formatter);
@@ -75,13 +75,14 @@ public class DateTimeUtils {
 
     /**
      * 将时间格式化成字符串
-     * @param date {@link LocalDate}
+     *
+     * @param date    {@link LocalDate}
      * @param pattern 描述日期格式的模式
      * @return 满足指定格式的日期字符串
      */
     public static String format(LocalDate date, String pattern) {
         if (Objects.isNull(date) || StrUtils.isBlank(pattern)) {
-            return StringConstant.BLANK;
+            return StrUtils.BLANK;
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return date.format(formatter);
@@ -89,13 +90,14 @@ public class DateTimeUtils {
 
     /**
      * 将时间格式化成字符串
-     * @param date 时间 {@link Date}
+     *
+     * @param date    时间 {@link Date}
      * @param pattern 描述日期和时间格式的模式
      * @return 满足指定格式的时间字符串
      */
     public static String format(Date date, String pattern) {
         if (Objects.isNull(date) || StrUtils.isBlank(pattern)) {
-            return StringConstant.BLANK;
+            return StrUtils.BLANK;
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(date);
@@ -104,15 +106,16 @@ public class DateTimeUtils {
     /**
      * 将时间格式化成字符串
      * <p>
-     *     提示：不能转换秒
+     * 提示：不能转换秒
      * </p>
+     *
      * @param timestamp 时间戳（毫秒）
-     * @param pattern 描述日期和时间格式的模式
+     * @param pattern   描述日期和时间格式的模式
      * @return 满足指定格式的时间字符串
      */
     public static String format(Long timestamp, String pattern) {
         if (Objects.isNull(timestamp) || StrUtils.isBlank(pattern)) {
-            return StringConstant.BLANK;
+            return StrUtils.BLANK;
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(timestamp);
@@ -120,13 +123,14 @@ public class DateTimeUtils {
 
     /**
      * 将时间格式化成字符串
+     *
      * @param instant 时间点（Instant）
      * @param pattern 描述日期和时间格式的模式
      * @return 满足指定格式的时间字符串
      */
     public static String format(Instant instant, String pattern) {
         if (Objects.isNull(instant) || StrUtils.isBlank(pattern)) {
-            return StringConstant.BLANK;
+            return StrUtils.BLANK;
         }
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
         return localDateTime.format(DateTimeFormatter.ofPattern(pattern));
@@ -134,13 +138,14 @@ public class DateTimeUtils {
 
     /**
      * 将时间格式化成字符串
+     *
      * @param offsetDateTime 偏移日期时间（OffsetDateTime）
-     * @param pattern 描述日期和时间格式的模式
+     * @param pattern        描述日期和时间格式的模式
      * @return 满足指定格式的时间字符串
      */
     public static String format(OffsetDateTime offsetDateTime, String pattern) {
         if (Objects.isNull(offsetDateTime) || StrUtils.isBlank(pattern)) {
-            return StringConstant.BLANK;
+            return StrUtils.BLANK;
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return offsetDateTime.format(formatter);
@@ -148,8 +153,9 @@ public class DateTimeUtils {
 
     /**
      * 字符串格式的日期时间解析成日期时间格式
+     *
      * @param dateTimeStr 字符串格式的日期时间
-     * @param pattern 描述日期和时间格式的模式
+     * @param pattern     描述日期和时间格式的模式
      * @return 日期时间格式 {@link LocalDateTime}
      */
     public static LocalDateTime parseLocalDateTime(String dateTimeStr, String pattern) {
@@ -162,6 +168,7 @@ public class DateTimeUtils {
 
     /**
      * 字符串格式的日期解析成日期格式
+     *
      * @param date 字符串格式的日期时间, {@code yyyy-MM-dd} {@link DateTimeFormatter ISO_LOCAL_DATE}
      * @return 日期时间格式 {@link LocalDate}
      */
@@ -174,6 +181,7 @@ public class DateTimeUtils {
 
     /**
      * 字符串格式的日期解析成日期格式
+     *
      * @param dateStr 字符串格式的日期时间
      * @param pattern 描述日期和时间格式的模式
      * @return 日期时间格式 {@link LocalDate}
@@ -187,7 +195,7 @@ public class DateTimeUtils {
     }
 
     /**
-     *将日期字符串(形如 {@code 2019-07-09} )转为 Instant，结果：{@code 2019-07-08T16:00:00Z}
+     * 将日期字符串(形如 {@code 2019-07-09} )转为 Instant，结果：{@code 2019-07-08T16:00:00Z}
      *
      * @param source 日期字符串，如 {@code 2019-07-09}
      * @return Instant {@code 2019-07-08T16:00:00Z}
@@ -202,7 +210,8 @@ public class DateTimeUtils {
 
     /**
      * 将 时间字符串 转为 Instant
-     * @param source 时间字符串
+     *
+     * @param source  时间字符串
      * @param pattern 格式
      * @return Instant
      */
@@ -217,9 +226,10 @@ public class DateTimeUtils {
 
     /**
      * 将时间字符串解析成时间类型({@link Date})
-     * @param source 时间字符串（需要满足指定格式）
+     *
+     * @param source  时间字符串（需要满足指定格式）
      * @param pattern 指定格式
-     * @return 时间类型({@link java.util.Date})
+     * @return 时间类型({ @ link java.util.Date })
      */
     public static Date parseDate(String source, String pattern) {
         if (StrUtils.isBlank(source) || StrUtils.isBlank(pattern)) {
@@ -235,8 +245,9 @@ public class DateTimeUtils {
 
     /**
      * 获取毫秒数
+     *
      * @param date 时间类型({@link Date})
-     * @return 毫秒数({@link java.lang.Long})
+     * @return 毫秒数({ @ link java.lang.Long })
      */
     public static Long toMillisecond(Date date) {
         if (date == null)
@@ -246,6 +257,7 @@ public class DateTimeUtils {
 
     /**
      * 获取 LocalDateTime的毫秒数
+     *
      * @param localDateTime 时间 {@link LocalDateTime}
      * @return 毫秒数
      */
@@ -258,6 +270,7 @@ public class DateTimeUtils {
 
     /**
      * 获取 LocalDate 的毫秒数
+     *
      * @param localDate 时间 {@link LocalDate}
      * @return 毫秒数
      */
@@ -270,6 +283,7 @@ public class DateTimeUtils {
 
     /**
      * 获取 LocalDateTime的秒数
+     *
      * @param localDateTime 时间 {@link LocalDateTime}
      * @return 时间戳（秒数）
      */
@@ -282,6 +296,7 @@ public class DateTimeUtils {
 
     /**
      * 将 Instant 转换成 LocalDateTime
+     *
      * @param instant {@link Instant}
      * @return {@link LocalDateTime}
      */
@@ -294,6 +309,7 @@ public class DateTimeUtils {
 
     /**
      * 将 Date 转换成 Instant
+     *
      * @param date {@link Date}
      * @return {@link Instant}
      */
@@ -307,6 +323,7 @@ public class DateTimeUtils {
 
     /**
      * 将 Date 转换成 LocalDateTime
+     *
      * @param date {@link Date}
      * @return {@link LocalDateTime}
      */
@@ -320,11 +337,12 @@ public class DateTimeUtils {
     /**
      * 比较两个时间大小，简言之，{@code before < after} 是否成立
      * <p>
-     *     假定有两个时间，before和after，如果before小于after，返回 {@code true }，
-     *     反之，返回 {@code false}
+     * 假定有两个时间，before和after，如果before小于after，返回 {@code true }，
+     * 反之，返回 {@code false}
      * </p>
+     *
      * @param before 小的是
-     * @param after 大的时间
+     * @param after  大的时间
      * @return {@code before < after} 是否成立
      */
     public static Boolean isBefore(LocalDateTime before, LocalDateTime after) {
@@ -336,6 +354,7 @@ public class DateTimeUtils {
 
     /**
      * 时间戳（毫秒）转为 LocalDateTime
+     *
      * @param timestamp 时间戳（毫秒）
      * @return {@link LocalDateTime}
      */
@@ -348,6 +367,7 @@ public class DateTimeUtils {
 
     /**
      * LocalDateTime 转为 Date
+     *
      * @param localDateTime {@link java.time.LocalDateTime}
      * @return {@link java.util.Date}
      */
@@ -364,6 +384,7 @@ public class DateTimeUtils {
 
     /**
      * LocalDate 转为 Date
+     *
      * @param localDate {@link java.time.LocalDate}
      * @return {@link java.util.Date}
      */
@@ -381,6 +402,7 @@ public class DateTimeUtils {
 
     /**
      * LocalDateTime 转为 OffsetDateTime
+     *
      * @param localDateTime LocalDateTime
      * @return OffsetDateTime
      */
@@ -393,8 +415,9 @@ public class DateTimeUtils {
 
     /**
      * LocalDateTime 转为 OffsetDateTime
+     *
      * @param localDateTime LocalDateTime
-     * @param zoneOffset ZoneOffset
+     * @param zoneOffset    ZoneOffset
      * @return OffsetDateTime
      */
     public static OffsetDateTime toOffsetDateTime(LocalDateTime localDateTime, ZoneOffset zoneOffset) {
@@ -422,7 +445,7 @@ public class DateTimeUtils {
      * </ul>
      *
      * @param localDateTime LocalDateTime
-     * @param offsetId ZoneOffset
+     * @param offsetId      ZoneOffset
      * @return OffsetDateTime
      * @see ZoneOffset#of(String)
      */
@@ -435,7 +458,8 @@ public class DateTimeUtils {
 
     /**
      * 校验时间合法性
-     * @param source 待检查的时间字符串
+     *
+     * @param source  待检查的时间字符串
      * @param pattern 时间字符串格式
      * @return 验证结果，true: 有效 / false: 无效
      */
@@ -455,6 +479,7 @@ public class DateTimeUtils {
 
     /**
      * 获取年
+     *
      * @param date 日期 LocalDate
      * @return 年
      */
@@ -467,6 +492,7 @@ public class DateTimeUtils {
 
     /**
      * 获取年-现在
+     *
      * @return 年
      */
     public static Integer getYear() {
@@ -475,10 +501,11 @@ public class DateTimeUtils {
 
     /**
      * 获取自然周的开始时间
+     *
      * @param localDate 日期
      * @return 一周的开始时间
      */
-    public static LocalDateTime getStartOfNaturalWeek(LocalDate localDate){
+    public static LocalDateTime getStartOfNaturalWeek(LocalDate localDate) {
 
         if (Objects.isNull(localDate)) {
             return null;
@@ -493,6 +520,7 @@ public class DateTimeUtils {
 
     /**
      * 获取当前月的开始时间
+     *
      * @param localDate 当前日期
      * @return 当前月的开始时间
      */
@@ -510,9 +538,10 @@ public class DateTimeUtils {
 
     /**
      * 判断是否在指定时间区间内
-     * @param time 检测时间
+     *
+     * @param time      检测时间
      * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return true-在区间内；false-不在区间内
      * @since 2.2.1
      */
@@ -530,9 +559,10 @@ public class DateTimeUtils {
 
     /**
      * 判断是否在指定时间区间内，含边界
-     * @param time 检测时间
+     *
+     * @param time      检测时间
      * @param startTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return true-在区间内；false-不在区间内
      * @since 2.2.1
      */
@@ -543,14 +573,15 @@ public class DateTimeUtils {
         }
 
         if (endTime.isAfter(startTime)) {
-            return time.compareTo(startTime) >= 0 && time.compareTo(endTime) <= 0;
+            return !time.isBefore(startTime) && !time.isAfter(endTime);
         }
-        return time.compareTo(startTime) >= 0 || time.compareTo(endTime) <= 0;
+        return !time.isBefore(startTime) || !time.isAfter(endTime);
     }
 
 
     /**
      * 时间戳转 LocalDateTime （当天最小值）
+     *
      * @param timestamp 时间戳
      * @return 当天最小值
      */
@@ -569,6 +600,7 @@ public class DateTimeUtils {
 
     /**
      * LocalDateTime （当天最小值）
+     *
      * @param localDateTime 时间戳
      * @return 当天最小值
      */
@@ -583,6 +615,7 @@ public class DateTimeUtils {
 
     /**
      * LocalDate 转 LocalDateTime （当天最小值）
+     *
      * @param localDate 日期
      * @return 当天最小值
      */
@@ -597,6 +630,7 @@ public class DateTimeUtils {
 
     /**
      * LocalDateTime （当天最小值）
+     *
      * @return 当天最小值
      */
     public static LocalDateTime toLocalDateTimeMin() {
@@ -605,6 +639,7 @@ public class DateTimeUtils {
 
     /**
      * 时间戳转 LocalDateTime （当天最大值）
+     *
      * @param timestamp 时间戳
      * @return 当天最大值
      */
@@ -618,6 +653,7 @@ public class DateTimeUtils {
 
     /**
      * LocalDateTime （当天最大值）
+     *
      * @param localDateTime 日期时间
      * @return 当天最大值
      */
@@ -632,6 +668,7 @@ public class DateTimeUtils {
 
     /**
      * LocalDate 转 LocalDateTime （当天最大值）
+     *
      * @param localDate 日期
      * @return 当天最大值
      */
@@ -646,6 +683,7 @@ public class DateTimeUtils {
 
     /**
      * LocalDateTime （当天最大值）
+     *
      * @return 当天最大值
      */
     public static LocalDateTime toLocalDateTimeMax() {
@@ -654,8 +692,9 @@ public class DateTimeUtils {
 
     /**
      * 计算两个 LocalDate 相差周期 Period
+     *
      * @param startDate 开始日期
-     * @param endDate 结束日期
+     * @param endDate   结束日期
      * @return 相差周期 {@link Period }
      */
     public static Period betweenLocalDate(LocalDate startDate, LocalDate endDate) {

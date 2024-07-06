@@ -13,15 +13,13 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fengwenyi.javalib.constant.StringConstant;
-import com.fengwenyi.javalib.exception.ExceptionUtils;
-import com.fengwenyi.javalib.util.PrintUtils;
 import com.fengwenyi.javalib.util.StrUtils;
 
 import java.util.*;
 
 /**
  * JSON转换工具类
+ *
  * @author Erwin Feng
  * @since 2020/6/16
  */
@@ -83,18 +81,19 @@ public class JsonUtils {
 
     /**
      * 将对象转换成JSON字符串
+     *
      * @param value 待转换的对象
-     * @param <T> 对象的类型
+     * @param <T>   对象的类型
      * @return JSON字符串
      */
     public static <T> String string(T value) {
         if (Objects.isNull(value)) {
-            return StringConstant.BLANK;
+            return StrUtils.BLANK;
         }
         try {
             return mapper.writeValueAsString(value);
         } catch (JsonProcessingException e) {
-            PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -102,30 +101,32 @@ public class JsonUtils {
     /**
      * 将一个对象转换成JSON格式的字符串，并对其格式化，方便查看。
      * <p>
-     *     注意：如果本身就是一个JSON字符串，调用此方法，
-     *     则返回的仍然是一个字符，并不会对其格式化，
-     *     只会对其做转换处理
+     * 注意：如果本身就是一个JSON字符串，调用此方法，
+     * 则返回的仍然是一个字符，并不会对其格式化，
+     * 只会对其做转换处理
      * </p>
+     *
      * @param value 待转换并格式化的对象
      * @return 返回一个格式化的JSON格式的字符串
      */
     public static String pretty(Object value) {
         if (Objects.isNull(value)) {
-            return StringConstant.BLANK;
+            return StrUtils.BLANK;
         }
         try {
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(value);
         } catch (JsonProcessingException e) {
-            PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
 
     /**
      * 将json字符串转换成对象
-     * @param content 待转换的JSON字符串
+     *
+     * @param content   待转换的JSON字符串
      * @param valueType 运行时的类对象
-     * @param <T> 对象的类型
+     * @param <T>       对象的类型
      * @return 返回一个对象
      */
     public static <T> T object(String content, Class<T> valueType) {
@@ -135,16 +136,17 @@ public class JsonUtils {
         try {
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
-            PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
 
     /**
      * 将json字符串转换成对象
-     * @param content 待转换的JSON字符串
+     *
+     * @param content   待转换的JSON字符串
      * @param valueType {@link TypeReference}
-     * @param <T> 对象的类型
+     * @param <T>       对象的类型
      * @return 返回一个对象
      */
     public static <T> T object(String content, TypeReference<T> valueType) {
@@ -154,17 +156,18 @@ public class JsonUtils {
         try {
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
-            PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
 
     /**
      * 将JSON字符串转换成集合
-     * @param content 待转换的JSON字符串
+     *
+     * @param content         待转换的JSON字符串
      * @param collectionClass 集合
-     * @param clazz 转换后的对象的class
-     * @param <T> 转换后的对象
+     * @param clazz           转换后的对象的class
+     * @param <T>             转换后的对象
      * @return 返回转换后的集合对象
      */
     public static <T> T collection(String content, Class<? extends Collection> collectionClass, Class<?> clazz) {
@@ -175,16 +178,17 @@ public class JsonUtils {
             CollectionType valueType = mapper.getTypeFactory().constructCollectionType(collectionClass, clazz);
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
-            PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
 
     /**
      * 将JSON字符串转换成集合
-     * @param content 待转换的JSON字符串
+     *
+     * @param content      待转换的JSON字符串
      * @param valueTypeRef 关联的类型，{@code new TypeReference<List<String>>() {}}
-     * @param <T> 转换后的对象
+     * @param <T>          转换后的对象
      * @return 返回转换后的集合对象
      */
     public static <T> T collection(String content, TypeReference<T> valueTypeRef) {
@@ -194,18 +198,19 @@ public class JsonUtils {
         try {
             return mapper.readValue(content, valueTypeRef);
         } catch (JsonProcessingException e) {
-            PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
 
     /**
      * 将json格式的字符串转换成Map格式
-     * @param json 待转换的json格式的字符串
+     *
+     * @param json   待转换的json格式的字符串
      * @param kClazz Map key类型
      * @param vClazz Map value类型
-     * @param <K> Map key对象
-     * @param <V> Map value对象
+     * @param <K>    Map key对象
+     * @param <V>    Map value对象
      * @return 转换后的 {@code Map<K, V>}
      */
     public static <K, V> Map<K, V> map(String json, Class<K> kClazz, Class<V> vClazz) {
@@ -216,7 +221,7 @@ public class JsonUtils {
             JavaType javaType = mapper.getTypeFactory().constructMapType(Map.class, kClazz, vClazz);
             return mapper.readValue(json, javaType);
         } catch (JsonProcessingException e) {
-            PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -225,7 +230,7 @@ public class JsonUtils {
      * 获取 json 字符串的 key
      *
      * <p>
-     *     只获取 json 第一层的 key
+     * 只获取 json 第一层的 key
      * </p>
      *
      * @param content JSON字符串

@@ -1,13 +1,12 @@
 package com.fengwenyi.javalib.encryption;
 
 
-import com.fengwenyi.javalib.constant.EncryptionTypeConstant;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
  * MD5 加密工具类
+ *
  * @author Wenyi Feng
  * @since 2018-10-16
  */
@@ -17,6 +16,7 @@ public class Md5Utils {
 
     /**
      * MD5加密
+     *
      * @param plainText 待加密的字符串
      * @return MD5加密之后的字符串，32位小写
      * @throws NoSuchAlgorithmException 算法失败
@@ -46,13 +46,14 @@ public class Md5Utils {
 
     /**
      * 加密解密算法 执行一次加密，两次解密
+     *
      * @param str 待加密字符串/加密后的字符串
      * @return 加密后的字符串/解密后的字符串
      */
     public static String convert(String str) {
 
         char[] a = str.toCharArray();
-        for (int i = 0; i < a.length; i++){
+        for (int i = 0; i < a.length; i++) {
             a[i] = (char) (a[i] ^ 't');
         }
         return new String(a);

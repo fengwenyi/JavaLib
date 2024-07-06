@@ -1,4 +1,3 @@
-
 <h1 align="center">
     JavaLib
 </h1>
@@ -34,6 +33,7 @@ JavaLib，是一个Java开发基础工具类库，对项目开发中常用的工
 **Maven**
 
 ```xml
+
 <dependency>
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
@@ -49,11 +49,9 @@ implementation 'com.fengwenyi:JavaLib:3.0.0'
 
 ## 功能列表：
 
-
 ### TODO LIST
 
 aes
-
 
 ## 文档
 
