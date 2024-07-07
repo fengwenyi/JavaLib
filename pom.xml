@@ -164,24 +164,21 @@
                 <artifactId>nexus-staging-maven-plugin</artifactId>
                 <version>1.6.7</version>
                 <extensions>true</extensions>
-                <!--
                 <configuration>
                     <serverId>oss</serverId>
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
-                -->
-                <configuration>
+                <!--<configuration>
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
+                </configuration>-->
             </plugin>
         </plugins>
     </build>
 
     <distributionManagement>
-        <!--
         <snapshotRepository>
             <id>oss</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -190,15 +187,14 @@
             <id>oss</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
-        -->
-        <snapshotRepository>
+        <!--<snapshotRepository>
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
+        </repository>-->
     </distributionManagement>
 
     <profiles>
