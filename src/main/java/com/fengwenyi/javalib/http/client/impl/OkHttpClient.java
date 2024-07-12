@@ -1,5 +1,6 @@
 package com.fengwenyi.javalib.http.client.impl;
 
+import com.fengwenyi.javalib.collection.CollectionUtils;
 import com.fengwenyi.javalib.collection.MapUtils;
 import com.fengwenyi.javalib.convert.JsonUtils;
 import com.fengwenyi.javalib.http.Request;
@@ -11,6 +12,7 @@ import okhttp3.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -21,6 +23,9 @@ import java.util.Objects;
 public class OkHttpClient implements HttpClient {
     @Override
     public Response execute(Request request, Request.Option option) throws IOException {
+        if (CollectionUtils.isNotEmpty(request.getFileList())) {
+            return upload(request, option);
+        }
         if (Request.Method.GET == request.getMethod()) {
             return get(request, option);
         } else if (Request.Method.POST == request.getMethod()) {
@@ -178,6 +183,34 @@ public class OkHttpClient implements HttpClient {
             result = result.substring(0, result.length() - 1);
         }
         return result;
+    }
+
+    /**
+     * 文件上传
+     */
+    private Response upload(Request request, Request.Option option) {
+        okhttp3.OkHttpClient client = client(option);
+
+        // 创建 MediaType 对象
+        MediaType mediaType = MediaType.parse("multipart/form-data; charset=utf-8");
+
+
+        MultipartBody.Builder bodyBuilder = new MultipartBody.Builder();
+        bodyBuilder.setType(MultipartBody.FORM);
+
+        List<Request.FileBo> fileList = request.getFileList();
+        for (Request.FileBo fileBo : fileList) {
+            bodyBuilder.addFormDataPart(fileBo.getParamName(), fileBo.getFileName(), RequestBody.create(mediaType, fileBo.getFile()));
+        }
+        if (MapUtils.isNotEmpty(request.getParam())) {
+            for (Map.Entry<String, Object> entry : request.getParam().entrySet()) {
+                bodyBuilder.addFormDataPart(entry.getKey(), entry.getValue() + "");
+            }
+        }
+        RequestBody requestBody = bodyBuilder.build();
+
+        okhttp3.Request httpRequest = buildRequest(getUrl(request), option.getHeaders(), request.getMethod(), requestBody);
+        return call(client, httpRequest);
     }
 
 }

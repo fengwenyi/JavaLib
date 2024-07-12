@@ -5,10 +5,8 @@ import com.fengwenyi.javalib.util.StrUtils;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSocketFactory;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.StringJoiner;
+import java.io.File;
+import java.util.*;
 
 /**
  * 请求所需要参数
@@ -41,6 +39,8 @@ public class Request {
      * 请求工具
      */
     private Util util = Util.OkHttp;
+
+    private List<FileBo> fileList;
 
     public ParamFormat getParamFormat() {
         return paramFormat;
@@ -281,6 +281,14 @@ public class Request {
         this.util = util;
     }
 
+    public List<FileBo> getFileList() {
+        return fileList;
+    }
+
+    public void setFileList(List<FileBo> fileList) {
+        this.fileList = fileList;
+    }
+
     public static class MediaConstant {
 
         /**
@@ -293,5 +301,38 @@ public class Request {
          */
         public static final String APPLICATION_FORM_VALUE = "application/x-www-form-urlencoded";
 
+    }
+
+    public static class FileBo {
+
+        private String paramName;
+
+        private String fileName;
+
+        private File file;
+
+        public String getParamName() {
+            return paramName;
+        }
+
+        public void setParamName(String paramName) {
+            this.paramName = paramName;
+        }
+
+        public String getFileName() {
+            return fileName;
+        }
+
+        public void setFileName(String fileName) {
+            this.fileName = fileName;
+        }
+
+        public File getFile() {
+            return file;
+        }
+
+        public void setFile(File file) {
+            this.file = file;
+        }
     }
 }
