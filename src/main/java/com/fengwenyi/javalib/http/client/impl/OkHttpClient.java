@@ -51,7 +51,7 @@ public class OkHttpClient implements HttpClient {
 
     private Response get(Request request, Request.Option option) {
         okhttp3.OkHttpClient client = client(option);
-        okhttp3.Request httpRequest = buildRequest(getUrl(request), option.getHeaders(), request.getMethod(), null);
+        okhttp3.Request httpRequest = buildRequest(getUrl(request), getHeaderMap(option), request.getMethod(), null);
         return call(client, httpRequest);
     }
 
@@ -74,7 +74,7 @@ public class OkHttpClient implements HttpClient {
                 }
             }
         }
-        okhttp3.Request httpRequest = buildRequest(getUrl(request), option.getHeaders(), request.getMethod(), requestBody);
+        okhttp3.Request httpRequest = buildRequest(getUrl(request), getHeaderMap(option), request.getMethod(), requestBody);
         return call(client, httpRequest);
     }
 
@@ -209,8 +209,15 @@ public class OkHttpClient implements HttpClient {
         }
         RequestBody requestBody = bodyBuilder.build();
 
-        okhttp3.Request httpRequest = buildRequest(getUrl(request), option.getHeaders(), request.getMethod(), requestBody);
+        okhttp3.Request httpRequest = buildRequest(getUrl(request), getHeaderMap(option), request.getMethod(), requestBody);
         return call(client, httpRequest);
+    }
+
+    private Map<String, String> getHeaderMap(Request.Option option) {
+        if (Objects.isNull(option)) {
+            return null;
+        }
+        return option.getHeaders();
     }
 
 }
