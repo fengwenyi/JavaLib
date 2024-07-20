@@ -200,6 +200,12 @@ public class OkHttpClient implements HttpClient {
 
         List<Request.FileBo> fileList = request.getFileList();
         for (Request.FileBo fileBo : fileList) {
+            if (Objects.isNull(fileBo.getFile())) {
+                throw new RuntimeException("upload failed: file must not be null");
+            }
+            if (StrUtils.isBlank(fileBo.getFileName())) {
+                fileBo.setFileName(fileBo.getFile().getName());
+            }
             bodyBuilder.addFormDataPart(fileBo.getParamName(), fileBo.getFileName(), RequestBody.create(mediaType, fileBo.getFile()));
         }
         if (MapUtils.isNotEmpty(request.getParam())) {

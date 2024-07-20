@@ -305,7 +305,7 @@ public class Request {
 
     public static class FileBo {
 
-        private String paramName;
+        private String paramName = "file";
 
         private String fileName;
 
