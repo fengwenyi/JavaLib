@@ -13,7 +13,11 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fengwenyi.javalib.exception.ExceptionUtils;
 import com.fengwenyi.javalib.util.StrUtils;
+import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -26,6 +30,7 @@ import java.util.*;
 public class JsonUtils {
 
     private static final JsonMapper mapper = new JsonMapper();
+    private static final Logger log = LoggerFactory.getLogger(JsonUtils.class);
 
     static {
         configure(mapper);
@@ -93,7 +98,8 @@ public class JsonUtils {
         try {
             return mapper.writeValueAsString(value);
         } catch (JsonProcessingException e) {
-            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            log.error("object convert json failed, object: {}, exception: {}",
+                    value, ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -116,7 +122,8 @@ public class JsonUtils {
         try {
             return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(value);
         } catch (JsonProcessingException e) {
-            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            log.error("object convert json failed, object: {}, exception: {}",
+                    value, ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -136,7 +143,8 @@ public class JsonUtils {
         try {
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
-            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            log.error("json convert object failed, json: {}, exception: {}",
+                    content, ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -156,7 +164,8 @@ public class JsonUtils {
         try {
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
-            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            log.error("json convert object failed, json: {}, exception: {}",
+                    content, ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -178,7 +187,8 @@ public class JsonUtils {
             CollectionType valueType = mapper.getTypeFactory().constructCollectionType(collectionClass, clazz);
             return mapper.readValue(content, valueType);
         } catch (JsonProcessingException e) {
-            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            log.error("json convert collection failed, json: {}, exception: {}",
+                    content, ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -198,7 +208,8 @@ public class JsonUtils {
         try {
             return mapper.readValue(content, valueTypeRef);
         } catch (JsonProcessingException e) {
-            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            log.error("json convert collection failed, json: {}, exception: {}",
+                    content, ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
@@ -221,7 +232,21 @@ public class JsonUtils {
             JavaType javaType = mapper.getTypeFactory().constructMapType(Map.class, kClazz, vClazz);
             return mapper.readValue(json, javaType);
         } catch (JsonProcessingException e) {
-            // PrintUtils.error(ExceptionUtils.getStackTrace(e));
+            log.error("json convert map failed, json: {}, exception: {}",
+                    json, ExceptionUtils.getStackTrace(e));
+            return null;
+        }
+    }
+
+    public static <K, V> Map<K, V> map(String json) {
+        if (StrUtils.isBlank(json)) {
+            return null;
+        }
+        try {
+            return mapper.readValue(json, new TypeReference<Map<K, V>>() {});
+        } catch (JsonProcessingException e) {
+            log.error("json convert map failed, json: {}, exception: {}",
+                    json, ExceptionUtils.getStackTrace(e));
             return null;
         }
     }
