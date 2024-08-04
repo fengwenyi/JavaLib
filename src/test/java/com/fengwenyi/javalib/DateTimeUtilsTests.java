@@ -182,4 +182,18 @@ public class DateTimeUtilsTests {
         System.out.println(period.isNegative()); // startDate > endDate; 负数；ture ; 相等：false
     }
 
+    @Test
+    public void testParseDateTime() {
+//        String dateTimeStr = "2024-08-04T10:35:00Z";
+//        String pattern = "yyyy-MM-dd'T'HH:mm:ssX";
+
+//        String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
+
+        String dateTimeStr = "2024-08-04T10:35:00.3979847Z";
+        String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSX";
+        String zoneId = "UTC";
+        LocalDateTime localDateTime = DateTimeUtils.parseLocalDateTime(dateTimeStr, pattern, zoneId);
+        System.out.println(DateTimeUtils.format(localDateTime, DateTimeUtils.DATE_TIME));
+    }
+
 }

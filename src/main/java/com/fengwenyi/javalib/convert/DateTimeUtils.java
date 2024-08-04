@@ -167,6 +167,22 @@ public class DateTimeUtils {
     }
 
     /**
+     * 日期时间字符串（含时区）解析为日期时间格式
+     * @param dateTimeStr 日期时间字符串（含时区）
+     * @param pattern 格式
+     * @param zoneId 时区
+     * @return 日期时间格式 {@link LocalDateTime}
+     */
+    public static LocalDateTime parseLocalDateTime(String dateTimeStr, String pattern, String zoneId) {
+        if (StrUtils.isBlank(dateTimeStr) || StrUtils.isBlank(pattern) || StrUtils.isBlank(zoneId)) {
+            return null;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern).withZone(ZoneId.of(zoneId));
+        OffsetDateTime odt = OffsetDateTime.parse(dateTimeStr, formatter);
+        return odt.atZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+    }
+
+    /**
      * 字符串格式的日期解析成日期格式
      *
      * @param date 字符串格式的日期时间, {@code yyyy-MM-dd} {@link DateTimeFormatter ISO_LOCAL_DATE}
