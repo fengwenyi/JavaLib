@@ -9,8 +9,13 @@ import com.fengwenyi.javalib.http.client.HttpClient;
 import com.fengwenyi.javalib.util.StrUtils;
 import okhttp3.*;
 
+import javax.net.ssl.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +41,8 @@ public class OkHttpClient implements HttpClient {
 
     private okhttp3.OkHttpClient client(Request.Option option) {
         okhttp3.OkHttpClient.Builder builder = new okhttp3.OkHttpClient.Builder();
+        HostnameVerifier hostnameVerifier = null;
+        SSLSocketFactory sslContextFactory = null;
         if (Objects.nonNull(option)) {
             Integer connectTimeoutSecond = getTimeoutSecond(option.getConnectTimeoutSecond());
             if (Objects.nonNull(connectTimeoutSecond)) {
@@ -45,7 +52,17 @@ public class OkHttpClient implements HttpClient {
             if (Objects.nonNull(readTimeoutSecond)) {
                 builder.readTimeout(Duration.ofSeconds(readTimeoutSecond));
             }
+            hostnameVerifier = option.getHostnameVerifier();
+            sslContextFactory = option.getSslContextFactory();
         }
+        if (Objects.isNull(hostnameVerifier)) {
+            hostnameVerifier = getIgnoreSslHostnameVerifier();
+        }
+        if (Objects.isNull(sslContextFactory)) {
+            sslContextFactory = getIgnoreInitedSslContext().getSocketFactory();
+        }
+        builder.sslSocketFactory(sslContextFactory, IGNORE_SSL_TRUST_MANAGER_X509);
+        builder.hostnameVerifier(hostnameVerifier);
         return builder.build();
     }
 
@@ -194,7 +211,6 @@ public class OkHttpClient implements HttpClient {
         // 创建 MediaType 对象
         MediaType mediaType = MediaType.parse("multipart/form-data; charset=utf-8");
 
-
         MultipartBody.Builder bodyBuilder = new MultipartBody.Builder();
         bodyBuilder.setType(MultipartBody.FORM);
 
@@ -225,5 +241,68 @@ public class OkHttpClient implements HttpClient {
         }
         return option.getHeaders();
     }
+
+    /**
+     * Get initialized SSLContext instance which ignored SSL certification
+     *
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws KeyManagementException
+     */
+    public static SSLContext getIgnoreInitedSslContext() {
+        SSLContext sslContext = null;
+        try {
+            sslContext = SSLContext.getInstance("SSL");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            sslContext.init(null, trustAllCerts, new SecureRandom());
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
+        }
+        return sslContext;
+    }
+
+    private static final TrustManager[] trustAllCerts = new TrustManager[] {
+            new X509TrustManager() {
+                @Override
+                public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                }
+
+                @Override
+                public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {
+                }
+
+                @Override
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return new java.security.cert.X509Certificate[]{};
+                }
+            }
+    };
+
+    /**
+     * Get HostnameVerifier which ignored SSL certification
+     *
+     * @return
+     */
+    public static HostnameVerifier getIgnoreSslHostnameVerifier() {
+        return (hostname, sslSession ) -> true;
+    }
+
+    public static final X509TrustManager IGNORE_SSL_TRUST_MANAGER_X509 = new X509TrustManager() {
+        @Override
+        public void checkClientTrusted(X509Certificate[] chain, String authType) {
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] chain, String authType) {
+        }
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[] {};
+        }
+    };
 
 }

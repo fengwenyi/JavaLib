@@ -71,4 +71,11 @@ public class HttpUtilsTests {
         }
     }
 
+    @Test
+    public void testGetXzqh() {
+        String url = "https://www.mca.gov.cn/mzsj/xzqh/2023/202301xzqh.html";
+        String result = HttpUtils.get(url);
+        System.out.println(result);
+    }
+
 }
