@@ -8,6 +8,10 @@
 :bug: Bug
 ```
 
+## v3.0.1
+
+- 【HttpUtils】修复请求 https 时出现的无证书问题。
+
 ## v3.0.0
 
 - java version 17

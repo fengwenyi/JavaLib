@@ -6,7 +6,7 @@
 
     <groupId>com.fengwenyi</groupId>
     <artifactId>JavaLib</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.0.1</version>
     <packaging>jar</packaging>
     <name>JavaLib</name>
     <description>JAVA开发常用工具集</description>
@@ -29,7 +29,7 @@
         <!--<okhttp.version>4.11.0</okhttp.version>-->
         <okhttp.version>4.9.3</okhttp.version>
         <slf4j-api.version>2.0.3</slf4j-api.version>
-        <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.10.0</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.2.1</maven-gpg-plugin.version>
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
         <lombok.version>1.18.30</lombok.version>
@@ -206,6 +206,14 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <!--<additionalparam>-Xdoclint:none</additionalparam>-->
+                            <additionalJOptions>-Xdoclint:none -J-Dfile.encoding=utf-8</additionalJOptions>
+                            <charset>UTF-8</charset>
+                            <encoding>UTF-8</encoding>
+                            <docencoding>UTF-8</docencoding>
+                            <locale>zh_CN</locale>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
